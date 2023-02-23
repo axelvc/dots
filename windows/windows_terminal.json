@@ -1,0 +1,87 @@
+{
+  "$help": "https://aka.ms/terminal-documentation",
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "copyFormatting": "all",
+  "disableAnimations": true,
+  "profiles": {
+    "defaults": {
+      "antialiasingMode": "cleartype",
+      "colorScheme": "Catppuccin Mocha",
+      "cursorShape": "filledBox",
+      "font": {
+        "face": "CaskaydiaCove Nerd Font Mono"
+      },
+      "padding": "2",
+      "scrollbarState": "hidden",
+      "useAtlasEngine": true
+    },
+    "list": [
+      {
+        "icon": "🐳",
+        "source": "Windows.Terminal.Wsl"
+      },
+      {
+        "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe /nologo",
+        "name": "Windows PowerShell"
+      }
+    ]
+  },
+  "theme": "Catppuccin Mocha",
+  "schemes": [
+    {
+      "name": "Catppuccin Mocha",
+      "background": "#1E1E2E",
+      "black": "#45475A",
+      "blue": "#89B4FA",
+      "brightBlack": "#585B70",
+      "brightBlue": "#89B4FA",
+      "brightCyan": "#94E2D5",
+      "brightGreen": "#A6E3A1",
+      "brightPurple": "#F5C2E7",
+      "brightRed": "#F38BA8",
+      "brightWhite": "#A6ADC8",
+      "brightYellow": "#F9E2AF",
+      "cursorColor": "#F5E0DC",
+      "cyan": "#94E2D5",
+      "foreground": "#CDD6F4",
+      "green": "#A6E3A1",
+      "purple": "#F5C2E7",
+      "red": "#F38BA8",
+      "selectionBackground": "#585B70",
+      "white": "#BAC2DE",
+      "yellow": "#F9E2AF"
+    }
+  ],
+  "themes": [
+    {
+      "name": "Catppuccin Mocha",
+      "tab": {
+        "background": "#313244FF",
+        "showCloseButton": "always",
+        "unfocusedBackground": null
+      },
+      "tabRow": {
+        "background": "#1E1E2EFF",
+        "unfocusedBackground": "#181825FF"
+      },
+      "window": {
+        "applicationTheme": "dark"
+      }
+    }
+  ],
+  "actions": [
+    { "command": "toggleFocusMode", "keys": "f12" },
+    { "command": { "action": "copy", "singleLine": false }, "keys": "ctrl+c" },
+    { "command": "paste", "keys": "ctrl+v" },
+    { "command": "find", "keys": "ctrl+shift+f" },
+    { "command": { "action": "moveFocus", "direction": "left" }, "keys": "alt+shift+h" },
+    { "command": { "action": "moveFocus", "direction": "right" }, "keys": "alt+shift+l" },
+    { "command": { "action": "moveFocus", "direction": "up" }, "keys": "alt+shift+k" },
+    { "command": { "action": "moveFocus", "direction": "down" }, "keys": "alt+shift+j" },
+    { "command": { "action": "resizePane", "direction": "left" }, "keys": "ctrl+shift+h" },
+    { "command": { "action": "resizePane", "direction": "right" }, "keys": "ctrl+shift+l" },
+    { "command": { "action": "resizePane", "direction": "up" }, "keys": "ctrl+shift+k" },
+    { "command": { "action": "resizePane", "direction": "down" }, "keys": "ctrl+shift+j" },
+    { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
+  ]
+}
