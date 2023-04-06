@@ -2,8 +2,14 @@ theme = "catppuccin_mocha"
 
 [editor]
 line-number = "relative"
+true-color = true
 cursorline = true
 color-modes = true
+
+[editor.statusline]
+mode.normal = " N "
+mode.insert = " I "
+mode.select = " S "
 
 [editor.cursor-shape]
 insert = "bar"
@@ -15,6 +21,7 @@ render = true
 
 [keys.normal]
 "C-s" = ":update"
+"C-p" = "file_picker"
 
 [keys.insert]
 "C-c" = "normal_mode"
