@@ -15,6 +15,7 @@ alias nrun="npm run"
 
 # git/github
 alias lg=lazygit
+alias gui=gitui
 alias gc="cz"
 alias gii="git init"
 alias gcma="git commit --amend --no-edit"

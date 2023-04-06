@@ -63,6 +63,7 @@ export SUDO_EDITOR=nvim
 export PAGER=less
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export SUDO_PROMPT='Password:  '
+export PATH="$HOME/.local/bin:$PATH"
 
 export WORDCHARS=${WORDCHARS//[\/]}
 export WORDCHARS=${WORDCHARS//-}
@@ -83,6 +84,7 @@ export PATH="$PATH:$GOPATH/bin"
 
 # FZF
 export FZF_DEFAULT_OPTS="\
+  --ansi\
   --color=bg+:-1,bg:-1,spinner:3,hl:1\
   --color=fg:7,header:1,info:4,pointer:5\
   --color=marker:3,fg+:5,prompt:4,hl+:1"
