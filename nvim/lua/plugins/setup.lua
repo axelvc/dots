@@ -6,7 +6,7 @@ local function config(name)
 end
 
 return {
-  -- [[ Chore ]] --------------------------------------------------------------------
+  -- [[ Core ]] --------------------------------------------------------------------
   { 'dstein64/vim-startuptime', cmd = 'StartupTime' }, -- mesure startup-time
   { 'kyazdani42/nvim-web-devicons', lazy = true }, -- icons
   { 'nvim-lua/plenary.nvim', lazy = true }, -- utility functions used by lots of plugins
@@ -22,7 +22,6 @@ return {
   -- telescope
   {
     'nvim-telescope/telescope.nvim',
-    build = 'make',
     lazy = true,
     cmd = { 'Telescope' },
     config = config 'telescope',
@@ -35,7 +34,7 @@ return {
     build = ':TSUpdate',
     dependencies = {
       'JoosepAlviste/nvim-ts-context-commentstring', -- commentstring based on location
-      'nvim-treesitter/playground', -- playground -- NOTE: maybe not needed more (see :Inspect and vim.treesitter.show_tree())
+      'nvim-treesitter/playground', -- playground -- NOTE: maybe no longer needed (see :Inspect and vim.treesitter.show_tree())
       'windwp/nvim-ts-autotag', -- auto close tag
       'mrjones2014/nvim-ts-rainbow', -- rainbow colors
     },
@@ -109,6 +108,10 @@ return {
   { 'jose-elias-alvarez/null-ls.nvim', config = config 'lsp.null-ls' }, -- linter & formatter
 
   -- [[ Utils ]] --------------------------------------------------------------------
+  { -- copilot alternative
+    'Exafunction/codeium.vim',
+    config = config 'codeium',
+  },
   { -- convert px to rem and vice versa
     'axelvc/unito.nvim',
     lazy = true,

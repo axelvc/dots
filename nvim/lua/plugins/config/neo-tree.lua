@@ -4,11 +4,7 @@ require('neo-tree').setup {
   hide_root_node = true,
   log_level = 'error',
   popup_border_style = vim.g.border,
-  sources = {
-    'filesystem',
-    'buffers',
-    'git_status',
-  },
+  sources = { 'filesystem' },
   source_selector = {
     statusline = true, -- toggle to show selector on statusline
     winbar = true, -- toggle to show selector on winbar

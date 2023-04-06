@@ -51,7 +51,7 @@ o.guicursor = { 'a:blinkwait700-blinkoff750-blinkon250', 'i:ver20', 'r-o:hor20',
 
 -- window title
 o.title = true
-o.titlestring = 'Vim - ' .. vim.fn.expand('%:p:h:t', nil)
+o.titlestring = '༼ つ ╹ ╹ ༽つ'
 
 -- performance
 o.timeoutlen = 400

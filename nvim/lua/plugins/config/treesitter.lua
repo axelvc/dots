@@ -1,3 +1,8 @@
+local register = vim.treesitter.language.register
+
+register('jsonc', 'json')
+register('bash', 'zsh')
+
 require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
@@ -45,6 +50,3 @@ require('nvim-treesitter.configs').setup {
     'yaml',
   },
 }
-
-require('nvim-treesitter.parsers').filetype_to_parsername.json = 'jsonc'
-require('nvim-treesitter.parsers').filetype_to_parsername.zsh = 'bash'

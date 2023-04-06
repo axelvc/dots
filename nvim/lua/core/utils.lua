@@ -63,7 +63,7 @@ function vim.g.code_runner()
   local extensions = {
     lua = 'luajit %s',
     rust = 'cargo run',
-    typescript = 'tsx %s',
+    typescript = 'bun %s',
     javascript = 'node %s',
     python = 'python3 %s',
     sh = 'sh %s',

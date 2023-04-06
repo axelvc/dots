@@ -1,6 +1,7 @@
 local calculate_list = {
   'javascript',
   'javascriptreact',
+  'typescriptreact',
 }
 
 ---@param ctx CommentCtx

@@ -68,6 +68,24 @@ require('mason-lspconfig').setup_handlers {
             }, { buffer = bufnr })
           end
         end,
+        settings = {
+          ['rust-analyzer'] = {
+            checkOnSave = {
+              allFeatures = true,
+              overrideCommand = {
+                'cargo',
+                'clippy',
+                '--workspace',
+                '--message-format=json',
+                '--all-targets',
+                '--all-features',
+                -- '--',
+                -- '-W',
+                -- 'clippy::pedantic',
+              },
+            },
+          },
+        },
       },
     }
   end,
