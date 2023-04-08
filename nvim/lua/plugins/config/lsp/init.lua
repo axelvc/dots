@@ -4,10 +4,11 @@ local lsp_util = require 'lspconfig.util'
 local set_maps = require 'plugins.config.lsp.mapping'
 
 local configs = {
-  cssls = require 'plugins.config.lsp.languages.css',
-  jsonls = require 'plugins.config.lsp.languages.json',
   gopls = require 'plugins.config.lsp.languages.go',
-  emmet_ls = require 'plugins.config.lsp.languages.emmet',
+  cssls = require 'plugins.config.lsp.languages.css',
+  rust = require 'plugins.config.lsp.languages.rust',
+  jsonls = require 'plugins.config.lsp.languages.json',
+  emmet_ls = require 'plugins.config.lsp.languages.emmet'.setup,
   typescript = require 'plugins.config.lsp.languages.typescript',
 }
 
@@ -45,48 +46,6 @@ require('mason-lspconfig').setup_handlers {
     }
   end,
   ['rust_analyzer'] = function()
-    local rt = require 'rust-tools'
-
-    rt.setup {
-      server = {
-        on_attach = function()
-          set_maps()
-
-          -- inlay hints
-          map('n', '<leader>hs', rt.inlay_hints.set, { buffer = true, desc = 'Set' })
-          map('n', '<leader>hs', rt.inlay_hints.unset, { buffer = true, desc = 'Unset' })
-          map('n', '<leader>he', rt.inlay_hints.enable, { buffer = true, desc = 'Enable' })
-          map('n', '<leader>hd', rt.inlay_hints.disable, { buffer = true, desc = 'Disable' })
-
-          -- runnables
-          map('n', '<leader>r', rt.runnables.runnables, { buffer = true, desc = 'Runables' })
-
-          local exists, wk = pcall(require, 'which-key')
-          if exists then
-            wk.register({
-              ['<leader>h'] = { name = 'Hints' },
-            }, { buffer = bufnr })
-          end
-        end,
-        settings = {
-          ['rust-analyzer'] = {
-            checkOnSave = {
-              allFeatures = true,
-              overrideCommand = {
-                'cargo',
-                'clippy',
-                '--workspace',
-                '--message-format=json',
-                '--all-targets',
-                '--all-features',
-                -- '--',
-                -- '-W',
-                -- 'clippy::pedantic',
-              },
-            },
-          },
-        },
-      },
-    }
+    configs.rust()
   end,
 }

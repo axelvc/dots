@@ -2,6 +2,8 @@
 # - This only install/configure terminal stuff
 # - It assumes you're using Arch derived
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 sudo sed -i 's/^#Color$/Color/' /etc/pacman.conf
 sudo sed -i 's/^#VerbosePkgLists$/VerbosePkgLists/' /etc/pacman.conf
 
@@ -44,7 +46,7 @@ git config --global user.name "$git_name"
 git config --global user.email "$git_email"
 git config --global init.defaultBranch "main"
 
-ln -sf ~/.dotfiles/.czrc ~/
+ln -sf $DIR/.czrc $HOME/
 
 ### nvim
 wget -q https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
@@ -66,8 +68,8 @@ makepkg -si
 configs=("btop" "helix" "kitty" "polybar" "ranger" "wezterm" "leftwm" "starship.toml")
 
 for c in "${configs[@]}"; do
-  rm -rI ~/config/$c
-  ln -sf ~/.dotfiles/$c ~/.config/
+  rm -rI $HOME/config/$c
+  ln -sf $DIR/$c $HOME/.config/
 done
 
 ~/.config/ranger/install_plugins.sh

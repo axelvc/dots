@@ -34,7 +34,6 @@ return {
     build = ':TSUpdate',
     dependencies = {
       'JoosepAlviste/nvim-ts-context-commentstring', -- commentstring based on location
-      'nvim-treesitter/playground', -- playground -- NOTE: maybe no longer needed (see :Inspect and vim.treesitter.show_tree())
       'windwp/nvim-ts-autotag', -- auto close tag
       'mrjones2014/nvim-ts-rainbow', -- rainbow colors
     },

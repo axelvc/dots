@@ -92,7 +92,7 @@ export FZF_DEFAULT_OPTS="\
 source /usr/share/fzf/key-bindings.zsh
 
 # Extra
-source $HOME/.dotfiles/alias.sh
+source $HOME/.dots/alias.sh
 
 unalias gh
 eval "$(starship init zsh)"

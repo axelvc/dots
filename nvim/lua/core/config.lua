@@ -68,3 +68,24 @@ vim.filetype.add {
     ['%.env%..*'] = 'sh',
   },
 }
+
+-- clipboard.vim is too slow (compared with manual setting clipboard)
+if has('wsl') then
+    vim.g.clipboard = {
+        name = 'WslClipboard',
+        cache_enabled = 0,
+        copy = {
+          -- ['+'] = 'clip.exe',
+          -- ['*'] = 'clip.exe',
+            ['+'] = 'win32yank.exe -i --crlf',
+            ['*'] = 'win32yank.exe -i --crlf',
+
+        },
+        paste = {
+            -- ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            -- ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            ['+'] = 'win32yank.exe -o --lf',
+            ['*'] = 'win32yank.exe -o --lf',
+        },
+    }
+end

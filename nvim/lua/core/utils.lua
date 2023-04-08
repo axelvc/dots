@@ -39,7 +39,7 @@ vim.g.signs = signs
 _G.map = vim.keymap.set
 
 -- easy inspect
-_G.put = vim.pretty_print
+_G.put = vim.print
 
 local counts = setmetatable({}, {
   __index = function(self, key)
