@@ -1,6 +1,5 @@
 {
-  "path": "cz-git",
-  "useEmoji": false,
+  "$schema": "https://cdn.jsdelivr.net/gh/Zhengqbbb/cz-git@1.6.1/docs/public/schema/cz-git.json",
   "maxHeaderLength": 100,
-  "customScopeAlign": "top"
+  "skipQuestions": ["breaking"]
 }

@@ -29,7 +29,7 @@ NPM_HOME="$HOME/.local/share/npm"
 PATH="$NPM_HOME/bin:$PATH"
 
 npm set prefix "$NPM_HOME"
-npm i -g npm pnpm yarn tldr typescript prettier commitizen cz-git
+npm i -g npm pnpm yarn tldr typescript prettier czg
 tldr --update
 
 # bun

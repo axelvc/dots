@@ -16,7 +16,7 @@ alias nrun="npm run"
 # git/github
 alias lg=lazygit
 alias gui=gitui
-alias gc="cz"
+alias gc="czg"
 alias gii="git init"
 alias gcma="git commit --amend --no-edit"
 
@@ -24,14 +24,14 @@ alias gcma="git commit --amend --no-edit"
 alias hl=helix
 alias vim=nvim
 alias v=nvim
-alias vima="nvim ~/.dotfiles/alias.sh"
+alias vima="nvim ~/.dots/alias.sh"
 alias vimc="nvim ~/.config/nvim/init.lua -c cd%:p:h"
 alias zshc="nvim ~/.zshrc"
 
 # exa
 alias ls="exa --group-directories-first --icons" # show
 alias la="ls -a"                                 # show (hidden)
-alias l="ls -lhg --git"                         # list mode
+alias l="ls -lhg --git"                          # list
 alias ll="l -a"                                  # list (hidden)
 alias lt="ls -TI .git\|node_modules"             # tree
 alias lta="lt -a"                                # tree (hidden)
