@@ -3,7 +3,3 @@ vim.g.codeium_filetypes = {
   ['TelescopePrompt'] = false,
   ['DressingInput'] = false,
 }
-
-map('i', '<C-l>', function()
-  return vim.fn['codeium#Accept']()
-end, { expr = true, silent = true })

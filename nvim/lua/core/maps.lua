@@ -97,4 +97,9 @@ map('n', '<Leader>/', function() require('telescope.builtin').live_grep() end, {
 map('n', '<Leader><Leader>', function() require('telescope.builtin').builtin() end, { desc = 'Telescope builtin' })
 
 -- [[ zen mode ]]
-map('n', '<Leader>z', function() require('zen-mode').toggle() end, { desc = 'Zen Mode'})
+map('n', '<Leader>z', function() require('zen-mode').toggle() end, { desc = 'Zen Mode' })
+
+-- [[ codeium ]]
+map('i', '<C-l>', function()
+  return vim.fn['codeium#Accept']()
+end, { expr = true, silent = true })

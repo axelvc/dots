@@ -7,11 +7,10 @@ end
 
 return {
   -- [[ Core ]] --------------------------------------------------------------------
-  { 'dstein64/vim-startuptime', cmd = 'StartupTime' }, -- mesure startup-time
-  { 'kyazdani42/nvim-web-devicons', lazy = true }, -- icons
-  { 'nvim-lua/plenary.nvim', lazy = true }, -- utility functions used by lots of plugins
   { 'MunifTanjim/nui.nvim', lazy = true }, -- ui component library
+  { 'nvim-lua/plenary.nvim', lazy = true }, -- utility functions used by lots of plugins
   { 'kevinhwang91/promise-async', lazy = true }, -- promise like (js) functions
+  { 'kyazdani42/nvim-web-devicons', lazy = true }, -- icons
 
   -- [[ UI ]] -----------------------------------------------------------------------
   { 'catppuccin/nvim', config = config 'themes.catppuccin', name = 'catppuccin' },
@@ -19,8 +18,7 @@ return {
   { 'marko-cerovac/material.nvim', config = config 'themes.material', lazy = true },
   { 'rose-pine/neovim', config = config 'themes.rose_pine', lazy = true },
 
-  -- telescope
-  {
+  { -- telescope
     'nvim-telescope/telescope.nvim',
     lazy = true,
     cmd = { 'Telescope' },
@@ -33,20 +31,22 @@ return {
     config = config 'treesitter',
     build = ':TSUpdate',
     dependencies = {
-      'JoosepAlviste/nvim-ts-context-commentstring', -- commentstring based on location
       'windwp/nvim-ts-autotag', -- auto close tag
       'mrjones2014/nvim-ts-rainbow', -- rainbow colors
+      'nvim-treesitter/nvim-treesitter-context', -- sticky context
+      'JoosepAlviste/nvim-ts-context-commentstring', -- commentstring based on location
     },
   },
 
   -- git
   -- 'sindrets/diffview.nvim',
-  { 'lewis6991/gitsigns.nvim', config = config 'gitsigns', event = 'VeryLazy' },
   { 'akinsho/git-conflict.nvim', config = true, event = 'VimEnter' },
+  { 'lewis6991/gitsigns.nvim', config = config 'gitsigns', event = 'VeryLazy' },
 
   -- bars
-  { 'akinsho/nvim-bufferline.lua', config = config 'bufferline', event = 'VimEnter' }, -- tabline
   { 'hoob3rt/lualine.nvim', config = config 'lualine', event = 'VimEnter' }, -- statusline
+  { "luukvbaal/statuscol.nvim", config = config 'statuscol', event = 'VimEnter' }, -- status-column
+  { 'akinsho/nvim-bufferline.lua', config = config 'bufferline', event = 'VimEnter' }, -- tabline
 
   -- extra
   {
@@ -65,17 +65,29 @@ return {
     lazy = true,
     keys = { '<C-Bslash>' },
   },
+  { -- pretty diagnostics
+    'folke/trouble.nvim',
+    config = config 'trouble',
+    lazy = true,
+  },
+  { -- which key helper
+    'folke/which-key.nvim',
+    config = config 'which_key',
+    lazy = true,
+  },
+  { -- better fold
+    'kevinhwang91/nvim-ufo',
+    config = true,
+    event = 'VeryLazy',
+  },
   { 'folke/noice.nvim', config = config 'noice' }, -- fancy messages,cmdline and popupmenu
   { 'stevearc/dressing.nvim', event = 'VeryLazy' }, -- automatic set vim.ui interfaces
   { 'goolord/alpha-nvim', config = config 'alpha' }, -- start page
   { 'rcarriga/nvim-notify', config = config 'notify' }, -- fancy notifications
   { 'folke/todo-comments.nvim', config = config 'todo_comments' }, -- highlight "todo" comments
-  { 'folke/trouble.nvim', config = config 'trouble', lazy = true }, -- pretty diagnostics
-  { 'folke/which-key.nvim', config = config 'which_key', event = 'VeryLazy' }, -- which key helper
-  { 'kevinhwang91/nvim-ufo', config = true, event = 'VeryLazy' }, -- better fold
-  { 'brenoprata10/nvim-highlight-colors', config = config 'highlight-colors' }, -- color highlighter
-  { 'lukas-reineke/indent-blankline.nvim', config = config 'indent_blankline', event = 'VeryLazy' }, -- indent line
+  { 'NvChad/nvim-colorizer.lua', config = config 'nvim-colorizer' }, -- color highlighter
   { 'RRethy/vim-illuminate', config = config 'illuminate', event = 'VeryLazy' }, -- cursor word highlight
+  { 'lukas-reineke/indent-blankline.nvim', config = config 'indent_blankline', event = 'VeryLazy' }, -- indent line
 
   -- [[ LSP ]] ----------------------------------------------------------------------
   {
@@ -111,7 +123,7 @@ return {
     'Exafunction/codeium.vim',
     config = config 'codeium',
   },
-  { -- convert px to rem and vice versa
+  { -- convert px to rem and vice-versa
     'axelvc/unito.nvim',
     lazy = true,
   },
@@ -120,7 +132,7 @@ return {
     config = true,
     keys = { ':' },
   },
-  {
+  { -- split/join objects
     'Wansmer/treesj',
     config = config 'treesj',
     lazy = true,
@@ -130,12 +142,15 @@ return {
     config = config 'neogen',
     cmd = { 'Neogen', 'Docgen' },
   },
+  { -- goto preview
+    'rmagatti/goto-preview',
+    config = config 'goto-preview',
+    lazy = true,
+  },
   'Darazaki/indent-o-matic', -- auto set indentation width
-  { 'folke/neoconf.nvim', config = true },
   { 'jghauser/mkdir.nvim', event = 'VeryLazy' }, -- create directory on save
   { 'echasnovski/mini.nvim', config = config 'mini' }, -- lots of utils
   { 'axelvc/template-string.nvim', config = config 'template_string' }, -- JS quotes to template strings
-  { 'rmagatti/goto-preview', config = config 'goto-preview', lazy = true }, -- goto preview
   { 'numToStr/Comment.nvim', config = config 'comment', event = 'VeryLazy' }, -- easy comment lines
   { 'windwp/nvim-autopairs', config = config 'autopairs', event = 'VeryLazy' }, -- autopairs
   { 'kylechui/nvim-surround', config = config 'surround', event = 'VeryLazy' }, -- selection pairs

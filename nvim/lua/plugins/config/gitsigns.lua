@@ -40,7 +40,7 @@ gitsigns.setup {
     bmap('n', '[c', ':GitConflictPrevConflict<CR>', 'Previuous git conflict')
     bmap('n', ']c', ':GitConflictNextConflict<CR>', 'Next git conflict')
 
-     -- stylua: ignore
+    -- stylua: ignore
     bmap('n', '<Leader>gt', function() lazygit:toggle() end, 'Lazygit')
 
     -- navigation

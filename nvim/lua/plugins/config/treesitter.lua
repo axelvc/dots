@@ -19,7 +19,7 @@ require('nvim-treesitter.configs').setup {
     extended_mode = true,
     max_file_lines = 1000,
   },
-  playground = {
+  context = {
     enable = true,
   },
   ensure_installed = {

@@ -78,8 +78,6 @@ local buttons = {
     button('  New file',       'i', ':ene | startinsert<CR>'),
     button('  Find file',      'f', ':Telescope find_files<CR>'),
     button('  Find Word',      '/', ':Telescope grep_string<CR>'),
-    button('  Update Plugins', 'u', ':Lazy update<CR>'),
-    button('  Sync Plugins',   's', ':Lazy sync<CR>'),
     button('  Settings',       '.', ':edit $MYVIMRC | cd %:p:h<CR>'),
     button('  Exit',           'q', ':quitall!<CR>'),
   },

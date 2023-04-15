@@ -1,7 +1,7 @@
 require('trouble').setup {
   action_keys = {
-    previous = { 'k', '<C-k>' },
-    next = { 'j', '<C-j>' },
+    previous = { 'k' },
+    next = { 'j' },
   },
   padding = false,
   auto_close = true,

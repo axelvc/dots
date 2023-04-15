@@ -8,7 +8,7 @@ o.clipboard = 'unnamedplus'
 
 -- ui
 o.cmdheight = 1
-o.fillchars = { eob = ' ', stl = ' ', stlnc = ' ', diff = '/', fold = ' ' }
+o.foldcolumn = '1'
 o.mouse = 'a'
 o.scrolloff = 5
 o.signcolumn = 'yes:2'
@@ -17,6 +17,16 @@ o.splitkeep = 'screen'
 o.splitright = true
 o.termguicolors = true
 o.pumheight = 15
+o.fillchars = {
+  eob = ' ',
+  stl = ' ',
+  stlnc = ' ',
+  diff = '/',
+  fold = '-',
+  foldopen = '',
+  foldclose = '',
+  foldsep = ' ',
+}
 
 -- wrapping
 o.wrap = false
@@ -71,21 +81,20 @@ vim.filetype.add {
 
 -- clipboard.vim is too slow (compared with manual setting clipboard)
 if has('wsl') then
-    vim.g.clipboard = {
-        name = 'WslClipboard',
-        cache_enabled = 0,
-        copy = {
-          -- ['+'] = 'clip.exe',
-          -- ['*'] = 'clip.exe',
-            ['+'] = 'win32yank.exe -i --crlf',
-            ['*'] = 'win32yank.exe -i --crlf',
-
-        },
-        paste = {
-            -- ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-            -- ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-            ['+'] = 'win32yank.exe -o --lf',
-            ['*'] = 'win32yank.exe -o --lf',
-        },
-    }
+  vim.g.clipboard = {
+    name = 'WslClipboard',
+    cache_enabled = 0,
+    copy = {
+      -- ['+'] = 'clip.exe',
+      -- ['*'] = 'clip.exe',
+      ['+'] = 'win32yank.exe -i --crlf',
+      ['*'] = 'win32yank.exe -i --crlf',
+    },
+    paste = {
+      -- ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      -- ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ['+'] = 'win32yank.exe -o --lf',
+      ['*'] = 'win32yank.exe -o --lf',
+    },
+  }
 end
