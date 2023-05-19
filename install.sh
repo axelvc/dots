@@ -55,6 +55,7 @@ cd nvim-linux64
 sudo mv bin/nvim /bin
 sudo mv lib/nvim /lib
 sudo cp -r share/* /usr/share
+cd $DIR && rm -rf nvim-linux64*
 
 # my config
 git clone https://github.com/axelvc/nvim ~/.config/nvim

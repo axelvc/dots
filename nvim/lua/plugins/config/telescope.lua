@@ -1,7 +1,5 @@
 local telescope = require 'telescope'
-local telescope_builtin = require 'telescope.builtin'
 local actions = require 'telescope.actions'
-local autocmd = vim.api.nvim_create_autocmd
 
 telescope.setup {
   defaults = {

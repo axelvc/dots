@@ -96,4 +96,3 @@ source $HOME/.dots/alias.sh
 
 unalias gh
 eval "$(starship init zsh)"
-

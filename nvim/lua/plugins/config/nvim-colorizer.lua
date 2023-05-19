@@ -1,10 +1,10 @@
-require("colorizer").setup {
-  filetypes = { "*" },
+require('colorizer').setup {
+  filetypes = { '*' },
   user_default_options = {
     names = true,
     RRGGBBAA = true,
     css = true,
-    tailwind = "lsp",
+    tailwind = 'lsp',
   },
   buftypes = {},
 }

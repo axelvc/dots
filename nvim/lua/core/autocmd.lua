@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 local o = vim.opt
 
-local group =  vim.api.nvim_create_augroup("core", { clear = true })
+local group = vim.api.nvim_create_augroup('core', { clear = true })
 
 -- disable auto comment on newline
 autocmd('BufEnter', {
@@ -32,10 +32,10 @@ autocmd('BufEnter', {
 })
 
 -- resize splits when window is resized
-vim.api.nvim_create_autocmd({ "VimResized" }, {
+vim.api.nvim_create_autocmd({ 'VimResized' }, {
   group = group,
   callback = function()
-    vim.cmd("tabdo wincmd =")
+    vim.cmd('tabdo wincmd =')
   end,
 })
 

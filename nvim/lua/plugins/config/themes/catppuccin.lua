@@ -22,6 +22,7 @@ catppuccin.setup {
     cmp = true,
     gitsigns = true,
     illuminate = true,
+    leap = true,
     lsp_trouble = true,
     markdown = true,
     mason = true,
@@ -61,7 +62,6 @@ catppuccin.setup {
       PmenuThumb = { bg = c.peach, fg = c.matle },
       NormalFLoat = { bg = c.mantle, fg = c.text },
       -- lualine
-      Clock = { bg = c.lavender, fg = c.mantle },
       Recording = { bg = c.mantle, fg = c.peach },
       -- neo-tree
       NeoTreeTabActive = { bg = c.base },

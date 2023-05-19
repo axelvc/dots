@@ -45,7 +45,7 @@ return {
 
   -- bars
   { 'hoob3rt/lualine.nvim', config = config 'lualine', event = 'VimEnter' }, -- statusline
-  { "luukvbaal/statuscol.nvim", config = config 'statuscol', event = 'VimEnter' }, -- status-column
+  { 'luukvbaal/statuscol.nvim', config = config 'statuscol', event = 'VimEnter' }, -- status-column
   { 'akinsho/nvim-bufferline.lua', config = config 'bufferline', event = 'VimEnter' }, -- tabline
 
   -- extra
@@ -119,18 +119,22 @@ return {
   { 'jose-elias-alvarez/null-ls.nvim', config = config 'lsp.null-ls' }, -- linter & formatter
 
   -- [[ Utils ]] --------------------------------------------------------------------
-  { -- copilot alternative
-    'Exafunction/codeium.vim',
-    config = config 'codeium',
-  },
   { -- convert px to rem and vice-versa
     'axelvc/unito.nvim',
+    lazy = true,
+  },
+  { -- motion movemente
+    'ggandor/leap.nvim',
     lazy = true,
   },
   { -- preview line on :[number]
     'nacro90/numb.nvim',
     config = true,
     keys = { ':' },
+  },
+  { -- copilot alternative
+    'Exafunction/codeium.vim',
+    config = config 'codeium',
   },
   { -- split/join objects
     'Wansmer/treesj',

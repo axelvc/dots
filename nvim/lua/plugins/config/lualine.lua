@@ -1,6 +1,5 @@
 local o = vim.opt
 local noice = require 'noice'
-local command = vim.api.nvim_create_user_command
 
 local short_mode = {
   'mode',
@@ -28,19 +27,11 @@ require('lualine').setup {
     },
     lualine_b = {
       {
-        'diagnostics',
-        sources = { 'nvim_diagnostic' },
-        always_visible = false,
-        symbols = vim.g.signs,
+        'branch',
+        icon = '',
       },
     },
     lualine_c = {
-      {
-        'branch',
-        icon = '',
-        separator = '',
-        padding = { left = 2, right = 0 },
-      },
       {
         'diff',
         symbols = {
@@ -48,8 +39,12 @@ require('lualine').setup {
           modified = ' ',
           removed = ' ',
         },
-        separator = '',
-        padding = { left = 2, right = 0 },
+      },
+      {
+        'diagnostics',
+        sources = { 'nvim_diagnostic' },
+        always_visible = false,
+        symbols = vim.g.signs,
       },
     },
     lualine_x = {
@@ -75,30 +70,15 @@ require('lualine').setup {
           return o.fileformat:get() ~= 'unix'
         end,
       },
-      {
-        function()
-          return o.filetype:get()
-        end,
-      },
     },
     lualine_y = {
-      {
-        function()
-          return os.date '%H:%M'
-        end,
-        cond = function()
-          return vim.g.clock
-        end,
-        separtor = '-',
-        color = 'Clock',
-      },
-      '%l:%c',
+      function()
+        return o.filetype:get()
+      end,
     },
     lualine_z = {
-      {
-        'Lines: %L',
-        type = 'stl',
-      },
+      '%l:%c',
+      '%L'
     },
   },
   extensions = {
@@ -109,16 +89,9 @@ require('lualine').setup {
           short_mode,
         },
         lualine_z = {
-          {
-            'Alpha',
-            type = 'stl',
-          },
+          'Alpha',
         },
       },
     },
   },
 }
-
-command('Clock', function()
-  vim.g.clock = not vim.g.clock
-end, {})
