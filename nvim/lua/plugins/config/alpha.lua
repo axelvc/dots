@@ -36,7 +36,7 @@ local date = {
     position = 'center',
   },
   val = {
-    ' ' .. os.date '%A %d %B',
+    ' ' .. os.date '%A %d %B',
   },
 }
 
@@ -75,9 +75,9 @@ local buttons = {
     spacing = 1,
   },
   val = {
-    button('  New file',       'i', ':ene | startinsert<CR>'),
+    button('  New file',       'i', ':ene | startinsert<CR>'),
     button('  Find file',      'f', ':Telescope find_files<CR>'),
-    button('  Find Word',      '/', ':Telescope grep_string<CR>'),
+    button('󰈭  Find Word',      '/', ':Telescope grep_string<CR>'),
     button('  Settings',       '.', ':edit $MYVIMRC | cd %:p:h<CR>'),
     button('  Exit',           'q', ':quitall!<CR>'),
   },
@@ -90,7 +90,7 @@ local packages = {
     position = 'center',
   },
   val = {
-    (' %s plugins loaded'):format(plugins)
+    ('󰏗 %s plugins loaded'):format(plugins)
   },
 }
 

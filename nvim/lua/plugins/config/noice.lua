@@ -5,7 +5,7 @@ require('noice').setup {
       search_down = { icon = ' ' },
       search_up = { icon = ' ' },
       input = {
-        icon = '',
+        icon = '',
         opts = {
           prompt = '',
           text = {

@@ -13,10 +13,8 @@ return {
   { 'kyazdani42/nvim-web-devicons', lazy = true }, -- icons
 
   -- [[ UI ]] -----------------------------------------------------------------------
-  { 'catppuccin/nvim', config = config 'themes.catppuccin', name = 'catppuccin' },
-  { 'olimorris/onedarkpro.nvim', config = config 'themes.onedarkpro', lazy = true },
-  { 'marko-cerovac/material.nvim', config = config 'themes.material', lazy = true },
-  { 'rose-pine/neovim', config = config 'themes.rose_pine', lazy = true },
+  { 'catppuccin/nvim', config = config 'themes.catppuccin', name = 'catppuccin', lazy = false },
+  { 'loctvl842/monokai-pro.nvim', config = config 'themes.monokay_pro', lazy = true },
 
   { -- telescope
     'nvim-telescope/telescope.nvim',

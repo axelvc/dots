@@ -48,16 +48,16 @@ map('n', '<Leader>js', function() require('treesj').split() end, { desc = 'Split
 map('n', '<Leader>jj', function() require('treesj').join() end, { desc = 'Join object' })
 
 -- [[ bufferline ]]
-map('n', '<Leader>bd', ':bp|bd #<CR>', { silent = true, desc = 'Delete' })
+map('n', '<Leader>bd', ':bd<CR>', { silent = true, desc = 'Delete' })
 
-map('n', '<Leader>bs', function() require('bufferline').pick_buffer() end, { desc = 'Select' })
+map('n', '<Leader>bs', function() require('bufferline').pick() end, { desc = 'Select' })
 
 map('n', '<Leader>bh', function() require('bufferline').move(-1) end, { desc = 'Move current to left' })
 map('n', '<Leader>bl', function() require('bufferline').move(1) end, { desc = 'Move current to right' })
 
 for i = 1, 9 do
   local lhs = ('<M-%s>'):format(i)
-  map('n', lhs, function() require('bufferline').go_to_buffer(i) end, { desc = 'Go to buffer ' .. i })
+  map('n', lhs, function() require('bufferline').go_to(i, true) end, { desc = 'Go to buffer ' .. i })
 end
 
 -- focus hover

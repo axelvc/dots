@@ -19,10 +19,10 @@ g.format_on_save = {
 
 --diagnostic icons
 local signs = {
-  error = ' ', -- 
-  warn = ' ', -- 
+  error = '󰅚 ', -- 
+  warn = ' ', -- 
   info = ' ', -- 
-  hint = ' ', -- 
+  hint = ' ', -- 󰌵
   debug = ' ',
 }
 

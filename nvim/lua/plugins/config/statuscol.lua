@@ -1,6 +1,7 @@
 local builtin = require('statuscol.builtin')
 
 require('statuscol').setup({
+  ft_ignore = { 'neo-tree' },
   segments = {
     { sign = { name = { 'Diagnostic' } }, click = 'v:lua.ScSa' },
     { text = { builtin.lnumfunc, ' ' }, click = 'v:lua.ScLa' },
