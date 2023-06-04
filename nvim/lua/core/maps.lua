@@ -109,3 +109,7 @@ map('n', 'gs', function()
   local current_window = vim.fn.win_getid()
   require('leap').leap { target_windows = { current_window } }
 end, { desc = 'Search word match (Leap)' })
+
+-- [[ dap ]]
+map('n', '<leader>b', function() require('dap').toggle_breakpoint() end, { desc = 'Toggle breakpoint' })
+map('n', '<leader>c', function() require('dap').continue() end, { desc = 'Continue' })

@@ -36,6 +36,10 @@ catppuccin.setup {
       enabled = true,
       colored_indent_levels = true,
     },
+    dap = {
+      enabled = true,
+      enable_ui = true,
+    },
     native_lsp = {
       enabled = true,
       virtual_text = {
@@ -58,8 +62,8 @@ catppuccin.setup {
       -- lsp/cmp
       FloatBorder = { bg = c.mantle, fg = c.flamingo },
       Pmenu = { bg = c.mantle, fg = c.subtext0 },
-      PmenuSbar = { bg = c.surface0, fg = c.matle },
-      PmenuThumb = { bg = c.peach, fg = c.matle },
+      PmenuSbar = { bg = c.surface0, fg = c.mantle },
+      PmenuThumb = { bg = c.peach, fg = c.mantle },
       NormalFLoat = { bg = c.mantle, fg = c.text },
       -- lualine
       Recording = { bg = c.mantle, fg = c.peach },
@@ -70,6 +74,10 @@ catppuccin.setup {
       NeoTreeTabSeparatorActive = { fg = c.lavender },
       -- whitespace
       MiniTrailspace = { bg = c.red },
+      -- startup
+      MiniStarterHeader = { fg = c.blue },
+      MiniStarterFooter = { fg = c.mauve },
+      MiniStarterQuery = { fg = c.red },
       -- surround
       NvimSurroundHighlight = { bg = c.red, fg = c.surface0 },
       -- telescope

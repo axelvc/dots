@@ -1,44 +1,10 @@
-local plugins = require('lazy').stats().count
-
-local padding = {
-  type = 'padding',
-  val = 2,
-}
-
-local padding_sm = {
-  type = 'padding',
-  val = 1,
-}
-
-local draw = {
-  type = 'text',
-  opts = {
-    hl = 'Type',
-    position = 'center',
-  },
-  val = {
-    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣷⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ⠀',
-    '⠀⠀⠀⠀⠀⠀⠀⣀⣶⣿⣿⣿⣿⣿⣿⣷⣶⣶⣶⣦⣀⡀⠀⢀⣴⣇⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀',
-    '⠀⠀⠀⣴⣿⣿⣿⣿⠛⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀',
-    '⠀⠀⣾⣿⣿⣿⣿⣿⣶⣿⣯⣭⣬⣉⣽⣿⣿⣄⣼⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀',
-    '⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄',
-    '⢸⣿⣿⣿⣿⠟⠋⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠁⣿⣿⣿⣿⡿⠛⠉⠉⠉⠉⠁',
-    '⠘⠛⠛⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠛⠛⠃⠀    ',
-  },
-}
-
-local date = {
-  type = 'text',
-  opts = {
-    hl = 'Keyword',
-    position = 'center',
-  },
-  val = {
-    ' ' .. os.date '%A %d %B',
-  },
-}
+---@param val number
+local function padding(val)
+  return {
+    type = 'padding',
+    val = val,
+  }
+end
 
 --- @param txt string
 --- @param keybind string
@@ -69,42 +35,61 @@ local function button(txt, keybind, command)
   }
 end
 
-local buttons = {
-  type = 'group',
-  opts = {
-    spacing = 1,
-  },
-  val = {
-    button('  New file',       'i', ':ene | startinsert<CR>'),
-    button('  Find file',      'f', ':Telescope find_files<CR>'),
-    button('󰈭  Find Word',      '/', ':Telescope grep_string<CR>'),
-    button('  Settings',       '.', ':edit $MYVIMRC | cd %:p:h<CR>'),
-    button('  Exit',           'q', ':quitall!<CR>'),
-  },
-}
-
-local packages = {
-  type = 'text',
-  opts = {
-    hl = 'Number',
-    position = 'center',
-  },
-  val = {
-    ('󰏗 %s plugins loaded'):format(plugins)
-  },
-}
-
 require('alpha').setup {
   layout = {
-    padding,
-    draw,
-    padding,
-    packages,
-    padding_sm,
-    buttons,
-    date,
-  },
-  opts = {
-    margin = 5,
+    padding(2),
+    {
+      type = 'text',
+      opts = {
+        hl = 'Type',
+        position = 'center',
+      },
+      val = {
+        '⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣷⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀    ⠀',
+        '⠀⠀⠀⠀⠀⠀⠀⣀⣶⣿⣿⣿⣿⣿⣿⣷⣶⣶⣶⣦⣀⡀⠀⢀⣴⣇⠀⠀⠀⠀',
+        '⠀⠀⠀⠀⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀',
+        '⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀',
+        '⠀⠀⠀⣴⣿⣿⣿⣿⠛⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀',
+        '⠀⠀⣾⣿⣿⣿⣿⣿⣶⣿⣯⣭⣬⣉⣽⣿⣿⣄⣼⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀',
+        '⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄',
+        '⢸⣿⣿⣿⣿⠟⠋⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠁⣿⣿⣿⣿⡿⠛⠉⠉⠉⠉⠁',
+        '⠘⠛⠛⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠛⠛⠃⠀    ',
+      },
+    },
+    padding(2),
+    {
+      type = 'text',
+      opts = {
+        hl = 'Number',
+        position = 'center',
+      },
+      val = {
+        ('󰏗 %s plugins loaded'):format(require('lazy').stats().count),
+      },
+    },
+    padding(1),
+    {
+      type = 'group',
+      opts = {
+        spacing = 1,
+      },
+      val = {
+        button('  New file', 'i', ':ene | startinsert<CR>'),
+        button('  Find file', 'f', ':Telescope find_files<CR>'),
+        button('󰈭  Find Word', '/', ':Telescope grep_string<CR>'),
+        button('  Settings', '.', ':edit $MYVIMRC | cd %:p:h<CR>'),
+        button('  Exit', 'q', ':quitall!<CR>'),
+      },
+    },
+    {
+      type = 'text',
+      opts = {
+        hl = 'Keyword',
+        position = 'center',
+      },
+      val = {
+        ' ' .. os.date '%A %d %B',
+      },
+    },
   },
 }

@@ -57,6 +57,7 @@ wezterm.on('format-tab-title', function(tab, _, _, _, _, max_width)
     { Text = ' ' },
   }
 end)
+
 return {
   adjust_window_size_when_changing_font_size = false,
   check_for_updates = true,

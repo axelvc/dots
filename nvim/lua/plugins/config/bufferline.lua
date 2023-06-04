@@ -1,14 +1,11 @@
-local bufferline = require 'bufferline'
-
-bufferline.setup {
+require('bufferline').setup {
   options = {
     tab_size = 20,
     max_name_length = 20,
     show_close_icon = false,
     show_tab_indicators = false,
     indicator = {
-      icon = '⏽',
-      style = 'icon',
+      style = 'underline',
     },
     diagnostics = 'nvim_lsp',
     diagnostics_indicator = function(count, level, dict)

@@ -51,7 +51,7 @@ unset key
 # Accept preview suggestion
 bindkey '^ ' autosuggest-accept
 
-# Open tab in same pwd on wsl
+# Open tab in same directory on wsl (windows terminal)
 [[ -n "$WT_SESSION" ]] && {
   precmd() {
     printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
@@ -62,7 +62,7 @@ export EDITOR=nvim
 export SUDO_EDITOR=nvim
 export PAGER=less
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export SUDO_PROMPT='Password:  '
+export SUDO_PROMPT='Password: 󰌆 '
 export PATH="$HOME/.local/bin:$PATH"
 
 export WORDCHARS=${WORDCHARS//[\/]}

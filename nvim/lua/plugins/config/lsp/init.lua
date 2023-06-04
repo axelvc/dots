@@ -48,4 +48,5 @@ require('mason-lspconfig').setup_handlers {
   ['rust_analyzer'] = function()
     configs.rust()
   end,
+  ['rome'] = function() end
 }

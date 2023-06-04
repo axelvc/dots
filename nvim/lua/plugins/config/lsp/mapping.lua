@@ -25,7 +25,7 @@ function M.format_on_save()
   local filetype = vim.opt.filetype:get()
 
   if vim.tbl_contains(vim.g.format_on_save, filetype) then
-    M.format()
+    M.format({ async = false })
   end
 end
 

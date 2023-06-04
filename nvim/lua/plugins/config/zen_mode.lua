@@ -1,6 +1,4 @@
-local zen_mode = require 'zen-mode'
-
-zen_mode.setup {
+require('zen-mode').setup {
   window = {
     backdrop = 1,
     options = {
