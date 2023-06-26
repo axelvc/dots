@@ -1,9 +1,9 @@
 -- setup diagnostic signs
--- for sign, icon in pairs(vim.g.signs) do
---   local hl = 'DiagnosticSign' .. sign:gsub('^%l', string.upper)
+for sign, icon in pairs(vim.g.signs) do
+  local hl = 'DiagnosticSign' .. sign:gsub('^%l', string.upper)
 
---   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
--- end
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 local function filter_diagnostics(diagnostics)
   if not diagnostics then

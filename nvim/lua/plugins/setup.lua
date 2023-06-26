@@ -115,9 +115,9 @@ return {
   -- region: Extra
   'Darazaki/indent-o-matic',                                                                                -- auto set indentation width
   { 'axelvc/unito.nvim',            lazy = true },                                                          -- convert px to rem and vice-versa
-  { 'ggandor/leap.nvim',            lazy = true },                                                          -- motion movement
   { 'nvim-lua/plenary.nvim',        lazy = true },                                                          -- lots of utility functions
   { 'kyazdani42/nvim-web-devicons', lazy = true },                                                          -- nerd-font icons
+  { 'folke/flash.nvim',             config = true },                                                        -- motion movement
   { 'nacro90/numb.nvim',            config = true },                                                        -- preview line on :[number]
   { 'jghauser/mkdir.nvim',          event = 'VeryLazy' },                                                   -- create directory on save
   { 'echasnovski/mini.nvim',        config = config 'utils.mini' },                                         -- lots of mini plugins
