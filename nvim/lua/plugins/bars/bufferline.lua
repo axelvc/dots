@@ -1,7 +1,7 @@
 require('bufferline').setup {
   options = {
     tab_size = 20,
-    max_name_length = 20,
+    max_name_length = 30,
     show_close_icon = false,
     show_tab_indicators = false,
     indicator = {

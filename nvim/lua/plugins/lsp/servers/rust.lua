@@ -1,6 +1,6 @@
 return function()
   local rt = require 'rust-tools'
-  local set_maps = require 'plugins.config.lsp.mapping'
+  local set_maps = require 'plugins.lsp.maps'
 
   rt.setup {
     server = {

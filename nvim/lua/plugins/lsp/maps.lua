@@ -25,7 +25,7 @@ function M.format_on_save()
   local filetype = vim.opt.filetype:get()
 
   if vim.tbl_contains(vim.g.format_on_save, filetype) then
-    M.format({ async = false })
+    M.format { async = false }
   end
 end
 
@@ -37,11 +37,11 @@ function M.set_maps()
   end
 
   -- rename
-  bmap('n', '<F2>', vim.lsp.buf.rename)
+  bmap('n', '<F2>', vim.lsp.buf.rename, 'Rename')
 
   -- hover
-  bmap('', 'K', vim.lsp.buf.hover)
-  bmap('n', '<C-k>', vim.lsp.buf.signature_help)
+  bmap('', 'K', vim.lsp.buf.hover, 'Hover')
+  bmap('n', '<C-k>', vim.lsp.buf.signature_help, 'Signature help')
 
   -- code actions
   bmap('', '<Leader>a', vim.lsp.buf.code_action, 'Code action')
@@ -68,17 +68,19 @@ function M.set_maps()
   bmap('n', '<Leader><C-s>', ':noautocmd up<CR>', 'Save without format')
   bmap({ 'n', 'v' }, '<Leader>f', M.format, 'Format code')
 
-  command(0, 'Format', function() M.format() end, {})
+  command(0, 'Format', function()
+    M.format()
+  end, {})
 
-  vim.api.nvim_clear_autocmds({
-    event = 'BufWritePre',
-    buffer = 0,
-  })
-  autocmd('BufWritePre', {
-    desc = 'Format on save',
-    callback = M.format_on_save,
-    buffer = 0,
-  })
+  -- vim.api.nvim_clear_autocmds {
+  --   event = 'BufWritePre',
+  --   buffer = 0,
+  -- }
+  -- autocmd('BufWritePre', {
+  --   desc = 'Format on save',
+  --   callback = M.format_on_save,
+  --   buffer = 0,
+  -- })
 end
 
 return M.set_maps

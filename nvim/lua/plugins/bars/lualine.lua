@@ -1,5 +1,5 @@
 local o = vim.opt
-local noice = require 'noice'
+-- local noice = require 'noice'
 
 local short_mode = {
   'mode',
@@ -48,16 +48,16 @@ require('lualine').setup {
       },
     },
     lualine_x = {
-      {
-        noice.api.status.mode.get,
-        cond = function()
-          return noice.api.status.mode.has() and noice.api.status.mode.get():match 'recording' ~= nil
-        end,
-        fmt = function(str)
-          return str:match '(recording @.*)'
-        end,
-        color = 'Recording',
-      },
+      -- {
+      --   noice.api.status.mode.get,
+      --   cond = function()
+      --     return noice.api.status.mode.has() and noice.api.status.mode.get():match 'recording' ~= nil
+      --   end,
+      --   fmt = function(str)
+      --     return str:match '(recording @.*)'
+      --   end,
+      --   color = 'Recording',
+      -- },
       {
         'encoding',
         cond = function()

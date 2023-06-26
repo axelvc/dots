@@ -1,10 +1,10 @@
 local autocmd = vim.api.nvim_create_autocmd
 local o = vim.opt
 
-local group = vim.api.nvim_create_augroup('core', { clear = true })
+local group = vim.api.nvim_create_augroup('Core', { clear = true })
 
--- disable auto comment on newline
-autocmd('BufEnter', {
+autocmd('BufNew', {
+  desc = 'Disable auto comment on newline',
   group = group,
   pattern = '*',
   callback = function()
@@ -12,44 +12,40 @@ autocmd('BufEnter', {
   end,
 })
 
--- open help pages in vertical split
 autocmd('BufEnter', {
+  desc = 'Open help in vertical split',
   group = group,
   pattern = '*.txt',
   callback = function()
-    if o.buftype:get() == 'help' and not vim.b.moved then
-      vim.cmd 'wincmd L'
-      vim.b.moved = true
+    if o.buftype:get() ~= 'help' or vim.b.opened then
+      return
     end
 
+    vim.cmd 'wincmd L'
+    vim.b.opened = true
+
     autocmd('BufDelete', {
+      desc = 'Cleanup for vertical help',
+      group = group,
+      once = true,
       buffer = 0,
       callback = function()
-        vim.b.moved = false
+        vim.b.opened = false
       end,
     })
   end,
 })
 
--- resize splits when window is resized
-vim.api.nvim_create_autocmd({ 'VimResized' }, {
+autocmd('VimResized', {
+  desc = 'Resize splits when window is resized',
   group = group,
   callback = function()
     vim.cmd('tabdo wincmd =')
   end,
 })
 
--- open startup-plugin page in vertical split
-autocmd('Filetype', {
-  group = group,
-  pattern = 'startuptime',
-  callback = function()
-    vim.cmd 'wincmd L'
-  end,
-})
-
--- enable/disable smartcase in cmd
 autocmd('CmdlineEnter', {
+  desc = 'Disable smartcase in cmd',
   group = group,
   pattern = '*',
   callback = function()
@@ -58,14 +54,16 @@ autocmd('CmdlineEnter', {
 })
 
 autocmd('CmdlineLeave', {
+  desc = 'Enable smartcase out of cmd',
   pattern = '*',
+  group = group,
   callback = function()
     o.smartcase = true
   end,
 })
 
--- start teminals in insert mode
 autocmd('TermOpen', {
+  desc = 'Start terminal in insert mode',
   group = group,
   pattern = '*',
   callback = function()
@@ -73,18 +71,17 @@ autocmd('TermOpen', {
   end,
 })
 
--- highlight on yank
 autocmd('TextYankPost', {
+  desc = 'Highlight on yank',
   group = group,
   callback = function()
     vim.highlight.on_yank { timeout = 200 }
   end,
 })
 
--- [[ telescope ]]
--- custom highlight for directory (path_display)
 autocmd('Filetype', {
   group = group,
+  desc = 'Custom highlight for directory',
   pattern = 'TelescopeResults',
   callback = function()
     vim.fn.matchadd('TelescopeResultsDir', [[\w \zs.*]])

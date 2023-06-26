@@ -1,5 +1,8 @@
----@diagnostic disable: assign-type-mismatch
 local o = vim.opt
+local g = vim.g
+
+g.mapleader = ' '
+g.border = 'rounded'
 
 -- misc
 o.hidden = true
@@ -61,7 +64,9 @@ o.guicursor = { 'a:blinkwait700-blinkoff750-blinkon250', 'i:ver20', 'r-o:hor20',
 
 -- window title
 o.title = true
-o.titlestring = '༼ つ ╹ ╹ ༽つ'
+
+local root_dir = vim.fn.expand('%:p:h:t')
+o.titlestring = ('༼つ╹╹༽つ %s'):format(root_dir) --[[@as vim.opt.titlestring]]
 
 -- performance
 o.timeoutlen = 400
@@ -79,8 +84,8 @@ vim.filetype.add {
   },
 }
 
--- clipboard.vim is too slow (compared with manual setting clipboard)
-if has('wsl') then
+-- `clipboard.vim` file is too slow (compared with manual setting clipboard)
+if has 'wsl' then
   vim.g.clipboard = {
     name = 'WslClipboard',
     cache_enabled = 0,

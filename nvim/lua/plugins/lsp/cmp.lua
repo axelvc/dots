@@ -1,6 +1,5 @@
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
-local g = vim.g
 
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -8,7 +7,7 @@ local function has_words_before()
 end
 
 -- setup emmet
-require 'plugins.config.lsp.languages.emmet'.cmp()
+require('plugins.lsp.servers.emmet').cmp()
 
 -- load snippets
 luasnip.filetype_extend('typescript', { 'javascript' })
@@ -29,11 +28,11 @@ cmp.setup {
   }),
   window = {
     completion = cmp.config.window.bordered {
-      border = g.border,
+      border = vim.g.border,
       winhighlight = 'Normal:Pmenu,Search:None',
     },
     documentation = cmp.config.window.bordered {
-      border = g.border,
+      border = vim.g.border,
       winhighlight = 'Normal:Pmenu',
     },
   },

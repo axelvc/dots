@@ -1,11 +1,8 @@
-local g = vim.g
-
--- [[ core ]]
--- classic save file
+-- common `save file` shortcut
 map('n', '<C-s>', ':update<CR>', { silent = true })
 map('i', '<C-s>', '<C-o>:w<CR>', { silent = true })
 
--- classic select all
+-- common select all
 map({ 'n', 'v' }, '<C-a>', 'gg<S-v>G')
 
 -- exit from insert mode
@@ -25,7 +22,7 @@ map('n', '<C-h>', ':nohlsearch<CR>', { silent = true })
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
--- not add single character to clipboard on delete
+-- don't add single character to clipboard on delete
 map('n', 'x', '"_x')
 map('n', 'X', '"_X')
 
@@ -34,7 +31,9 @@ map('c', '<M-k>', '<Up>')
 map('c', '<M-j>', '<Down>')
 
 -- code runner
-map({ 'n', 'i', 'v' }, '<F5>', g.code_runner)
+map({ 'n', 'i', 'v' }, '<F5>', code_runner)
+
+-- TODO: MOVE THIS TO OWNS FILES
 
 -- [[ neo-tree ]]
 map('n', '<C-n>', ':Neotree toggle<CR>', { silent = true })
