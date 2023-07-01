@@ -66,7 +66,7 @@ cd paru
 makepkg -si
 
 ### extra configs
-configs=("btop" "helix" "kitty" "polybar" "ranger" "wezterm" "leftwm" "starship.toml")
+configs=("btop" "helix" "kitty" "polybar" "ranger" "wezterm" "leftwm" "gitui" "starship.toml")
 
 for c in "${configs[@]}"; do
   rm -rI $HOME/config/$c

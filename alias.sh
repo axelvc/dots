@@ -15,7 +15,7 @@ alias nrun="npm run"
 
 # git/github
 alias lg=lazygit
-alias gui=gitui
+alias gui="gitui -t $HOME/.dots/gitui/theme.ron"
 alias gc="czg"
 alias gii="git init"
 alias gcma="git commit --amend --no-edit"
