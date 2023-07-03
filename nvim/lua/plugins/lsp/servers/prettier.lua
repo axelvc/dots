@@ -16,9 +16,9 @@ return {
     'typescriptreact',
     'vue',
     'yaml',
-    -- 'javascript',
-    -- 'json',
-    -- 'jsonc',
-    -- 'typescript',
+    'javascript',
+    'json',
+    'jsonc',
+    'typescript',
   },
 }

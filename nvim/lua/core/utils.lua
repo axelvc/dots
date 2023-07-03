@@ -5,7 +5,7 @@ _G.put = vim.print
 _G.map = vim.keymap.set
 
 ---wrapper for |vim.fn.has|
-_G.has = vim.fn.has
+_G.has = function(arg) return vim.fn.has(arg) == 1 end
 
 ---@type table<string, number>
 local counts = setmetatable({}, {

@@ -1,4 +1,4 @@
 require('goto-preview').setup {
   width = 180,
-  height = 40,
+  height = 20,
 }

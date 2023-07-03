@@ -4,6 +4,7 @@ require('neo-tree').setup {
   log_level = 'error',
   popup_border_style = vim.g.border,
   window = {
+    auto_expand_width = true,
     position = 'right',
     width = 45,
     mappings = {

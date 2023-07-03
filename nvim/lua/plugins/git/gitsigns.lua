@@ -17,8 +17,6 @@ gitsigns.setup {
       vim.keymap.set(modes, keys, map, vim.tbl_extend('force', { desc = desc }, opts))
     end
 
-    local telescope = require 'telescope.builtin'
-
     if not lazygit then
       lazygit = require('toggleterm.terminal').Terminal:new {
         cmd = 'lazygit',
@@ -27,8 +25,6 @@ gitsigns.setup {
     end
 
     -- external
-    bmap('n', '<leader>gB', telescope.git_branches, 'Branches')
-    bmap('n', '<leader>gs', telescope.git_status, 'Status')
     bmap('n', '<leader>gg', ':Neotree toggle git_status<CR>', 'Neotree git')
 
     -- conflict
