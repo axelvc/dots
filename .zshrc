@@ -89,7 +89,7 @@ export FZF_DEFAULT_OPTS="\
   --color=fg:7,header:1,info:4,pointer:5\
   --color=marker:3,fg+:5,prompt:4,hl+:1"
 
-source /usr/share/fzf/key-bindings.zsh
+source $HOME/.dots/fzf/key-bindings.zsh
 
 # Extra
 source $HOME/.dots/alias.sh
