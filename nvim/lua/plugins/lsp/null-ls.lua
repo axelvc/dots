@@ -16,7 +16,7 @@ null_ls.setup {
     null_ls.builtins.diagnostics.eslint_d.with(configs.eslint),
     null_ls.builtins.formatting.eslint_d.with(configs.eslint),
     null_ls.builtins.formatting.prettierd.with(configs.prettier),
-    null_ls.builtins.formatting.rome.with(configs.rome),
+    -- null_ls.builtins.formatting.rome.with(configs.rome),
     null_ls.builtins.formatting.stylua,
   },
 }

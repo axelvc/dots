@@ -30,7 +30,7 @@ catppuccin.setup {
     notify = true,
     telescope = true,
     treesitter = true,
-    ts_rainbow = true,
+    rainbow_delimiters = true,
     which_key = true,
     indent_blankline = {
       enabled = true,

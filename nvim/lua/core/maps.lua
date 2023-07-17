@@ -51,8 +51,8 @@ map('n', '<Leader>bd', ':bd<CR>', { silent = true, desc = 'Delete' })
 
 map('n', '<Leader>bs', function() require('bufferline').pick() end, { desc = 'Select' })
 
-map('n', '<Leader>bh', function() require('bufferline').move(-1) end, { desc = 'Move current to left' })
-map('n', '<Leader>bl', function() require('bufferline').move(1) end, { desc = 'Move current to right' })
+map('n', '<Leader>bh', function() require('bufferline').move(-1 * vim.v.count1) end, { desc = 'Move current to left' })
+map('n', '<Leader>bl', function() require('bufferline').move(1 * vim.v.count1) end, { desc = 'Move current to right' })
 
 for i = 1, 9 do
   local lhs = ('<M-%s>'):format(i)
@@ -60,8 +60,8 @@ for i = 1, 9 do
 end
 
 -- focus hover
-map('n', 'H', function() require('bufferline').cycle(-1) end)
-map('n', 'L', function() require('bufferline').cycle(1) end)
+map('n', 'H', function() require('bufferline').cycle(-1 * vim.v.count1) end)
+map('n', 'L', function() require('bufferline').cycle(1 * vim.v.count1) end)
 
 -- [[ comment ]]
 local ctrl_slash = has 'wsl' and '<C-_>' or '<C-/>'
@@ -94,6 +94,8 @@ map('n', '<leader>n', function() require('notify').dismiss {} end, { desc = 'Hid
 map('n', '<C-p>', function() require('telescope.builtin').find_files() end, { desc = 'Find file' })
 map('n', '<Leader>/', function() require('telescope.builtin').live_grep() end, { desc = 'Find word' })
 map('n', '<Leader><Leader>', function() require('telescope.builtin').builtin() end, { desc = 'Telescope builtin' })
+map('n', '<leader>gB', function() require('telescope.builtin').git_branches() end, { desc = 'Branches' })
+map('n', '<leader>gs', function() require('telescope.builtin').git_status() end, { desc = 'Status' })
 
 -- [[ zen mode ]]
 map('n', '<Leader>z', function() require('zen-mode').toggle() end, { desc = 'Zen Mode' })
@@ -110,5 +112,5 @@ map('n', 'gs', function()
 end, { desc = 'Search word match (Leap)' })
 
 -- [[ dap ]]
-map('n', '<leader>b', function() require('dap').toggle_breakpoint() end, { desc = 'Toggle breakpoint' })
-map('n', '<leader>c', function() require('dap').continue() end, { desc = 'Continue' })
+-- map('n', '<leader>b', function() require('dap').toggle_breakpoint() end, { desc = 'Toggle breakpoint' })
+-- map('n', '<leader>c', function() require('dap').continue() end, { desc = 'Continue' })
