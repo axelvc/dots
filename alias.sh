@@ -12,6 +12,9 @@ alias rm="rm -rI"
 
 # npm run for lazy people (me)
 alias nrun="npm run"
+alias npi="npm i"
+alias nps="npm start"
+alias npd="npm run dev"
 
 # git/github
 alias lg=lazygit

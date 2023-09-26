@@ -1,5 +1,5 @@
 -- common `save file` shortcut
-map('n', '<C-s>', ':update<CR>', { silent = true })
+map({ 'n', 'v' }, '<C-s>', ':update<CR>', { silent = true })
 map('i', '<C-s>', '<C-o>:w<CR>', { silent = true })
 
 -- common select all
@@ -47,7 +47,7 @@ map('n', '<Leader>js', function() require('treesj').split() end, { desc = 'Split
 map('n', '<Leader>jj', function() require('treesj').join() end, { desc = 'Join object' })
 
 -- [[ bufferline ]]
-map('n', '<Leader>bd', ':bd<CR>', { silent = true, desc = 'Delete' })
+map('n', '<Leader>bd', ':bp | bd #<CR>', { silent = true, desc = 'Delete' })
 
 map('n', '<Leader>bs', function() require('bufferline').pick() end, { desc = 'Select' })
 
@@ -87,6 +87,9 @@ end, { silent = true, expr = true })
 -- [[ unito ]]
 map('n', '<leader>p', function() require('unito').toggle_px_rem() end, { desc = ' Toggle px/rem' })
 
+-- [[ goto_fn ]]
+map('n', 'gF', function() require('goto_fn').goto_start() end, { desc = 'Go to function definition' })
+
 -- [[ notify ]]
 map('n', '<leader>n', function() require('notify').dismiss {} end, { desc = 'Hide notifications' })
 
@@ -114,3 +117,29 @@ end, { desc = 'Search word match (Leap)' })
 -- [[ dap ]]
 -- map('n', '<leader>b', function() require('dap').toggle_breakpoint() end, { desc = 'Toggle breakpoint' })
 -- map('n', '<leader>c', function() require('dap').continue() end, { desc = 'Continue' })
+
+-- [[ toggleterm ]]
+local gitui
+local lazygit
+
+map('n', '<Leader>gt', function() 
+  if not gitui then
+    gitui = require('toggleterm.terminal').Terminal:new {
+      cmd = 'gitui',
+      hidden = true,
+    }
+  end
+
+  gitui:toggle()
+end, { desc = 'Git-UI' })
+
+map('n', '<Leader>gT', function()
+  if not lazygit then
+    lazygit = require('toggleterm.terminal').Terminal:new {
+      cmd = 'lazygit',
+      hidden = true,
+    }
+  end
+
+  lazygit:toggle()
+end, { desc = 'Lazygit' })

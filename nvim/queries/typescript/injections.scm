@@ -3,6 +3,10 @@
     key: (property_identifier) @_key (#eq? @_key "template")
     value: (template_string) @html)
 
+(pair
+    key: (property_identifier) @_key (#eq? @_key "template")
+    value: (string) @html)
+
 (class_declaration
   decorator: (decorator
                (call_expression

@@ -1,7 +1,5 @@
 local gitsigns = require 'gitsigns'
 
-local lazygit
-
 gitsigns.setup {
   trouble = false,
   signs = {
@@ -17,13 +15,6 @@ gitsigns.setup {
       vim.keymap.set(modes, keys, map, vim.tbl_extend('force', { desc = desc }, opts))
     end
 
-    if not lazygit then
-      lazygit = require('toggleterm.terminal').Terminal:new {
-        cmd = 'lazygit',
-        hidden = true,
-      }
-    end
-
     -- external
     bmap('n', '<leader>gg', ':Neotree toggle git_status<CR>', 'Neotree git')
 
@@ -35,9 +26,6 @@ gitsigns.setup {
 
     bmap('n', '[c', ':GitConflictPrevConflict<CR>', 'Previuous git conflict')
     bmap('n', ']c', ':GitConflictNextConflict<CR>', 'Next git conflict')
-
-    -- stylua: ignore
-    bmap('n', '<Leader>gt', function() lazygit:toggle() end, 'Lazygit')
 
     -- navigation
     bmap('n', '[g', gitsigns.prev_hunk, 'Previus git hunk')

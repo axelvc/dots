@@ -13,17 +13,7 @@ local configs = {
   jsonls = require(CONFIG_PATH .. 'json'),
   emmet_ls = require(CONFIG_PATH .. 'emmet').setup,
   typescript = require(CONFIG_PATH .. 'typescript'),
-  -- angularls = {
-  --   capabilities = vim.tbl_extend('force', require('cmp_nvim_lsp').default_capabilities(), {
-  --     textDocument = {
-  --       foldingRange = {
-  --         dynamicRegistration = false,
-  --         rangeLimit = 0,
-  --         lineFoldingOnly = false
-  --       }
-  --     }
-  --   }),
-  -- }
+  angularls = require(CONFIG_PATH .. 'angular'),
 }
 
 require 'plugins.lsp.diagnostic'

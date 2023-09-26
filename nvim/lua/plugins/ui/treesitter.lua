@@ -49,4 +49,7 @@ require('nvim-treesitter.configs').setup {
     'vue',
     'yaml',
   },
+  playground = {
+    enable = true,
+  }
 }

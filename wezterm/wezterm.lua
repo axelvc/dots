@@ -93,29 +93,29 @@ return {
     -- clipboard
     { key = 'v', mods = 'CTRL',       action = act.PasteFrom 'Clipboard' },
     -- splitting
-    { key = 'd', mods = 'META|SHIFT', action = act.SplitPane { direction = 'Right' } },
-    { key = 'f', mods = 'META|SHIFT', action = act.SplitPane { direction = 'Down' } },
+    { key = 'd', mods = 'SUPER|SHIFT', action = act.SplitPane { direction = 'Right' } },
+    { key = 'f', mods = 'SUPER|SHIFT', action = act.SplitPane { direction = 'Down' } },
     -- new tab
     { key = 't', mods = 'META|SHIFT', action = act.SpawnCommandInNewTab { cwd = '~' } },
     -- close pane
     { key = 'w', mods = 'META|SHIFT', action = act.CloseCurrentPane { confirm = false } },
     -- pane movement
-    { key = 'h', mods = 'META|SHIFT', action = act.ActivatePaneDirection 'Left' },
-    { key = 'j', mods = 'META|SHIFT', action = act.ActivatePaneDirection 'Down' },
-    { key = 'k', mods = 'META|SHIFT', action = act.ActivatePaneDirection 'Up' },
-    { key = 'l', mods = 'META|SHIFT', action = act.ActivatePaneDirection 'Right' },
+    { key = 'h', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Left' },
+    { key = 'j', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Down' },
+    { key = 'k', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Up' },
+    { key = 'l', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Right' },
     -- pane resize
-    { key = 'h', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Left', 2 } },
-    { key = 'j', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Down', 1 } },
-    { key = 'k', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Up', 1 } },
-    { key = 'l', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Right', 2 } },
+    { key = 'h', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Left', 5 } },
+    { key = 'j', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Down', 5 } },
+    { key = 'k', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Up', 5 } },
+    { key = 'l', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Right', 5 } },
     -- tab navigation
-    { key = '1', mods = 'META',       action = act.ActivateTab(0) },
-    { key = '2', mods = 'META',       action = act.ActivateTab(1) },
-    { key = '3', mods = 'META',       action = act.ActivateTab(2) },
-    { key = '4', mods = 'META',       action = act.ActivateTab(3) },
-    { key = '5', mods = 'META',       action = act.ActivateTab(4) },
-    { key = 'L', mods = 'CTRL',       action = wezterm.action.ShowDebugOverlay },
+    { key = 'h', mods = 'SUPER',      action = act.ActivateTabRelative(-1) },
+    { key = 'l', mods = 'SUPER',      action = act.ActivateTabRelative(1) },
+    -- reorder tabs
+    { key = 'h', mods = 'SUPER|CTRL', action = act.MoveTabRelative(-1) },
+    { key = 'l', mods = 'SUPER|CTRL', action = act.MoveTabRelative(1) },
+    -- { key = 'L', mods = 'CTRL',       action = wezterm.action.ShowDebugOverlay },
     -- close tab
     { key = 'D', mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentTab { confirm = false } },
     -- fullscreen

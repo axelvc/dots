@@ -35,8 +35,9 @@ return {
     config = config 'ui.treesitter',
     build = ':TSUpdate',
     dependencies = {
+      'nvim-treesitter/playground',
       'windwp/nvim-ts-autotag',                      -- auto close tag
-      'mrjones2014/nvim-ts-rainbow',                 -- rainbow colors
+      'hiphish/rainbow-delimiters.nvim',             -- rainbow colors
       'nvim-treesitter/nvim-treesitter-context',     -- sticky context
       'JoosepAlviste/nvim-ts-context-commentstring', -- commentstring based on location
     },
@@ -52,6 +53,14 @@ return {
     config = config 'ui.noice',
     dependencies = { 'MunifTanjim/nui.nvim' }
   },
+  { -- sidebar explorer
+    'nvim-neo-tree/neo-tree.nvim',
+    cmd = { 'Neotree' },
+    config = config 'ui.neo-tree',
+    dependencies = {
+      { 's1n7ax/nvim-window-picker', lazy = true }
+    },
+  },
   { 'stevearc/dressing.nvim',              event = 'VeryLazy' },                                         -- automatic set vim.ui interfaces
   { 'goolord/alpha-nvim',                  config = config 'ui.alpha' },                                 -- start page
   { 'rcarriga/nvim-notify',                config = config 'ui.notify' },                                -- fancy notifications
@@ -64,7 +73,6 @@ return {
   { 'rmagatti/goto-preview',               config = config 'ui.goto-preview',     lazy = true },         -- goto preview
   { 'RRethy/vim-illuminate',               config = config 'ui.illuminate',       event = 'VeryLazy' },  -- cursor word highlight
   { 'lukas-reineke/indent-blankline.nvim', config = config 'ui.indent_blankline', event = 'VeryLazy' },  -- indent line
-  { 'nvim-neo-tree/neo-tree.nvim',         config = config 'ui.neo-tree',         cmd = { 'Neotree' } }, -- sidebar explorer
   -- endregion: UI
 
   -- region LSP
@@ -98,11 +106,11 @@ return {
     dependencies = {
       'rcarriga/nvim-dap-ui',        -- ui tool
       'mxsdev/nvim-dap-vscode-js',   -- JS debugger
-      {
-        'microsoft/vscode-js-debug', -- JS dap server
-        version = '1.x',
-        build = 'npm i && npm run compile vsDebugServerBundle && mv dist out',
-      },
+      -- {
+      --   'microsoft/vscode-js-debug', -- JS dap server
+      --   version = '1.x',
+      --   build = 'npm i && npm run compile vsDebugServerBundle && mv dist out',
+      -- },
     },
   },
   { 'b0o/schemastore.nvim',               lazy = true },                   -- json schemas
@@ -114,10 +122,11 @@ return {
 
   -- region: Extra
   'Darazaki/indent-o-matic',                                                                                -- auto set indentation width
+  { 'axelvc/goto_fn.nvim',          lazy = true },
   { 'axelvc/unito.nvim',            lazy = true },                                                          -- convert px to rem and vice-versa
   { 'nvim-lua/plenary.nvim',        lazy = true },                                                          -- lots of utility functions
   { 'kyazdani42/nvim-web-devicons', lazy = true },                                                          -- nerd-font icons
-  { 'folke/flash.nvim',             config = true },                                                        -- motion movement
+  { 'ggandor/leap.nvim',            lazy = true },
   { 'nacro90/numb.nvim',            config = true },                                                        -- preview line on :[number]
   { 'jghauser/mkdir.nvim',          event = 'VeryLazy' },                                                   -- create directory on save
   { 'echasnovski/mini.nvim',        config = config 'utils.mini' },                                         -- lots of mini plugins

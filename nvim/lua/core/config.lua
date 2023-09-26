@@ -20,12 +20,17 @@ o.splitkeep = 'screen'
 o.splitright = true
 o.termguicolors = true
 o.pumheight = 15
+o.list = true
+-- o.listchars = {
+--   tab = '> ',
+--   eol = '',
+-- }
 o.fillchars = {
   eob = ' ',
   stl = ' ',
   stlnc = ' ',
-  diff = '/',
-  fold = '-',
+  diff = ' ',
+  fold = ' ',
   foldopen = '',
   foldclose = '',
   foldsep = ' ',
@@ -64,9 +69,8 @@ o.guicursor = { 'a:blinkwait700-blinkoff750-blinkon250', 'i:ver20', 'r-o:hor20',
 
 -- window title
 o.title = true
-
-local root_dir = vim.fn.expand('%:p:h:t')
-o.titlestring = ('༼つ╹╹༽つ %s'):format(root_dir) --[[@as vim.opt.titlestring]]
+local root_dir = vim.fn.expand('%:p:h:t') -- convert "foo/bar/etc" into "etc"
+o.titlestring = (' %s'):format(root_dir)
 
 -- performance
 o.timeoutlen = 400
