@@ -1,7 +1,10 @@
 local lsp_util = require 'lspconfig.util'
 
 lsp_util.default_config = vim.tbl_extend('force', lsp_util.default_config, {
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  capabilities = vim.tbl_extend('force', require('cmp_nvim_lsp').default_capabilities(), {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+  }),
   on_attach = require 'plugins.lsp.maps',
 })
 
