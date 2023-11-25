@@ -22,13 +22,13 @@ require('nvim-treesitter.configs').setup {
   context = {
     enable = true,
   },
+  ignore_install = {},
   ensure_installed = {
     'astro',
     'bash',
     'css',
     'go',
     'graphql',
-    -- 'help',
     'http',
     'javascript',
     'jsdoc',
@@ -51,5 +51,9 @@ require('nvim-treesitter.configs').setup {
   },
   playground = {
     enable = true,
+    updatetime = 25,
+    persist_queries = false,
   }
 }
+
+require('ts_context_commentstring').setup {}

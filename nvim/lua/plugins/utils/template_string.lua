@@ -1,6 +1,7 @@
 require('template-string').setup {
   filetypes = {
     'html',
+    'vue',
     'astro',
     'javascript',
     'javascriptreact',

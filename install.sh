@@ -15,7 +15,7 @@ sudo pacman -S --needed base-devel "${utils[@]}"
 sudo chsh -s /bin/zsh
 
 ### zim
-curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+curl -fsSL "https://raw.githubusercontent.com/zimfw/install/master/install.zsh" | zsh
 echo "zmodule fzf" >> ~/.zimrc
 zsh
 zimfw install
@@ -27,9 +27,10 @@ sudo pacman -S --needed base-devel "${langs[@]}"
 # node
 NPM_HOME="$HOME/.local/share/npm"
 PATH="$NPM_HOME/bin:$PATH"
+node_pkgs=("npm" "pnpm" "yarn" "tldr" "typescript" "prettier" "czg")
 
 npm set prefix "$NPM_HOME"
-npm i -g npm pnpm yarn tldr typescript prettier czg
+npm i -g "${node_pkgs[@]}"
 tldr --update
 
 # bun
@@ -49,7 +50,7 @@ git config --global init.defaultBranch "main"
 ln -sf $DIR/.czrc $HOME/
 
 ### nvim
-wget -q https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+wget -q "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz"
 tar -xf nvim-linux64.tar.gz
 cd nvim-linux64
 sudo mv bin/nvim /bin
@@ -57,20 +58,15 @@ sudo mv lib/nvim /lib
 sudo cp -r share/* /usr/share
 cd $DIR && rm -rf nvim-linux64*
 
-# my config
-git clone https://github.com/axelvc/nvim ~/.config/nvim
-
 ### paru
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
 
 ### extra configs
-configs=("btop" "helix" "kitty" "polybar" "ranger" "wezterm" "leftwm" "gitui" "starship.toml")
+configs=("btop" "helix" "kitty" "polybar" "wezterm" "leftwm" "gitui" "starship.toml")
 
-for c in "${configs[@]}"; do
-  rm -rI $HOME/config/$c
-  ln -sf $DIR/$c $HOME/.config/
+for name in "${configs[@]}"; do
+  rm -rI $HOME/.config/$name
+  ln -sf $DIR/$name $HOME/.config/
 done
-
-~/.config/ranger/install_plugins.sh

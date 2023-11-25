@@ -38,6 +38,7 @@ return {
       'nvim-treesitter/playground',
       'windwp/nvim-ts-autotag',                      -- auto close tag
       'hiphish/rainbow-delimiters.nvim',             -- rainbow colors
+      'nvim-treesitter/playground',                  -- Playground util
       'nvim-treesitter/nvim-treesitter-context',     -- sticky context
       'JoosepAlviste/nvim-ts-context-commentstring', -- commentstring based on location
     },
