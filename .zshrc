@@ -4,6 +4,8 @@ bindkey -e
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
+
 # Only current directory in termtitle
 zstyle ':zim:termtitle' format '%~'
 

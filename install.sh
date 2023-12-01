@@ -9,7 +9,7 @@ sudo sed -i 's/^#VerbosePkgLists$/VerbosePkgLists/' /etc/pacman.conf
 
 sudo pacman -Syu
 
-utils=("zsh" "bat" "ripgrep" "fd" "btop" "exa" "fzf" "gitui" "lazygit" "glow" "git" "github-cli" "starship" "unzip" "tar" "wget" "unzip")
+utils=("zsh" "bat" "ripgrep" "fd" "btop" "exa" "fzf" "gitui" "lazygit" "glow" "git" "github-cli" "starship" "unzip" "tar" "wget" "unzip", "lf")
 sudo pacman -S --needed base-devel "${utils[@]}"
 
 sudo chsh -s /bin/zsh
@@ -70,3 +70,5 @@ for name in "${configs[@]}"; do
   rm -rI $HOME/.config/$name
   ln -sf $DIR/$name $HOME/.config/
 done
+
+ln -sf $DIR/.zshrc $HOME

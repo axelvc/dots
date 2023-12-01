@@ -60,6 +60,7 @@ end)
 
 return {
   adjust_window_size_when_changing_font_size = false,
+  enable_scroll_bar = false,
   check_for_updates = true,
   color_scheme = 'Catppuccin Mocha',
   cursor_blink_ease_in = 'Constant',
@@ -87,7 +88,7 @@ return {
   font_size = 14,
   font = wezterm.font_with_fallback {
     'Cascadia Code',
-    'CaskaydiaCove Nerd Font',
+    'CaskaydiaCove NF',
   },
   keys = {
     -- clipboard

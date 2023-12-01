@@ -12,7 +12,9 @@ require('neo-tree').setup {
     },
   },
   filesystem = {
-    follow_current_file = true,
+    follow_current_file = {
+      enabled = true,
+    },
     use_libuv_file_watcher = true,
   },
   event_handlers = {
@@ -32,6 +34,7 @@ require('neo-tree').setup {
     },
     git_status = {
       symbols = {
+        added = 'A',
         deleted = 'D',
         modified = 'M',
         renamed = 'R',
@@ -39,7 +42,7 @@ require('neo-tree').setup {
         ignored = 'I',
         unstaged = 'M',
         staged = 'A',
-        conflict = '!',
+        conflict = 'C',
       },
     },
     modified = {

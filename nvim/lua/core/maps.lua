@@ -2,6 +2,10 @@
 map({ 'n', 'v' }, '<C-s>', ':update<CR>', { silent = true })
 map('i', '<C-s>', '<C-o>:w<CR>', { silent = true })
 
+-- allow to k/j with wrap enabled
+-- map({ 'n', 'v' }, 'k', 'gk', { silent = true })
+-- map({ 'n', 'v' }, 'j', 'gj', { silent = true })
+
 -- common select all
 map({ 'n', 'v' }, '<C-a>', 'gg<S-v>G')
 
@@ -48,14 +52,23 @@ map('n', '<Leader>jj', function() require('treesj').join() end, { desc = 'Join o
 
 -- [[ bufferline ]]
 map('n', '<Leader>bd', ':bp | bd #<CR>', { silent = true, desc = 'Delete' })
+map('n', '<Leader>bD', ':bp | bd # | q<CR>', { silent = true, desc = 'Delete' })
 
 map('n', '<Leader>bs', function() require('bufferline').pick() end, { desc = 'Select' })
 
-map('n', '<Leader>bh', function() require('bufferline').move(-1 * vim.v.count1) end, { desc = 'Move current to left' })
-map('n', '<Leader>bl', function() require('bufferline').move(1 * vim.v.count1) end, { desc = 'Move current to right' })
+map('n', '<Leader>bh', function()
+  for _ = 1, vim.v.count1 do
+    require('bufferline').move(-1)
+  end
+end, { desc = 'Move current to left' })
+map('n', '<Leader>bl', function()
+  for _ = 1, vim.v.count1 do
+    require('bufferline').move(1)
+  end
+end, { desc = 'Move current to right' })
 
 for i = 1, 9 do
-  local lhs = ('<M-%s>'):format(i)
+  local lhs = ('<C-%s>'):format(i)
   map('n', lhs, function() require('bufferline').go_to(i, true) end, { desc = 'Go to buffer ' .. i })
 end
 
@@ -122,7 +135,7 @@ end, { desc = 'Search word match (Leap)' })
 local gitui
 local lazygit
 
-map('n', '<Leader>gt', function() 
+map('n', '<Leader>gt', function()
   if not gitui then
     gitui = require('toggleterm.terminal').Terminal:new {
       cmd = 'gitui',

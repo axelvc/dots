@@ -31,8 +31,8 @@ alias vima="nvim ~/.dots/alias.sh"
 alias vimc="nvim ~/.config/nvim/init.lua -c cd%:p:h"
 alias zshc="nvim ~/.zshrc"
 
-# exa
-alias ls="exa --group-directories-first --icons" # show
+# eza
+alias ls="eza --group-directories-first --icons" # show
 alias la="ls -a"                                 # show (hidden)
 alias l="ls -lhg --git"                          # list
 alias ll="l -a"                                  # list (hidden)

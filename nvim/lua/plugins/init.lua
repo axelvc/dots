@@ -1,4 +1,4 @@
-local LAZY_PATH = vim.fn.stdpath 'data' .. '/lazy1/lazy.nvim'
+local LAZY_PATH = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 
 -- ensure lazy has been installed
 if not vim.loop.fs_stat(LAZY_PATH) then

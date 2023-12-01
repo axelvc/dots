@@ -60,3 +60,5 @@ require('mason-lspconfig').setup_handlers {
   end,
   ['rome'] = function() end,
 }
+
+require('ufo').setup()

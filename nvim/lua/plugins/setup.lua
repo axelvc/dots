@@ -14,6 +14,7 @@ return {
   -- region: Git
   { 'akinsho/git-conflict.nvim',   config = true,                        event = 'VimEnter' }, -- conflits highlighter
   { 'lewis6991/gitsigns.nvim',     config = config 'git.gitsigns',       event = 'VeryLazy' }, -- diff signs
+  -- { 'sindrets/diffview.nvim' },
   -- endregion Git
 
   -- region: Bars
@@ -114,11 +115,13 @@ return {
       -- },
     },
   },
-  { 'b0o/schemastore.nvim',               lazy = true },                   -- json schemas
-  { 'simrat39/rust-tools.nvim',           lazy = true },                   -- rust utils
-  { 'jose-elias-alvarez/typescript.nvim', lazy = true },                   -- typescript utils
+  { 'b0o/schemastore.nvim',               lazy = true },                     -- json schemas
+  { 'simrat39/rust-tools.nvim',           lazy = true },                     -- rust utils
+  { 'jose-elias-alvarez/typescript.nvim', lazy = true },                     -- typescript utils
+  { 'Exafunction/codeium.nvim',           config = config 'lsp.codeium' },   -- copilot alternative
   { 'jose-elias-alvarez/null-ls.nvim',    config = config 'lsp.null-ls' }, -- linter & formatter
-  { 'Exafunction/codeium.vim',            config = config 'lsp.codeium' }, -- copilot alternative
+  -- { 'stevearc/conform.nvim',              config = config 'lsp.conform' },   -- formatting
+  -- { 'mfussenegger/nvim-lint',             config = config 'lsp.nvim-lint' }, -- linting
   -- endregion: LSP
 
   -- region: Extra

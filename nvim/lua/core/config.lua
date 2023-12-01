@@ -21,10 +21,11 @@ o.splitright = true
 o.termguicolors = true
 o.pumheight = 15
 o.list = true
--- o.listchars = {
---   tab = '> ',
---   eol = '',
--- }
+o.listchars = {
+  tab = '· ',
+  eol = '~',
+  -- space = '·',
+}
 o.fillchars = {
   eob = ' ',
   stl = ' ',
