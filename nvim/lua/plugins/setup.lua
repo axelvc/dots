@@ -63,6 +63,7 @@ return {
       { 's1n7ax/nvim-window-picker', lazy = true }
     },
   },
+  { 'ivanjermakov/troublesum.nvim',        config = true },                                              -- diagnostic summary
   { 'stevearc/dressing.nvim',              event = 'VeryLazy' },                                         -- automatic set vim.ui interfaces
   { 'goolord/alpha-nvim',                  config = config 'ui.alpha' },                                 -- start page
   { 'rcarriga/nvim-notify',                config = config 'ui.notify' },                                -- fancy notifications
@@ -119,9 +120,8 @@ return {
   { 'simrat39/rust-tools.nvim',           lazy = true },                     -- rust utils
   { 'jose-elias-alvarez/typescript.nvim', lazy = true },                     -- typescript utils
   { 'Exafunction/codeium.nvim',           config = config 'lsp.codeium' },   -- copilot alternative
-  { 'jose-elias-alvarez/null-ls.nvim',    config = config 'lsp.null-ls' }, -- linter & formatter
-  -- { 'stevearc/conform.nvim',              config = config 'lsp.conform' },   -- formatting
-  -- { 'mfussenegger/nvim-lint',             config = config 'lsp.nvim-lint' }, -- linting
+  { 'stevearc/conform.nvim',              config = config 'lsp.conform' },   -- formatting
+  { 'mfussenegger/nvim-lint',             config = config 'lsp.nvim-lint' }, -- linting
   -- endregion: LSP
 
   -- region: Extra

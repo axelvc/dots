@@ -20,6 +20,7 @@ luasnip.config.setup {
 
 cmp.setup {
   sources = cmp.config.sources({
+    { name = 'codeium' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
@@ -43,6 +44,7 @@ cmp.setup {
     format = require('lspkind').cmp_format {
       mode = 'symbol',
       preset = 'codicons',
+      symbol_map = { Codeium = ' ' },
     },
     fields = { 'kind', 'abbr', 'menu' },
   },
