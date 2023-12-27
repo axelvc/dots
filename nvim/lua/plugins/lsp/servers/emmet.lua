@@ -8,6 +8,7 @@ return {
       'typescriptreact',
       'vue',
       'astro',
+      'php',
     },
   },
   cmp = function ()

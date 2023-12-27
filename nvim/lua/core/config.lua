@@ -108,3 +108,6 @@ if has 'wsl' then
     },
   }
 end
+
+vim.cmd([[let &t_Cs = "\e[60m"]]) -- Inform vim how to enable undercurl in wezterm
+vim.cmd([[let &t_Ce = "\e[24m"]]) -- Inform vim how to disable undercurl in wezterm (this disables all underline modes)

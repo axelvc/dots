@@ -1,5 +1,5 @@
 local prettier = { 'prettierd', 'prettier' }
-local js = { prettier, 'eslint_d' }
+local js = { prettier }
 
 require('conform').setup({
   formatters_by_ft = {
@@ -22,19 +22,21 @@ require('conform').setup({
     jsonc = { prettier },
   },
   formatters = {
-    env = {
-      PRETTIERD_DEFAULT_CONFIG = os.getenv('MYVIMRC'):match '(.*/)' .. 'extra/.prettierrc.json',
+    prettierd  = {
+      env = {
+        PRETTIERD_DEFAULT_CONFIG = os.getenv('MYVIMRC'):match '(.*/)' .. 'extra/.prettierrc.json',
+      },
+    },
+    eslint_d = {
+      require_cwd = true,
+      cwd = require('conform.util').root_file{
+        '.eslintrc',
+        '.eslintrc.js',
+        '.eslintrc.cjs',
+        '.eslintrc.mjs',
+        '.eslintrc.json',
+        '.eslintrc.yaml',
+      },
     },
   },
-  eslint_d = {
-    require_cwd = true,
-    cwd = require('conform.util').root_file{
-      '.eslintrc',
-      '.eslintrc.js',
-      '.eslintrc.cjs',
-      '.eslintrc.mjs',
-      '.eslintrc.json',
-      '.eslintrc.yaml',
-    },
-  }
 })
