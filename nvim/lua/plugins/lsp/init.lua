@@ -54,10 +54,7 @@ require('mason-lspconfig').setup_handlers {
   end,
   ['tsserver'] = function()
     local config = vim.tbl_extend('force', lsp_util.default_config, configs.typescript)
-
-    require('typescript').setup {
-      server = config,
-    }
+    require("typescript-tools").setup(config)
   end,
   ['rust_analyzer'] = function()
     configs.rust()

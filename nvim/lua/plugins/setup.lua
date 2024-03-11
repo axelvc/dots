@@ -63,7 +63,8 @@ return {
       { 's1n7ax/nvim-window-picker', lazy = true }
     },
   },
-  { 'ivanjermakov/troublesum.nvim',        config = true },                                              -- diagnostic summary
+  -- { 'ivanjermakov/troublesum.nvim',        config = true },                                              -- diagnostic summary
+  -- { 'Mofiqul/trld.nvim',                   config = true },                                           -- diagnostic mesage at top-right corner
   { 'stevearc/dressing.nvim',              event = 'VeryLazy' },                                         -- automatic set vim.ui interfaces
   { 'goolord/alpha-nvim',                  config = config 'ui.alpha' },                                 -- start page
   { 'rcarriga/nvim-notify',                config = config 'ui.notify' },                                -- fancy notifications
@@ -78,7 +79,7 @@ return {
   { 'lukas-reineke/indent-blankline.nvim', config = config 'ui.indent_blankline', event = 'VeryLazy' },  -- indent line
   -- endregion: UI
 
-  -- region LSP
+  -- region: LSP
   { -- server installer
     'williamboman/mason.nvim',
     config = config 'lsp',
@@ -116,9 +117,16 @@ return {
       -- },
     },
   },
+  { -- typescript utils
+    'pmizio/typescript-tools.nvim',
+    lazy = true,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
+    },
+  },
   { 'b0o/schemastore.nvim',               lazy = true },                     -- json schemas
   { 'simrat39/rust-tools.nvim',           lazy = true },                     -- rust utils
-  { 'jose-elias-alvarez/typescript.nvim', lazy = true },                     -- typescript utils
   { 'Exafunction/codeium.nvim',           config = config 'lsp.codeium' },   -- copilot alternative
   { 'stevearc/conform.nvim',              config = config 'lsp.conform' },   -- formatting
   { 'mfussenegger/nvim-lint',             config = config 'lsp.nvim-lint' }, -- linting

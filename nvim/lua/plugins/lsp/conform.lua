@@ -22,7 +22,7 @@ require('conform').setup({
     jsonc = { prettier },
   },
   formatters = {
-    prettierd  = {
+    prettierd = {
       env = {
         PRETTIERD_DEFAULT_CONFIG = os.getenv('MYVIMRC'):match '(.*/)' .. 'extra/.prettierrc.json',
       },
