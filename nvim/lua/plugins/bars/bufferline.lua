@@ -9,11 +9,11 @@ require('bufferline').setup {
     },
     diagnostics = 'nvim_lsp',
     diagnostics_indicator = function(count, level, dict)
-      if level == 'info' then
+      if level == 'info' or level == 'hint' then
         return ''
       end
 
-      return ('(%s)'):format(count - (dict.info or 0))
+      return ('(%s)'):format(count - (dict.info or 0) - (dict.hint or 0))
     end,
     offsets = {
       {
