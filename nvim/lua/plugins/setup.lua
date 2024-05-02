@@ -38,7 +38,7 @@ return {
     dependencies = {
       'nvim-treesitter/playground',
       'windwp/nvim-ts-autotag',                      -- auto close tag
-      'hiphish/rainbow-delimiters.nvim',             -- rainbow colors
+      'HiPhish/rainbow-delimiters.nvim',             -- rainbow colors
       'nvim-treesitter/playground',                  -- Playground util
       'nvim-treesitter/nvim-treesitter-context',     -- sticky context
       'JoosepAlviste/nvim-ts-context-commentstring', -- commentstring based on location
@@ -108,6 +108,7 @@ return {
     lazy = true,
     config = config 'lsp.dap',
     dependencies = {
+      'nvim-neotest/nvim-nio',
       'rcarriga/nvim-dap-ui',        -- ui tool
       'mxsdev/nvim-dap-vscode-js',   -- JS debugger
       -- {
