@@ -2,6 +2,7 @@ local register = vim.treesitter.language.register
 
 register('jsonc', 'json')
 register('bash', 'zsh')
+register('markdown', 'mdx')
 
 require('nvim-treesitter.configs').setup {
   modules = {},
@@ -49,11 +50,6 @@ require('nvim-treesitter.configs').setup {
     'vue',
     'yaml',
   },
-  playground = {
-    enable = true,
-    updatetime = 25,
-    persist_queries = false,
-  }
 }
 
 require('ts_context_commentstring').setup {}

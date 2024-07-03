@@ -1,10 +1,3 @@
--- setup diagnostic signs
-for sign, icon in pairs(vim.g.signs) do
-  local hl = 'DiagnosticSign' .. sign:gsub('^%l', string.upper)
-
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 local function filter_diagnostics(diagnostics)
   if not diagnostics then
     return {}
@@ -39,15 +32,36 @@ vim.diagnostic.handlers.signs = {
 }
 
 vim.diagnostic.config {
-  signs = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = vim.g.signs.ERROR,
+      [vim.diagnostic.severity.WARN] = vim.g.signs.WARN,
+      [vim.diagnostic.severity.INFO] = vim.g.signs.INFO,
+      [vim.diagnostic.severity.HINT] = vim.g.signs.HINT,
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+      [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+      [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+      [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+    },
+    -- linehl = {
+    --   [vim.diagnostic.severity.ERROR] = "DiagnosticVirtualTextError",
+    --   [vim.diagnostic.severity.WARN]  = "DiagnosticVirtualTextWarn",
+    --   [vim.diagnostic.severity.INFO]  = "DiagnosticVirtualTextInfo",
+    --   [vim.diagnostic.severity.HINT]  = "DiagnosticVirtualTextHint",
+    -- },
+  },
   update_in_insert = true,
   severity_sort = true,
+  underline = true,
   virtual_text = {
     spacing = 0,
     prefix = ' ',
+    hl_mode = 'combine',
     format = function(diagnostic)
       if diagnostic.message:match 'Merge conflict' then
-        return
+        return ''
       end
 
       return ('%s:%s - %s'):format(diagnostic.lnum + 1, diagnostic.col, diagnostic.message)
@@ -66,3 +80,5 @@ vim.diagnostic.config {
     end,
   },
 }
+
+-- TODO: split format into prefix/postfix

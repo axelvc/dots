@@ -77,6 +77,8 @@ return {
   underline_position = '200%',
   underline_thickness = 2,
   use_fancy_tab_bar = false,
+  window_background_opacity = 0.85,
+  macos_window_background_blur = 30,
   window_close_confirmation = 'NeverPrompt',
   window_decorations = 'RESIZE',
   window_padding = {
@@ -87,6 +89,7 @@ return {
   },
   font_size = 14,
   font = wezterm.font_with_fallback {
+    'Maple Mono',
     'Cascadia Code',
     'CaskaydiaCove NF',
   },

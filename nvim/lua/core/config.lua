@@ -18,7 +18,6 @@ o.signcolumn = 'yes:2'
 o.splitbelow = true
 o.splitkeep = 'screen'
 o.splitright = true
-o.termguicolors = true
 o.pumheight = 15
 o.list = true
 o.listchars = {
@@ -79,9 +78,10 @@ o.updatetime = 0
 o.swapfile = false
 
 vim.filetype.add {
-  filename = {
-    ['.czrc'] = 'json',
-    ['.zimrc'] = 'zsh',
+  extension = {
+    czrc = 'json',
+    zimrc = 'zsh',
+    mdx = 'mdx',
   },
   pattern = {
     ['[jt]sconfig.json'] = 'jsonc',

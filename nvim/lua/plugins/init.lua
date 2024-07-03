@@ -1,7 +1,7 @@
 local LAZY_PATH = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 
 -- ensure lazy has been installed
-if not vim.loop.fs_stat(LAZY_PATH) then
+if not vim.uv.fs_stat(LAZY_PATH) then
   vim.fn.system {
     'git',
     'clone',

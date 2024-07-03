@@ -80,5 +80,6 @@ signs.ERROR = signs.error
 signs.INFO  = signs.info
 signs.TRACE = signs.info
 signs.WARN  = signs.warn
+signs.HINT  = signs.hint
 
 vim.g.signs = signs

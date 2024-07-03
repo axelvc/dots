@@ -1,7 +1,8 @@
 local lsp_util = require 'lspconfig.util'
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- TODO: check this
 -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
@@ -33,17 +34,6 @@ require('mason').setup {
 
 require('mason-lspconfig').setup {
   automatic_installation = true,
-}
-
-require('neodev').setup {
-  library = {
-    runtime = {
-      version = 'LuaJIT',
-    },
-    workspace = {
-      checkThirdParty = false,
-    },
-  },
 }
 
 require('mason-lspconfig').setup_handlers {

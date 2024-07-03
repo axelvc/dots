@@ -1,5 +1,5 @@
 return {
   root_dir = function()
-    return require('lspconfig').util.root_pattern '.git'() or vim.loop.cwd()
+    return require('lspconfig').util.root_pattern '.git'() or vim.uv.cwd()
   end,
 }

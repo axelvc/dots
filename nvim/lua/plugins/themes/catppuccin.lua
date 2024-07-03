@@ -2,7 +2,11 @@ local catppuccin = require 'catppuccin'
 local c = require('catppuccin.palettes').get_palette()
 
 catppuccin.setup {
-  flavour = 'mocha',
+  background = {
+    light = 'latte',
+    dark = 'mocha',
+  },
+  transparent_background = true,
   styles = {
     booleans = { 'italic' },
     comments = { 'italic' },
@@ -26,13 +30,13 @@ catppuccin.setup {
     lsp_trouble = true,
     markdown = true,
     mason = true,
+    window_picker = true,
     neotree = true,
     notify = true,
     telescope = true,
     treesitter = true,
     rainbow_delimiters = true,
     which_key = true,
-    window_picker = true,
     indent_blankline = {
       enabled = true,
       colored_indent_levels = true,

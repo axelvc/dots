@@ -36,10 +36,8 @@ return {
     config = config 'ui.treesitter',
     build = ':TSUpdate',
     dependencies = {
-      'nvim-treesitter/playground',
       'windwp/nvim-ts-autotag',                      -- auto close tag
       'HiPhish/rainbow-delimiters.nvim',             -- rainbow colors
-      'nvim-treesitter/playground',                  -- Playground util
       'nvim-treesitter/nvim-treesitter-context',     -- sticky context
       'JoosepAlviste/nvim-ts-context-commentstring', -- commentstring based on location
     },
@@ -60,23 +58,30 @@ return {
     cmd = { 'Neotree' },
     config = config 'ui.neo-tree',
     dependencies = {
-      { 's1n7ax/nvim-window-picker', lazy = true }
+      { 's1n7ax/nvim-window-picker', version = '2.*', lazy = true }
     },
+  },
+  {   -- indent line
+    'lukas-reineke/indent-blankline.nvim',
+    main = "ibl",
+    config = config 'ui.indent_blankline',
+    event = 'VeryLazy',
   },
   -- { 'ivanjermakov/troublesum.nvim',        config = true },                                              -- diagnostic summary
   -- { 'Mofiqul/trld.nvim',                   config = true },                                           -- diagnostic mesage at top-right corner
+  { 'tzachar/highlight-undo.nvim',         config = true },
+  { 'MeanderingProgrammer/markdown.nvim',  config = true },
   { 'stevearc/dressing.nvim',              event = 'VeryLazy' },                                         -- automatic set vim.ui interfaces
   { 'goolord/alpha-nvim',                  config = config 'ui.alpha' },                                 -- start page
   { 'rcarriga/nvim-notify',                config = config 'ui.notify' },                                -- fancy notifications
   { 'folke/which-key.nvim',                config = config 'ui.which_key' },                             -- which key helper
   { 'akinsho/nvim-toggleterm.lua',         config = config 'ui.toggleterm', },                           -- toggle terminal
   { 'folke/todo-comments.nvim',            config = config 'ui.todo_comments' },                         -- highlight "todo" comments
-  { 'NvChad/nvim-colorizer.lua',           config = config 'ui.nvim-colorizer' },                        -- color highlighter
+  { 'NvChad/nvim-colorizer.lua',           config = config 'ui.nvim-colorizer' },                        -- color highlighter, @see https://github.com/brenoprata10/nvim-highlight-colors
   { 'folke/zen-mode.nvim',                 config = config 'ui.zen_mode',         lazy = true },         -- zen mode
   { 'folke/trouble.nvim',                  config = config 'ui.trouble',          lazy = true },         -- pretty diagnostics
   { 'rmagatti/goto-preview',               config = config 'ui.goto-preview',     lazy = true },         -- goto preview
   { 'RRethy/vim-illuminate',               config = config 'ui.illuminate',       event = 'VeryLazy' },  -- cursor word highlight
-  { 'lukas-reineke/indent-blankline.nvim', config = config 'ui.indent_blankline', event = 'VeryLazy' },  -- indent line
   -- endregion: UI
 
   -- region: LSP
@@ -87,7 +92,12 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
       'onsails/lspkind-nvim',
-      'folke/neodev.nvim',
+      {
+        'folke/lazydev.nvim',
+        ft = "lua",
+        opts = { library = { 'luvit-meta/library' }, },
+      },
+      { "Bilal2453/luvit-meta", lazy = true }
     },
   },
   { -- completions
@@ -126,14 +136,16 @@ return {
       'neovim/nvim-lspconfig',
     },
   },
-  { 'b0o/schemastore.nvim',               lazy = true },                     -- json schemas
-  { 'simrat39/rust-tools.nvim',           lazy = true },                     -- rust utils
-  { 'Exafunction/codeium.nvim',           config = config 'lsp.codeium' },   -- copilot alternative
-  { 'stevearc/conform.nvim',              config = config 'lsp.conform' },   -- formatting
-  { 'mfussenegger/nvim-lint',             config = config 'lsp.nvim-lint' }, -- linting
+  { 'b0o/schemastore.nvim',      lazy = true },                        -- json schemas
+  { 'simrat39/rust-tools.nvim',  lazy = true },                        -- rust utils
+  { 'Exafunction/codeium.nvim',  config = config 'lsp.codeium' },      -- copilot alternative
+  { 'stevearc/conform.nvim',     config = config 'lsp.conform' },      -- formatting
+  { 'mfussenegger/nvim-lint',    config = config 'lsp.nvim-lint' },    -- linting
+  { 'wansmer/symbol-usage.nvim', event = 'LspAttach' }, -- reference counts
   -- endregion: LSP
 
   -- region: Extra
+  -- { 'lewis6991/hover.nvim', lazy = true },
   'Darazaki/indent-o-matic',                                                                                -- auto set indentation width
   { 'axelvc/goto_fn.nvim',          lazy = true },
   { 'axelvc/unito.nvim',            lazy = true },                                                          -- convert px to rem and vice-versa
