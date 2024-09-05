@@ -34,6 +34,10 @@ map('n', 'X', '"_X')
 map('c', '<M-k>', '<Up>')
 map('c', '<M-j>', '<Down>')
 
+-- moving between tabs
+map('n', '[t', 'gT', { noremap = true, desc = 'Previous tab' })
+map('n', ']t', 'gt', { noremap = true, desc = 'Next tab' })
+
 -- code runner
 map({ 'n', 'i', 'v' }, '<F5>', code_runner)
 

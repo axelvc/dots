@@ -70,8 +70,8 @@ return {
   -- { 'ivanjermakov/troublesum.nvim',        config = true },                                              -- diagnostic summary
   -- { 'Mofiqul/trld.nvim',                   config = true },                                           -- diagnostic mesage at top-right corner
   { 'tzachar/highlight-undo.nvim',         config = true },
-  { 'MeanderingProgrammer/markdown.nvim',  config = true },
   { 'stevearc/dressing.nvim',              event = 'VeryLazy' },                                         -- automatic set vim.ui interfaces
+  { 'MeanderingProgrammer/markdown.nvim',  config = config 'ui.markdown' },
   { 'goolord/alpha-nvim',                  config = config 'ui.alpha' },                                 -- start page
   { 'rcarriga/nvim-notify',                config = config 'ui.notify' },                                -- fancy notifications
   { 'folke/which-key.nvim',                config = config 'ui.which_key' },                             -- which key helper

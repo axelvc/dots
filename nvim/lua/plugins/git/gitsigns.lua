@@ -24,7 +24,7 @@ gitsigns.setup {
     bmap('n', '<leader>gcb', ':GitConflictChooseBoth<CR>', 'Both')
     bmap('n', '<leader>gcr', ':GitConflictChooseNone<CR>', 'Reset')
 
-    bmap('n', '[c', ':GitConflictPrevConflict<CR>', 'Previuous git conflict')
+    bmap('n', '[c', ':GitConflictPrevConflict<CR>', 'Previous git conflict')
     bmap('n', ']c', ':GitConflictNextConflict<CR>', 'Next git conflict')
 
     -- navigation
@@ -52,10 +52,10 @@ gitsigns.setup {
     -- which key documentation
     local exists, wk = pcall(require, 'which-key')
     if exists then
-      wk.register({
-        ['<leader>g'] = { name = 'Git' },
-        ['<leader>gc'] = { name = 'Conflict' },
-      }, { buffer = bufnr })
+      wk.add {
+        { '<leader>g', group = 'Git' },
+        { '<leader>gc', group = 'Conflict' },
+      }
     end
   end,
 }

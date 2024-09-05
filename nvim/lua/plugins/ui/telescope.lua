@@ -58,17 +58,7 @@ telescope.setup {
         '--hidden',
         '--glob',
         '!**/.git/*',
-      },
-      path_display = function(_, path)
-        local tail = require('telescope.utils').path_tail(path)
-        local dir = path:match '(.*)/'
-
-        if dir == nil then
-          return tail
-        end
-
-        return ('%s %s'):format(tail, dir)
-      end,
+      }, path_display = { 'filename_first' },
     },
   },
 }

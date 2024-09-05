@@ -18,9 +18,9 @@ return function()
 
         local exists, wk = pcall(require, 'which-key')
         if exists then
-          wk.register({
-            ['<leader>h'] = { name = 'Hints' },
-          }, { buffer = bufnr })
+          wk.add {
+            { '<leader>h', group = 'Hints' },
+          }
         end
       end,
       settings = {

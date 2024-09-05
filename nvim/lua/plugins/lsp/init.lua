@@ -15,6 +15,7 @@ lsp_util.default_config = vim.tbl_extend('force', lsp_util.default_config, {
 
 local CONFIG_PATH = 'plugins.lsp.servers.'
 local configs = {
+  html = require(CONFIG_PATH .. 'html'),
   gopls = require(CONFIG_PATH .. 'go'),
   cssls = require(CONFIG_PATH .. 'css'),
   rust = require(CONFIG_PATH .. 'rust'),

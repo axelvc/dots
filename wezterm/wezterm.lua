@@ -87,7 +87,7 @@ return {
     right = 0,
     bottom = 0,
   },
-  font_size = 14,
+  font_size = 13,
   font = wezterm.font_with_fallback {
     'Maple Mono',
     'Cascadia Code',

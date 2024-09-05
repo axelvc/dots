@@ -3,7 +3,7 @@ require('bufferline').setup {
     tab_size = 20,
     max_name_length = 40,
     show_close_icon = false,
-    show_tab_indicators = false,
+    show_tab_indicators = true,
     indicator = {
       style = 'underline',
     },

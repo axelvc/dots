@@ -67,7 +67,7 @@ function M.set_maps()
   -- format
   bmap('n', '<Leader><C-s>', ':noautocmd up<CR>', 'Save without format')
   bmap({ 'n', 'v' }, '<Leader>f', function()
-    require('conform').format { async = true, lsp_fallback = true }
+    require('conform').format { async = true, lsp_format = 'fallback' }
   end, 'Format code')
 
   command(0, 'Format', function(args)
@@ -79,7 +79,7 @@ function M.set_maps()
         ['end'] = { args.line2, end_line:len() },
       }
     end
-    require('conform').format { async = true, lsp_fallback = true, range = range }
+    require('conform').format { async = true, lsp_format = 'fallback', range = range }
   end, { range = true })
 
   -- vim.api.nvim_clear_autocmds {

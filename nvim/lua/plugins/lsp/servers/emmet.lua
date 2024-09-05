@@ -9,6 +9,7 @@ return {
       'vue',
       'astro',
       'php',
+      'mdx',
     },
   },
   cmp = function ()

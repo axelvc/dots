@@ -8,6 +8,7 @@ return {
     'graphql',
     'handlebars',
     'html',
+    'htmlangular',
     'javascriptreact',
     'less',
     'markdown',

@@ -4,6 +4,12 @@ register('jsonc', 'json')
 register('bash', 'zsh')
 register('markdown', 'mdx')
 
+require('nvim-ts-autotag').setup {
+  aliases = {
+    ['mdx'] = 'html',
+  }
+}
+
 require('nvim-treesitter.configs').setup {
   modules = {},
   sync_install = false,
@@ -11,9 +17,6 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
-  },
-  autotag = {
-    enable = true,
   },
   rainbow = {
     enable = true,
