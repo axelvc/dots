@@ -9,6 +9,7 @@ require('neo-tree').setup {
     width = 45,
     mappings = {
       ['o'] = 'open',
+      ['<M-p>'] = { 'toggle_preview', config = { uset_float = false, use_image_nvim = true } },
     },
   },
   filesystem = {

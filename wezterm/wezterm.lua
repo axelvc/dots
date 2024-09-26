@@ -59,7 +59,7 @@ wezterm.on('format-tab-title', function(tab, _, _, _, _, max_width)
 end)
 
 return {
-  adjust_window_size_when_changing_font_size = false,
+  adjust_window_size_when_changing_font_size = true,
   enable_scroll_bar = false,
   check_for_updates = true,
   color_scheme = 'Catppuccin Mocha',
@@ -90,12 +90,13 @@ return {
   font_size = 13,
   font = wezterm.font_with_fallback {
     'Maple Mono',
-    'Cascadia Code',
+    'CommitMonoV143', -- 1.45 line_height
+    'Recursive', -- 1.3 line_height
     'CaskaydiaCove NF',
   },
   keys = {
     -- clipboard
-    { key = 'v', mods = 'CTRL',       action = act.PasteFrom 'Clipboard' },
+    { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
     -- splitting
     { key = 'd', mods = 'SUPER|SHIFT', action = act.SplitPane { direction = 'Right' } },
     { key = 'f', mods = 'SUPER|SHIFT', action = act.SplitPane { direction = 'Down' } },
@@ -109,13 +110,13 @@ return {
     { key = 'k', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Up' },
     { key = 'l', mods = 'SUPER|SHIFT', action = act.ActivatePaneDirection 'Right' },
     -- pane resize
-    { key = 'h', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Left', 5 } },
-    { key = 'j', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Down', 5 } },
-    { key = 'k', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Up', 5 } },
-    { key = 'l', mods = 'META|CTRL',  action = act.AdjustPaneSize { 'Right', 5 } },
+    { key = 'h', mods = 'META|CTRL', action = act.AdjustPaneSize { 'Left', 5 } },
+    { key = 'j', mods = 'META|CTRL', action = act.AdjustPaneSize { 'Down', 5 } },
+    { key = 'k', mods = 'META|CTRL', action = act.AdjustPaneSize { 'Up', 5 } },
+    { key = 'l', mods = 'META|CTRL', action = act.AdjustPaneSize { 'Right', 5 } },
     -- tab navigation
-    { key = 'h', mods = 'SUPER',      action = act.ActivateTabRelative(-1) },
-    { key = 'l', mods = 'SUPER',      action = act.ActivateTabRelative(1) },
+    { key = 'h', mods = 'SUPER', action = act.ActivateTabRelative(-1) },
+    { key = 'l', mods = 'SUPER', action = act.ActivateTabRelative(1) },
     -- reorder tabs
     { key = 'h', mods = 'SUPER|CTRL', action = act.MoveTabRelative(-1) },
     { key = 'l', mods = 'SUPER|CTRL', action = act.MoveTabRelative(1) },

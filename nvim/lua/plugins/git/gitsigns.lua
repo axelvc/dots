@@ -2,12 +2,16 @@ local gitsigns = require 'gitsigns'
 
 gitsigns.setup {
   trouble = false,
-  signs = {
-    add = { text = '▎' },
-    change = { text = '▎' },
-    delete = { text = '▁' },
-    topdelete = { text = '▔' },
-    changedelete = { text = '~' },
+  -- signs = {
+  --   add = { text = '▎' },
+  --   change = { text = '▎' },
+  --   delete = { text = '▁' },
+  --   topdelete = { text = '▔' },
+  --   changedelete = { text = '~' },
+  -- },
+  signs_staged_enable = false,
+  current_line_blame_opts = {
+    delay = 100,
   },
   on_attach = function(bufnr)
     local opts = { buffer = bufnr, noremap = true, silent = true }
@@ -45,6 +49,7 @@ gitsigns.setup {
 
     -- git blame
     bmap('n', '<leader>gb', gitsigns.blame_line, 'Blame line')
+    bmap('n', '<leader>gB', gitsigns.toggle_current_line_blame, 'Toggle blame line')
 
     -- select inner hunk
     bmap({ 'x', 'o' }, 'ig', ':<C-U>Gitsigns select_hunk<CR>', 'inner git hunk')

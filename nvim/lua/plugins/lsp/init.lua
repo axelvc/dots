@@ -43,7 +43,7 @@ require('mason-lspconfig').setup_handlers {
 
     require('lspconfig')[server].setup(config)
   end,
-  ['tsserver'] = function()
+  ['ts_ls'] = function()
     local config = vim.tbl_extend('force', lsp_util.default_config, configs.typescript)
     require("typescript-tools").setup(config)
   end,

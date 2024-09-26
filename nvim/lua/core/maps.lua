@@ -55,8 +55,18 @@ map('n', '<Leader>js', function() require('treesj').split() end, { desc = 'Split
 map('n', '<Leader>jj', function() require('treesj').join() end, { desc = 'Join object' })
 
 -- [[ bufferline ]]
-map('n', '<Leader>bd', ':bp | bd #<CR>', { silent = true, desc = 'Delete' })
-map('n', '<Leader>bD', ':bp | bd # | q<CR>', { silent = true, desc = 'Delete' })
+map('n', '<Leader>bd', function()
+  for _ = 1, vim.v.count1 do
+    vim.cmd('bp | bd #')
+  end
+end, { silent = true, desc = 'Delete buffer' })
+
+map('n', '<Leader>bD', function()
+  for _ = 1, vim.v.count1 do
+    vim.cmd('bp | bd #')
+  end
+  vim.cmd('q') -- Quit after deleting N buffers
+end, { silent = true, desc = 'Delete buffer and quit' })
 
 map('n', '<Leader>bs', function() require('bufferline').pick() end, { desc = 'Select' })
 
@@ -114,7 +124,7 @@ map('n', '<leader>n', function() require('notify').dismiss {} end, { desc = 'Hid
 map('n', '<C-p>', function() require('telescope.builtin').find_files() end, { desc = 'Find file' })
 map('n', '<Leader>/', function() require('telescope.builtin').live_grep() end, { desc = 'Find word' })
 map('n', '<Leader><Leader>', function() require('telescope.builtin').builtin() end, { desc = 'Telescope builtin' })
-map('n', '<leader>gB', function() require('telescope.builtin').git_branches() end, { desc = 'Branches' })
+-- map('n', '<leader>gB', function() require('telescope.builtin').git_branches() end, { desc = 'Branches' })
 map('n', '<leader>gs', function() require('telescope.builtin').git_status() end, { desc = 'Status' })
 
 -- [[ zen mode ]]

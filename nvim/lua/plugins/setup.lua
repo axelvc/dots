@@ -8,7 +8,6 @@ end
 return {
   -- region: Themes
   { 'catppuccin/nvim',             config = config 'themes.catppuccin',  name = 'catppuccin',  lazy = false },
-  { 'loctvl842/monokai-pro.nvim',  config = config 'themes.monokai_pro', name = 'monokay_pro', lazy = true },
   -- endregion: Themes
 
   -- region: Git
@@ -147,19 +146,20 @@ return {
   -- region: Extra
   -- { 'lewis6991/hover.nvim', lazy = true },
   'Darazaki/indent-o-matic',                                                                                -- auto set indentation width
-  { 'axelvc/goto_fn.nvim',          lazy = true },
-  { 'axelvc/unito.nvim',            lazy = true },                                                          -- convert px to rem and vice-versa
-  { 'nvim-lua/plenary.nvim',        lazy = true },                                                          -- lots of utility functions
-  { 'kyazdani42/nvim-web-devicons', lazy = true },                                                          -- nerd-font icons
-  { 'ggandor/leap.nvim',            lazy = true },
-  { 'nacro90/numb.nvim',            config = true },                                                        -- preview line on :[number]
-  { 'jghauser/mkdir.nvim',          event = 'VeryLazy' },                                                   -- create directory on save
-  { 'echasnovski/mini.nvim',        config = config 'utils.mini' },                                         -- lots of mini plugins
-  { 'axelvc/template-string.nvim',  config = config 'utils.template_string' },                              -- JS quotes to template strings
-  { 'Wansmer/treesj',               config = config 'utils.treesj',         lazy = true },                  -- split/join objects
-  { 'numToStr/Comment.nvim',        config = config 'utils.comment',        event = 'VeryLazy' },           -- easy comment lines
-  { 'windwp/nvim-autopairs',        config = config 'utils.autopairs',      event = 'VeryLazy' },           -- autopairs
-  { 'kylechui/nvim-surround',       config = config 'utils.surround',       event = 'VeryLazy' },           -- selection pairs
-  { 'danymat/neogen',               config = config 'utils.neogen',         cmd = { 'Neogen', 'Docgen' } }, -- documentation generator
+  { 'axelvc/goto_fn.nvim',           lazy = true },
+  { 'axelvc/unito.nvim',             lazy = true },                                                          -- convert px to rem and vice-versa
+  { 'nvim-lua/plenary.nvim',         lazy = true },                                                          -- lots of utility functions
+  { 'kyazdani42/nvim-web-devicons',  lazy = true },                                                          -- nerd-font icons
+  { 'ggandor/leap.nvim',             lazy = true },
+  { 'nacro90/numb.nvim',             config = true },                                                        -- preview line on :[number]
+  { 'jghauser/mkdir.nvim',           event = 'VeryLazy' },                                                   -- create directory on save
+  { 'echasnovski/mini.nvim',         config = config 'utils.mini' },                                         -- lots of mini plugins
+  { 'axelvc/template-string.nvim',   config = config 'utils.template_string' },                              -- JS quotes to template strings
+  { 'Wansmer/treesj',                config = config 'utils.treesj',         lazy = true },                  -- split/join objects
+  { 'numToStr/Comment.nvim',         config = config 'utils.comment',        event = 'VeryLazy' },           -- easy comment lines
+  { 'windwp/nvim-autopairs',         config = config 'utils.autopairs',      event = 'VeryLazy' },           -- autopairs
+  { 'kylechui/nvim-surround',        config = config 'utils.surround',       event = 'VeryLazy' },           -- selection pairs
+  { 'danymat/neogen',                config = config 'utils.neogen',         cmd = { 'Neogen', 'Docgen' } }, -- documentation generator
+  -- { 'jake-stewart/multicursor.nvim', config = config 'utils.multicursor',    branch = '1.0', },
   -- endregion: Extra
 }
