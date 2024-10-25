@@ -170,3 +170,6 @@ map('n', '<Leader>gT', function()
 
   lazygit:toggle()
 end, { desc = 'Lazygit' })
+
+-- [[ minty ]]
+map('n', '<leader>pp', function() require('minty.huefy').open() end)

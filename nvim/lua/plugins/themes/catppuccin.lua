@@ -2,11 +2,11 @@ local catppuccin = require 'catppuccin'
 local c = require('catppuccin.palettes').get_palette()
 
 catppuccin.setup {
+  transparent_background = true,
   background = {
     light = 'latte',
     dark = 'mocha',
   },
-  transparent_background = true,
   styles = {
     booleans = { 'italic' },
     comments = { 'italic' },

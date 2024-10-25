@@ -68,11 +68,18 @@ return {
   },
   -- { 'ivanjermakov/troublesum.nvim',        config = true },                                              -- diagnostic summary
   -- { 'Mofiqul/trld.nvim',                   config = true },                                           -- diagnostic mesage at top-right corner
+  {
+    'nvchad/minty',
+    dependencies = {
+      { 'nvchad/volt', lazy = true },
+    },
+    lazy = true
+  },
   { 'tzachar/highlight-undo.nvim',         config = true },
   { 'stevearc/dressing.nvim',              event = 'VeryLazy' },                                         -- automatic set vim.ui interfaces
-  { 'MeanderingProgrammer/markdown.nvim',  config = config 'ui.markdown' },
   { 'goolord/alpha-nvim',                  config = config 'ui.alpha' },                                 -- start page
   { 'rcarriga/nvim-notify',                config = config 'ui.notify' },                                -- fancy notifications
+  { 'MeanderingProgrammer/markdown.nvim',  config = config 'ui.markdown' },
   { 'folke/which-key.nvim',                config = config 'ui.which_key' },                             -- which key helper
   { 'akinsho/nvim-toggleterm.lua',         config = config 'ui.toggleterm', },                           -- toggle terminal
   { 'folke/todo-comments.nvim',            config = config 'ui.todo_comments' },                         -- highlight "todo" comments

@@ -62,6 +62,11 @@ function M.set_maps()
   bmap('n', 'gi', function() require('goto-preview').goto_preview_implementation {} end, 'Implementation')
   bmap('n', 'gr', function() require('goto-preview').goto_preview_references {} end, 'References')
   bmap('n', 'gP', function() require('goto-preview').close_all_win() end, 'Close all `goto` previews')
+
+  bmap('n', 'gS', function()
+    vim.cmd('vsplit')
+    require('telescope.builtin').lsp_definitions()
+  end, 'Split definition')
   -- stylua: ignore end
 
   -- format
