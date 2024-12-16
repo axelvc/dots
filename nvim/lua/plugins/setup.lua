@@ -60,26 +60,43 @@ return {
       { 's1n7ax/nvim-window-picker', version = '2.*', lazy = true }
     },
   },
-  {   -- indent line
+  { -- indent line
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl",
     config = config 'ui.indent_blankline',
     event = 'VeryLazy',
   },
-  -- { 'ivanjermakov/troublesum.nvim',        config = true },                                              -- diagnostic summary
-  -- { 'Mofiqul/trld.nvim',                   config = true },                                           -- diagnostic mesage at top-right corner
-  {
+  { -- color picker
     'nvchad/minty',
     dependencies = {
       { 'nvchad/volt', lazy = true },
     },
     lazy = true
   },
-  { 'tzachar/highlight-undo.nvim',         config = true },
+  -- { -- clipboard manager
+  --   'atiladefreitas/lazyclip',
+  --   config = function()
+  --      require('lazyclip').setup()
+  --   end,
+  --   event = { 'TextYankPost' },
+  --   keys = {
+  --     { '<leader>cw', desc = 'Open Clipboard Mana"er' },
+  --   },
+  -- },
+  -- { -- todo list
+  --   'atiladefreitas/dooing',
+  --   config = true,
+  --   keys = {
+  --     { '<leader>td', desc = 'Toggle Todo List' },
+  --   }
+  -- },
+  -- { 'ivanjermakov/troublesum.nvim',        config = true },                                           -- diagnostic summary
+  -- { 'Mofiqul/trld.nvim',                   config = true },                                           -- diagnostic mesage at top-right corner
+  { 'tzachar/highlight-undo.nvim',         config = true },                                              -- highlight undo
   { 'stevearc/dressing.nvim',              event = 'VeryLazy' },                                         -- automatic set vim.ui interfaces
   { 'goolord/alpha-nvim',                  config = config 'ui.alpha' },                                 -- start page
   { 'rcarriga/nvim-notify',                config = config 'ui.notify' },                                -- fancy notifications
-  { 'MeanderingProgrammer/markdown.nvim',  config = config 'ui.markdown' },
+  { 'MeanderingProgrammer/markdown.nvim',  config = config 'ui.markdown' },                              -- markdown preview
   { 'folke/which-key.nvim',                config = config 'ui.which_key' },                             -- which key helper
   { 'akinsho/nvim-toggleterm.lua',         config = config 'ui.toggleterm', },                           -- toggle terminal
   { 'folke/todo-comments.nvim',            config = config 'ui.todo_comments' },                         -- highlight "todo" comments
@@ -142,18 +159,25 @@ return {
       'neovim/nvim-lspconfig',
     },
   },
+  { -- code completion
+    'supermaven-inc/supermaven-nvim',
+    config = {
+      keymaps = {
+        accept_suggestion = '<C-l>',
+      },
+    },
+  },
   { 'b0o/schemastore.nvim',      lazy = true },                        -- json schemas
   { 'simrat39/rust-tools.nvim',  lazy = true },                        -- rust utils
-  { 'Exafunction/codeium.nvim',  config = config 'lsp.codeium' },      -- copilot alternative
   { 'stevearc/conform.nvim',     config = config 'lsp.conform' },      -- formatting
   { 'mfussenegger/nvim-lint',    config = config 'lsp.nvim-lint' },    -- linting
-  { 'wansmer/symbol-usage.nvim', event = 'LspAttach' }, -- reference counts
+  { 'wansmer/symbol-usage.nvim', config = true, event = 'LspAttach' }, -- reference counts
   -- endregion: LSP
 
   -- region: Extra
   -- { 'lewis6991/hover.nvim', lazy = true },
-  'Darazaki/indent-o-matic',                                                                                -- auto set indentation width
-  { 'axelvc/goto_fn.nvim',           lazy = true },
+  'Darazaki/indent-o-matic',                                                                                 -- auto set indentation width
+  { 'axelvc/goto_fn.nvim',           lazy = true }, -- TODO: check this
   { 'axelvc/unito.nvim',             lazy = true },                                                          -- convert px to rem and vice-versa
   { 'nvim-lua/plenary.nvim',         lazy = true },                                                          -- lots of utility functions
   { 'kyazdani42/nvim-web-devicons',  lazy = true },                                                          -- nerd-font icons

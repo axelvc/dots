@@ -70,7 +70,7 @@ local signs = {
   error = '󰅚 ', -- 
   warn = ' ', -- 
   info = ' ', -- 
-  hint = ' ', -- 󰌵
+  hint = '󰙎 ', --   󰌵
   debug = ' ',
 }
 

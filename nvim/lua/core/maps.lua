@@ -130,11 +130,6 @@ map('n', '<leader>gs', function() require('telescope.builtin').git_status() end,
 -- [[ zen mode ]]
 map('n', '<Leader>z', function() require('zen-mode').toggle() end, { desc = 'Zen Mode' })
 
--- [[ codeium ]]
-map('i', '<C-l>', function()
-  return vim.fn['codeium#Accept']()
-end, { expr = true, silent = true })
-
 -- [[ leap ]]
 map('n', 'gs', function()
   local current_window = vim.fn.win_getid()
