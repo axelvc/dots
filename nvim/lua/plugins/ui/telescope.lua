@@ -19,6 +19,7 @@ telescope.setup {
     },
     vimgrep_arguments = {
       'rg',
+      '--fixed-strings',
       '--color=never',
       '--no-heading',
       '--with-filename',

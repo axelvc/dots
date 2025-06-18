@@ -111,6 +111,7 @@ return {
   { -- server installer
     'williamboman/mason.nvim',
     config = config 'lsp',
+    -- branch = 'v1.x',
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
@@ -171,7 +172,7 @@ return {
   { 'simrat39/rust-tools.nvim',  lazy = true },                        -- rust utils
   { 'stevearc/conform.nvim',     config = config 'lsp.conform' },      -- formatting
   { 'mfussenegger/nvim-lint',    config = config 'lsp.nvim-lint' },    -- linting
-  { 'wansmer/symbol-usage.nvim', config = true, event = 'LspAttach' }, -- reference counts
+  -- { 'wansmer/symbol-usage.nvim', config = true, event = 'LspAttach' }, -- reference counts
   -- endregion: LSP
 
   -- region: Extra

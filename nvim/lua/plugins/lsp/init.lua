@@ -37,20 +37,23 @@ require('mason-lspconfig').setup {
   automatic_installation = true,
 }
 
-require('mason-lspconfig').setup_handlers {
-  function(server)
-    local config = configs[server] or {}
+local ts_config = vim.tbl_extend('force', lsp_util.default_config, configs.typescript)
+require("typescript-tools").setup(ts_config)
 
-    require('lspconfig')[server].setup(config)
-  end,
-  ['ts_ls'] = function()
-    local config = vim.tbl_extend('force', lsp_util.default_config, configs.typescript)
-    require("typescript-tools").setup(config)
-  end,
-  ['rust_analyzer'] = function()
-    configs.rust()
-  end,
-  ['rome'] = function() end,
-}
+-- require('mason-lspconfig').setup_handlers {
+--   function(server)
+--     local config = configs[server] or {}
+
+--     require('lspconfig')[server].setup(config)
+--   end,
+--   ['ts_ls'] = function()
+--     local config = vim.tbl_extend('force', lsp_util.default_config, configs.typescript)
+--     require("typescript-tools").setup(config)
+--   end,
+--   ['rust_analyzer'] = function()
+--     configs.rust()
+--   end,
+--   ['rome'] = function() end,
+-- }
 
 require('ufo').setup()

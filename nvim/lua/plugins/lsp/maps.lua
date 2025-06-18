@@ -47,20 +47,20 @@ function M.set_maps()
   bmap('', '<Leader>a', vim.lsp.buf.code_action, 'Code action')
 
   -- diagnostics
-  bmap('n', '[d', vim.diagnostic.goto_prev, 'Previous diagnostic')
-  bmap('n', ']d', vim.diagnostic.goto_next, 'Next diagnostic')
+  bmap('n', '[d', function() vim.diagnostic.jump { count = -1, float = true } end, 'Previous diagnostic')
+  bmap('n', ']d', function () vim.diagnostic.jump { count = 1, float = true } end, 'Next diagnostic')
   -- stylua: ignore start
-  bmap('n', '[e', function() vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR } end, 'Previous error')
-  bmap('n', ']e', function() vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR } end, 'Next error')
+  bmap('n', '[e', function() vim.diagnostic.jump { count = -1, severity = vim.diagnostic.severity.ERROR, float = true } end, 'Previous error')
+  bmap('n', ']e', function() vim.diagnostic.jump { count = 1, severity = vim.diagnostic.severity.ERROR, float = true } end, 'Next error')
   bmap('n', '<Leader>i', function() vim.diagnostic.open_float { scope = 'line' } end, 'Hover information')
   bmap('n', '<Leader>d', function() require('trouble').toggle 'workspace_diagnostics' end, 'Diagnostics')
 
   -- goto navigations
   bmap('n', 'gd', function() require('telescope.builtin').lsp_definitions() end, 'Definition')
   bmap('n', 'gD', function() require('goto-preview').goto_preview_definition {} end, 'Preview definition')
-  bmap('n', 'gt', function() require('goto-preview').goto_preview_type_definition {} end, 'Type definition')
-  bmap('n', 'gi', function() require('goto-preview').goto_preview_implementation {} end, 'Implementation')
-  bmap('n', 'gr', function() require('goto-preview').goto_preview_references {} end, 'References')
+  bmap('n', 'gt', function() require('telescope.builtin').Psp_type_definitions {} end, 'Type definition')
+  bmap('n', 'gi', function() require('telescope.builtin').lsp_implementations {} end, 'Implementation')
+  bmap('n', 'gr', function() require('telescope.builtin').lsp_references {} end, 'References')
   bmap('n', 'gP', function() require('goto-preview').close_all_win() end, 'Close all `goto` previews')
 
   bmap('n', 'gS', function()
