@@ -12,6 +12,9 @@ error_symbol = "[󰊠 ](bold red)"
 truncate_to_repo = false
 truncation_symbol = '../'
 
+[git_commit]
+tag_disabled = false
+
 [git_status]
 staged = '·[+$count](bold green)'
 ahead = "·[⇡$count](bold blue)"

@@ -4,8 +4,6 @@ bindkey -e
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
-
 # Only current directory in termtitle
 zstyle ':zim:termtitle' format '%~'
 
@@ -64,8 +62,9 @@ export EDITOR=nvim
 export SUDO_EDITOR=nvim
 export PAGER=less
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export SUDO_PROMPT='Password: 󰌆 '
+export SUDO_PROMPT='Pass: 󰌆 '
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.volta/bin:$PATH"
 
 export WORDCHARS=${WORDCHARS//[\/]}
 export WORDCHARS=${WORDCHARS//-}
@@ -77,8 +76,7 @@ export PATH="$CARGO_HOME/bin:$PATH"
 # JS
 export NPM_HOME="$HOME/.local/share/npm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export BUN_INSTALL="$HOME/.local/share/bun"
-export PATH="$NPM_HOME/bin:$PNPM_HOME:$BUN_INSTALL/bin:$PATH"
+export PATH="$NPM_HOME/bin:$PNPM_HOME:$PATH"
 
 # Go
 export GOPATH="$HOME/.local/share/go"
