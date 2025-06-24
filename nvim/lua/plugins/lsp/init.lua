@@ -34,7 +34,8 @@ require('mason').setup {
 }
 
 require('mason-lspconfig').setup {
-  automatic_installation = true,
+  ensure_installed = {},
+  automatic_enable = true,
 }
 
 local ts_config = vim.tbl_extend('force', lsp_util.default_config, configs.typescript)
