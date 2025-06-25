@@ -1,60 +1,37 @@
-local lsp_util = require 'lspconfig.util'
-
--- TODO: check this
--- local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true,
-}
-
-lsp_util.default_config = vim.tbl_extend('force', lsp_util.default_config, {
-  capabilities = capabilities,
-  on_attach = require 'plugins.lsp.maps',
-})
-
-local CONFIG_PATH = 'plugins.lsp.servers.'
-local configs = {
-  html = require(CONFIG_PATH .. 'html'),
-  gopls = require(CONFIG_PATH .. 'go'),
-  cssls = require(CONFIG_PATH .. 'css'),
-  rust = require(CONFIG_PATH .. 'rust'),
-  jsonls = require(CONFIG_PATH .. 'json'),
-  emmet_ls = require(CONFIG_PATH .. 'emmet').setup,
-  typescript = require(CONFIG_PATH .. 'typescript'),
-  angularls = require(CONFIG_PATH .. 'angular'),
-}
-
 require 'plugins.lsp.diagnostic'
 
-require('mason').setup {
-  ui = {
-    border = vim.g.border,
+require('mason').setup()
+require('mason-lspconfig').setup()
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true
+}
+
+vim.lsp.config('*', {
+  capabilities = capabilities,
+  on_attach = require 'plugins.lsp.maps'.init
+})
+
+vim.lsp.config('html', {
+  init_options = {
+    configurationSection = { 'html', 'css', 'javascript', 'htmlangular' },
+  }
+})
+
+vim.lsp.config('jsonls', {
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+      validate = { enable = true },
+    },
   },
+})
+
+require('typescript-tools').setup {
+  expose_as_code_action = 'all',
+  complete_function_calls = true,
 }
-
-require('mason-lspconfig').setup {
-  ensure_installed = {},
-  automatic_enable = true,
-}
-
-local ts_config = vim.tbl_extend('force', lsp_util.default_config, configs.typescript)
-require("typescript-tools").setup(ts_config)
-
--- require('mason-lspconfig').setup_handlers {
---   function(server)
---     local config = configs[server] or {}
-
---     require('lspconfig')[server].setup(config)
---   end,
---   ['ts_ls'] = function()
---     local config = vim.tbl_extend('force', lsp_util.default_config, configs.typescript)
---     require("typescript-tools").setup(config)
---   end,
---   ['rust_analyzer'] = function()
---     configs.rust()
---   end,
---   ['rome'] = function() end,
--- }
 
 require('ufo').setup()

@@ -20,7 +20,7 @@ end
 -- reference to the original handler
 local orig_signs_handler = vim.diagnostic.handlers.signs
 
--- Overriden diagnostics signs helper to only show the single most relevant sign
+-- override diagnostics signs helper to only show the single most relevant sign
 vim.diagnostic.handlers.signs = {
   show = function(ns, bufnr, diagnostics, opts)
     local filtered_diagnostics = filter_diagnostics(diagnostics)
@@ -45,12 +45,6 @@ vim.diagnostic.config {
       [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
       [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
     },
-    -- linehl = {
-    --   [vim.diagnostic.severity.ERROR] = "DiagnosticVirtualTextError",
-    --   [vim.diagnostic.severity.WARN]  = "DiagnosticVirtualTextWarn",
-    --   [vim.diagnostic.severity.INFO]  = "DiagnosticVirtualTextInfo",
-    --   [vim.diagnostic.severity.HINT]  = "DiagnosticVirtualTextHint",
-    -- },
   },
   update_in_insert = true,
   severity_sort = true,
@@ -80,5 +74,3 @@ vim.diagnostic.config {
     end,
   },
 }
-
--- TODO: split format into prefix/postfix

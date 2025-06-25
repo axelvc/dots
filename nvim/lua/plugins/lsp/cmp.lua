@@ -7,7 +7,7 @@ local function has_words_before()
 end
 
 -- setup emmet
-require('plugins.lsp.servers.emmet').cmp()
+require('plugins.lsp.servers.emmet')
 
 -- load snippets
 luasnip.filetype_extend('typescript', { 'javascript' })

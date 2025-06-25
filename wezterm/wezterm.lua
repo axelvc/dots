@@ -125,6 +125,8 @@ return {
     { key = 'D', mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentTab { confirm = false } },
     -- fullscreen
     { key = 'k', mods = 'SHIFT|CTRL', action = wezterm.action.ToggleFullScreen },
+    -- disable command+q for mac
+    { key = 'q', mods = 'SUPER', action = wezterm.action.DisableDefaultAssignment },
   },
   mouse_bindings = {
     {

@@ -1,4 +1,3 @@
-local eslint_config = require 'plugins.lsp.servers.eslint'
 local lint = require 'lint'
 
 lint.linters_by_ft = {
@@ -8,7 +7,13 @@ lint.linters_by_ft = {
   typescriptreact = { 'eslint_d' },
 }
 
-lint.linters.eslint_d = require('lint.util').wrap(lint.linters.eslint_d, eslint_config.filter)
+lint.linters.eslint_d = require('lint.util').wrap(lint.linters.eslint_d, function(diagnostic)
+  if diagnostic.message:lower():match 'no eslint configuration found' then
+    return
+  end
+
+  return diagnostic
+end)
 
 vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
   callback = function()

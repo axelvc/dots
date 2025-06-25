@@ -29,7 +29,7 @@ function M.format_on_save()
   end
 end
 
-function M.set_maps()
+function M.init()
   local opts = { buffer = true, noremap = true, silent = true }
 
   local function bmap(modes, keys, map, desc)
@@ -38,6 +38,7 @@ function M.set_maps()
 
   -- rename
   bmap('n', '<F2>', vim.lsp.buf.rename, 'Rename')
+  bmap('n', '<leader>R', vim.lsp.buf.rename, 'Rename')
 
   -- hover
   bmap('', 'K', vim.lsp.buf.hover, 'Hover')
@@ -98,4 +99,4 @@ function M.set_maps()
   -- })
 end
 
-return M.set_maps
+return M
