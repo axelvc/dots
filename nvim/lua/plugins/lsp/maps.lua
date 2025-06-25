@@ -1,35 +1,13 @@
-local autocmd = vim.api.nvim_create_autocmd
 local command = vim.api.nvim_buf_create_user_command
 
 local M = {}
 
-M.ignore_format_list = {
-  'html',
-  'jsonls',
-  'tsserver',
-  'sumneko_lua',
-}
-
-function M.format_filter(client)
-  return not vim.tbl_contains(M.ignore_format_list, client.name)
-end
-
-function M.format(opts)
-  vim.lsp.buf.format(vim.tbl_extend('force', {
-    async = true,
-    filter = M.format_filter,
-  }, opts or {}))
-end
-
-function M.format_on_save()
-  local filetype = vim.opt.filetype:get()
-
-  if vim.tbl_contains(vim.g.format_on_save, filetype) then
-    M.format { async = false }
+function M.init(s)
+  -- disable folding for angularls
+  if s.name == 'angularls' then
+    s.server_capabilities.foldingRangeProvider = false
   end
-end
 
-function M.init()
   local opts = { buffer = true, noremap = true, silent = true }
 
   local function bmap(modes, keys, map, desc)
@@ -49,10 +27,10 @@ function M.init()
 
   -- diagnostics
   bmap('n', '[d', function() vim.diagnostic.jump { count = -1, float = true } end, 'Previous diagnostic')
-  bmap('n', ']d', function () vim.diagnostic.jump { count = 1, float = true } end, 'Next diagnostic')
+  bmap('n', ']d', function() vim.diagnostic.jump { count = 1, float = true } end, 'Next diagnostic')
   -- stylua: ignore start
-  bmap('n', '[e', function() vim.diagnostic.jump { count = -1, severity = vim.diagnostic.severity.ERROR, float = true } end, 'Previous error')
-  bmap('n', ']e', function() vim.diagnostic.jump { count = 1, severity = vim.diagnostic.severity.ERROR, float = true } end, 'Next error')
+  bmap('n', '[e', function() vim.diagnostic.jump { count = -1, float = true, severity = vim.diagnostic.severity.ERROR } end, 'Previous error')
+  bmap('n', ']e', function() vim.diagnostic.jump { count = 1, float = true, severity = vim.diagnostic.severity.ERROR } end, 'Next error')
   bmap('n', '<Leader>i', function() vim.diagnostic.open_float { scope = 'line' } end, 'Hover information')
   bmap('n', '<Leader>d', function() require('trouble').toggle 'workspace_diagnostics' end, 'Diagnostics')
 
@@ -87,16 +65,6 @@ function M.init()
     end
     require('conform').format { async = true, lsp_format = 'fallback', range = range }
   end, { range = true })
-
-  -- vim.api.nvim_clear_autocmds {
-  --   event = 'BufWritePre',
-  --   buffer = 0,
-  -- }
-  -- autocmd('BufWritePre', {
-  --   desc = 'Format on save',
-  --   callback = M.format_on_save,
-  --   buffer = 0,
-  -- })
 end
 
 return M
