@@ -66,13 +66,6 @@ return {
     config = config 'ui.indent_blankline',
     event = 'VeryLazy',
   },
-  { -- color picker
-    'nvchad/minty',
-    dependencies = {
-      { 'nvchad/volt', lazy = true },
-    },
-    lazy = true
-  },
   -- { -- clipboard manager
   --   'atiladefreitas/lazyclip',
   --   config = function()

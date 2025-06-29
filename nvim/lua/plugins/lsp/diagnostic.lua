@@ -34,10 +34,10 @@ vim.diagnostic.handlers.signs = {
 vim.diagnostic.config {
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = vim.g.signs.ERROR,
-      [vim.diagnostic.severity.WARN] = vim.g.signs.WARN,
-      [vim.diagnostic.severity.INFO] = vim.g.signs.INFO,
-      [vim.diagnostic.severity.HINT] = vim.g.signs.HINT,
+      [vim.diagnostic.severity.ERROR] = vim.g.signs.error,
+      [vim.diagnostic.severity.WARN] = vim.g.signs.warn,
+      [vim.diagnostic.severity.INFO] = vim.g.signs.info,
+      [vim.diagnostic.severity.HINT] = vim.g.signs.hint,
     },
     numhl = {
       [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',

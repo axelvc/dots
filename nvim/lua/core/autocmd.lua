@@ -18,6 +18,7 @@ autocmd('BufEnter', {
   pattern = '*.txt',
   callback = function()
     if o.buftype:get() ~= 'help' or vim.b.opened then
+      put(o.buftype:get())
       return
     end
 
@@ -75,7 +76,7 @@ autocmd('TextYankPost', {
   desc = 'Highlight on yank',
   group = group,
   callback = function()
-    vim.highlight.on_yank { timeout = 200 }
+    vim.hl.on_yank { timeout = 200 }
   end,
 })
 

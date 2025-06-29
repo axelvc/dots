@@ -4,6 +4,14 @@ local g = vim.g
 g.mapleader = ' '
 g.border = 'rounded'
 
+g.signs = {
+  error = '󰅚 ',
+  warn = ' ',
+  info = ' ',
+  hint = '󰙎 ',
+  debug = ' ',
+}
+
 -- misc
 o.hidden = true
 o.matchpairs = { '(:)', '{:}', '[:]', '<:>' }

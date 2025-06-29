@@ -134,7 +134,10 @@ require('lualine').setup {
           short_mode,
         },
         lualine_z = {
-          'Alpha',
+          {
+            'branch',
+            icon = '',
+          },
         },
       },
     },
