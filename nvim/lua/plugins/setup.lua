@@ -7,32 +7,37 @@ end
 
 return {
   -- region: Themes
-  { 'catppuccin/nvim',             config = config 'themes.catppuccin',  name = 'catppuccin',  lazy = false },
+  { 'catppuccin/nvim', config = config 'themes.catppuccin', name = 'catppuccin', lazy = false },
   -- endregion: Themes
 
   -- region: Git
-  { 'akinsho/git-conflict.nvim',   config = true,                        event = 'VimEnter' }, -- conflits highlighter
-  { 'lewis6991/gitsigns.nvim',     config = config 'git.gitsigns',       event = 'VeryLazy' }, -- diff signs
+  { 'akinsho/git-conflict.nvim', config = true,               event = 'VimEnter' }, -- conflicts highlighter
+  { 'lewis6991/gitsigns.nvim',   config = config 'git.signs', event = 'VeryLazy' }, -- diff signs
   -- { 'sindrets/diffview.nvim' },
   -- endregion Git
 
   -- region: Bars
-  { 'hoob3rt/lualine.nvim',        config = config 'bars.lualine',       event = 'VimEnter' }, -- statusline
-  { 'luukvbaal/statuscol.nvim',    config = config 'bars.statuscol',     event = 'VimEnter' }, -- status-column
-  { 'akinsho/nvim-bufferline.lua', config = config 'bars.bufferline',    event = 'VimEnter' }, -- tabline
+  { 'akinsho/nvim-bufferline.lua', config = config 'bars.tab_line',      event = 'VimEnter' }, -- tab-line
+  { 'hoob3rt/lualine.nvim',        config = config 'bars.status_line',   event = 'VimEnter' }, -- status-line
+  { 'luukvbaal/statuscol.nvim',    config = config 'bars.status_column', event = 'VimEnter' }, -- status-column
   -- endregion: Bars
 
   -- region: UI
-  { -- fzf-like finder
+  { -- finder
     'nvim-telescope/telescope.nvim',
     lazy = true,
     cmd = { 'Telescope' },
-    config = config 'ui.telescope',
-    dependencies = { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    config = config 'ui.finder',
+    dependencies = {
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release',
+      }
+    }
   },
-  { -- treesitter (highlights)
+  { -- highlights
     'nvim-treesitter/nvim-treesitter',
-    config = config 'ui.treesitter',
+    config = config 'ui.highlight',
     build = ':TSUpdate',
     dependencies = {
       'windwp/nvim-ts-autotag',                      -- auto close tag
@@ -41,21 +46,22 @@ return {
       'JoosepAlviste/nvim-ts-context-commentstring', -- commentstring based on location
     },
   },
-  { -- improve folding
+  { -- folding
     'kevinhwang91/nvim-ufo',
     config = true,
     event = 'VeryLazy',
     dependencies = { 'kevinhwang91/promise-async' },
   },
-  { -- fancy messages,cmdline and popupmenu
+  { -- better cmdline/popupmenu
     'folke/noice.nvim',
-    config = config 'ui.noice',
+    config = config 'ui.cmd_line',
     dependencies = { 'MunifTanjim/nui.nvim' }
   },
-  { -- sidebar explorer
+  { -- file explorer
     'nvim-neo-tree/neo-tree.nvim',
+    lazy = true,
     cmd = { 'Neotree' },
-    config = config 'ui.neo-tree',
+    config = config 'ui.file_explorer',
     dependencies = {
       { 's1n7ax/nvim-window-picker', version = '2.*', lazy = true }
     },
@@ -66,54 +72,28 @@ return {
     config = config 'ui.indent_blankline',
     event = 'VeryLazy',
   },
-  -- { -- clipboard manager
-  --   'atiladefreitas/lazyclip',
-  --   config = function()
-  --      require('lazyclip').setup()
-  --   end,
-  --   event = { 'TextYankPost' },
-  --   keys = {
-  --     { '<leader>cw', desc = 'Open Clipboard Mana"er' },
-  --   },
-  -- },
-  -- { -- todo list
-  --   'atiladefreitas/dooing',
-  --   config = true,
-  --   keys = {
-  --     { '<leader>td', desc = 'Toggle Todo List' },
-  --   }
-  -- },
-  -- { 'ivanjermakov/troublesum.nvim',        config = true },                                           -- diagnostic summary
-  -- { 'Mofiqul/trld.nvim',                   config = true },                                           -- diagnostic mesage at top-right corner
-  { 'tzachar/highlight-undo.nvim',         config = true },                                              -- highlight undo
-  { 'stevearc/dressing.nvim',              event = 'VeryLazy' },                                         -- automatic set vim.ui interfaces
-  { 'goolord/alpha-nvim',                  config = config 'ui.alpha' },                                 -- start page
-  { 'rcarriga/nvim-notify',                config = config 'ui.notify' },                                -- fancy notifications
-  { 'MeanderingProgrammer/markdown.nvim',  config = config 'ui.markdown' },                              -- markdown preview
-  { 'folke/which-key.nvim',                config = config 'ui.which_key' },                             -- which key helper
-  { 'akinsho/nvim-toggleterm.lua',         config = config 'ui.toggleterm', },                           -- toggle terminal
-  { 'folke/todo-comments.nvim',            config = config 'ui.todo_comments' },                         -- highlight "todo" comments
-  { 'NvChad/nvim-colorizer.lua',           config = config 'ui.nvim-colorizer' },                        -- color highlighter, @see https://github.com/brenoprata10/nvim-highlight-colors
-  { 'folke/zen-mode.nvim',                 config = config 'ui.zen_mode',         lazy = true },         -- zen mode
-  { 'folke/trouble.nvim',                  config = config 'ui.trouble',          lazy = true },         -- pretty diagnostics
-  { 'rmagatti/goto-preview',               config = config 'ui.goto-preview',     lazy = true },         -- goto preview
-  { 'RRethy/vim-illuminate',               config = config 'ui.illuminate',       event = 'VeryLazy' },  -- cursor word highlight
+  { 'tzachar/highlight-undo.nvim',        config = true },                                             -- highlight undo
+  { 'stevearc/dressing.nvim',             event = 'VeryLazy' },                                        -- automatic set vim.ui interfaces
+  { 'rcarriga/nvim-notify',               config = config 'ui.notify' },                               -- fancy notifications
+  { 'goolord/alpha-nvim',                 config = config 'ui.landing' },                              -- start page
+  { 'MeanderingProgrammer/markdown.nvim', config = config 'ui.markdown' },                             -- markdown preview
+  { 'folke/which-key.nvim',               config = config 'ui.which_key' },                            -- which key helper
+  { 'akinsho/nvim-toggleterm.lua',        config = config 'ui.toggleterm', },                          -- toggle terminal
+  { 'NvChad/nvim-colorizer.lua',          config = config 'ui.nvim-colorizer' },                       -- color highlighter
+  { 'folke/zen-mode.nvim',                config = config 'ui.zen_mode',         lazy = true },        -- zen mode
+  { 'rmagatti/goto-preview',              config = config 'ui.goto-preview',     lazy = true },        -- go-to preview
+  { 'RRethy/vim-illuminate',              config = config 'ui.word_highlight',   event = 'VeryLazy' }, -- cursor word highlight
   -- endregion: UI
 
   -- region: LSP
   { -- server installer
     'williamboman/mason.nvim',
     config = config 'lsp',
-    -- branch = 'v1.x',
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
       'onsails/lspkind-nvim',
-      {
-        'folke/lazydev.nvim',
-        ft = "lua",
-        opts = { library = { 'luvit-meta/library' }, },
-      },
+      { 'folke/lazydev.nvim', ft = "lua", opts = { library = { 'luvit-meta/library' } } },
       { "Bilal2453/luvit-meta", lazy = true }
     },
   },
@@ -138,11 +118,6 @@ return {
       'nvim-neotest/nvim-nio',
       'rcarriga/nvim-dap-ui',        -- ui tool
       'mxsdev/nvim-dap-vscode-js',   -- JS debugger
-      -- {
-      --   'microsoft/vscode-js-debug', -- JS dap server
-      --   version = '1.x',
-      --   build = 'npm i && npm run compile vsDebugServerBundle && mv dist out',
-      -- },
     },
   },
   { -- typescript utils
@@ -161,17 +136,13 @@ return {
       },
     },
   },
-  { 'b0o/schemastore.nvim',      lazy = true },                        -- json schemas
-  { 'simrat39/rust-tools.nvim',  lazy = true },                        -- rust utils
-  { 'stevearc/conform.nvim',     config = config 'lsp.conform' },      -- formatting
-  { 'mfussenegger/nvim-lint',    config = config 'lsp.nvim-lint' },    -- linting
-  -- { 'wansmer/symbol-usage.nvim', config = true, event = 'LspAttach' }, -- reference counts
+  { 'b0o/schemastore.nvim',      lazy = true },                     -- json schemas
+  { 'stevearc/conform.nvim',     config = config 'lsp.conform' },   -- formatting
+  { 'mfussenegger/nvim-lint',    config = config 'lsp.nvim-lint' }, -- linting
   -- endregion: LSP
 
   -- region: Extra
-  -- { 'lewis6991/hover.nvim', lazy = true },
   'Darazaki/indent-o-matic',                                                                                 -- auto set indentation width
-  { 'axelvc/goto_fn.nvim',           lazy = true }, -- TODO: check this
   { 'axelvc/unito.nvim',             lazy = true },                                                          -- convert px to rem and vice-versa
   { 'nvim-lua/plenary.nvim',         lazy = true },                                                          -- lots of utility functions
   { 'kyazdani42/nvim-web-devicons',  lazy = true },                                                          -- nerd-font icons
@@ -185,6 +156,5 @@ return {
   { 'windwp/nvim-autopairs',         config = config 'utils.autopairs',      event = 'VeryLazy' },           -- autopairs
   { 'kylechui/nvim-surround',        config = config 'utils.surround',       event = 'VeryLazy' },           -- selection pairs
   { 'danymat/neogen',                config = config 'utils.neogen',         cmd = { 'Neogen', 'Docgen' } }, -- documentation generator
-  -- { 'jake-stewart/multicursor.nvim', config = config 'utils.multicursor',    branch = '1.0', },
   -- endregion: Extra
 }

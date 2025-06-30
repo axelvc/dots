@@ -1,3 +1,6 @@
+-- reference to the original handler
+local orig_signs_handler = vim.diagnostic.handlers.signs
+
 local function filter_diagnostics(diagnostics)
   if not diagnostics then
     return {}
@@ -16,9 +19,6 @@ local function filter_diagnostics(diagnostics)
 
   return vim.tbl_values(most_severe)
 end
-
--- reference to the original handler
-local orig_signs_handler = vim.diagnostic.handlers.signs
 
 -- override diagnostics signs helper to only show the single most relevant sign
 vim.diagnostic.handlers.signs = {

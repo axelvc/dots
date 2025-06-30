@@ -2,13 +2,6 @@ local gitsigns = require 'gitsigns'
 
 gitsigns.setup {
   trouble = false,
-  -- signs = {
-  --   add = { text = '▎' },
-  --   change = { text = '▎' },
-  --   delete = { text = '▁' },
-  --   topdelete = { text = '▔' },
-  --   changedelete = { text = '~' },
-  -- },
   signs_staged_enable = false,
   current_line_blame_opts = {
     delay = 100,
@@ -32,8 +25,8 @@ gitsigns.setup {
     bmap('n', ']c', ':GitConflictNextConflict<CR>', 'Next git conflict')
 
     -- navigation
-    bmap('n', '[g', gitsigns.prev_hunk, 'Previus git hunk')
-    bmap('n', ']g', gitsigns.next_hunk, 'Next git hunk')
+    bmap('n', '[g', function() gitsigns.nav_hunk('prev') end, 'Previus git hunk')
+    bmap('n', ']g', function() gitsigns.nav_hunk('next') end, 'Next git hunk')
 
     -- stage
     bmap({ 'n', 'v' }, '<leader>ga', gitsigns.stage_hunk, 'Stage hunk')

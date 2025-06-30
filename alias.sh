@@ -22,14 +22,18 @@ alias gui="gitui -t $HOME/.dots/gitui/theme.ron"
 alias gc="czg"
 alias gii="git init"
 alias gcma="git commit --amend --no-edit"
+unalias gh # git-cli required
 
 # vim
 alias hl=helix
 alias vim=nvim
 alias v=nvim
-alias vima="nvim ~/.dots/alias.sh"
+
+# configs
 alias vimc="nvim ~/.config/nvim/init.lua -c cd%:p:h"
+alias vima="nvim ~/.dots/alias.sh"
 alias zshc="nvim ~/.zshrc"
+alias wezc="nvim ~/.config/wezterm/wezterm.lua"
 
 # eza
 alias ls="eza --group-directories-first --icons" # show
@@ -53,11 +57,6 @@ pyenv() {
   fi
 
   source .venv/bin/activate
-}
-
-# fancy diff
-fdiff() {
-  diff -u "$@" | diff-so-fancy
 }
 
 # calculator

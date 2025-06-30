@@ -1,6 +1,7 @@
 -- common `save file` shortcut
 map({ 'n', 'v' }, '<C-s>', ':update<CR>', { silent = true })
 map('i', '<C-s>', '<C-o>:w<CR>', { silent = true })
+map({ 'n', 'v' }, '<Leader><C-s>', ':noautocmd up<CR>', { desc = 'Save without format' })
 
 -- common select all
 map({ 'n', 'v' }, '<C-a>', 'gg<S-v>G')
@@ -87,9 +88,6 @@ end, { silent = true, expr = true })
 
 -- [[ unito ]]
 map('n', '<leader>p', function() require('unito').toggle_px_rem() end, { desc = ' Toggle px/rem' })
-
--- [[ goto_fn ]]
-map('n', 'gF', function() require('goto_fn').goto_start() end, { desc = 'Go to function definition' })
 
 -- [[ notify ]]
 map('n', '<leader>n', function() require('notify').dismiss {} end, { desc = 'Hide notifications' })

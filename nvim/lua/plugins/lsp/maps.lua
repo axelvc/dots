@@ -8,10 +8,10 @@ function M.init(s)
     s.server_capabilities.foldingRangeProvider = false
   end
 
-  local opts = { buffer = true, noremap = true, silent = true }
+  local opts = { buffer = true, noremap = true, silent = true, unique = true }
 
   local function bmap(modes, keys, map, desc)
-    vim.keymap.set(modes, keys, map, vim.tbl_extend('force', { desc = desc }, opts))
+    pcall(vim.keymap.set, modes, keys, map, vim.tbl_extend('force', { desc = desc }, opts))
   end
 
   -- rename
@@ -40,16 +40,13 @@ function M.init(s)
   bmap('n', 'gt', function() require('telescope.builtin').Psp_type_definitions {} end, 'Type definition')
   bmap('n', 'gi', function() require('telescope.builtin').lsp_implementations {} end, 'Implementation')
   bmap('n', 'gr', function() require('telescope.builtin').lsp_references {} end, 'References')
-  bmap('n', 'gP', function() require('goto-preview').close_all_win() end, 'Close all `goto` previews')
 
   bmap('n', 'gS', function()
     vim.cmd('vsplit')
     require('telescope.builtin').lsp_definitions()
   end, 'Split definition')
-  -- stylua: ignore end
 
   -- format
-  bmap('n', '<Leader><C-s>', ':noautocmd up<CR>', 'Save without format')
   bmap({ 'n', 'v' }, '<Leader>f', function()
     require('conform').format { async = true, lsp_format = 'fallback' }
   end, 'Format code')

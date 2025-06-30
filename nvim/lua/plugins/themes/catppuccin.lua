@@ -71,7 +71,7 @@ catppuccin.setup {
       PmenuThumb = { bg = c.peach, fg = c.mantle },
       NormalFLoat = { bg = c.mantle, fg = c.text },
       -- lualine
-      Recording = { bg = c.mantle, fg = c.peach },
+      Recording = { fg = c.peach },
       -- neo-tree
       NeoTreeTabActive = { bg = c.base },
       NeoTreeTabInactive = { bg = c.mantle },
