@@ -1,7 +1,7 @@
 -- common `save file` shortcut
 map({ 'n', 'v' }, '<C-s>', ':update<CR>', { silent = true })
 map('i', '<C-s>', '<C-o>:w<CR>', { silent = true })
-map({ 'n', 'v' }, '<Leader><C-s>', ':noautocmd up<CR>', { desc = 'Save without format' })
+map({ 'n', 'v' }, '<Leader><C-s>', ':noautocmd up<CR>', { silent = true, desc = 'Save without format' })
 
 -- common select all
 map({ 'n', 'v' }, '<C-a>', 'gg<S-v>G')

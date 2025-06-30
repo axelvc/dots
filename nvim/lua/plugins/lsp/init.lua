@@ -15,9 +15,7 @@ vim.lsp.config('*', {
 })
 
 vim.lsp.config('html', {
-  init_options = {
-    configurationSection = { 'html', 'css', 'javascript', 'htmlangular' },
-  }
+  filetypes = { 'html', 'css', 'javascript', 'htmlangular' },
 })
 
 vim.lsp.config('jsonls', {
