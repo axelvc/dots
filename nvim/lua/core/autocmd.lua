@@ -18,7 +18,6 @@ autocmd('BufEnter', {
   pattern = '*.txt',
   callback = function()
     if o.buftype:get() ~= 'help' or vim.b.opened then
-      put(o.buftype:get())
       return
     end
 
