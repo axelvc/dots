@@ -22,7 +22,7 @@ require('neo-tree').setup {
     {
       event = 'file_opened',
       handler = function() --auto close
-        require('neo-tree').close_all()
+         require("neo-tree.command").execute({ action = "close" })
       end,
     },
   },
@@ -31,6 +31,7 @@ require('neo-tree').setup {
       folder_closed = ' ',
       folder_open = ' ',
       folder_empty = ' ',
+      folder_empty_open = ' ',
       default = '',
     },
     git_status = {
@@ -56,11 +57,8 @@ require('window-picker').setup {
   filter_rules = {
     include_current_win = false,
     autoselect_one = true,
-    -- filter using buffer options
     bo = {
-      -- if the file type is one of following, the window will be ignored
       filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
-      -- if the buffer type is one of following, the window will be ignored
       buftype = { 'terminal', 'quickfix' },
     },
   },

@@ -1,34 +1,24 @@
--- reference to the original handler
+local ns = vim.api.nvim_create_namespace("diagnostics-signs")
 local orig_signs_handler = vim.diagnostic.handlers.signs
 
-local function filter_diagnostics(diagnostics)
-  if not diagnostics then
-    return {}
-  end
-
-  -- find the "worst" diagnostic per line
-  local most_severe = {}
-  for _, cur in pairs(diagnostics) do
-    local max = most_severe[cur.lnum]
-
-    -- higher severity has lower value (`:h diagnostic-severity`)
-    if not max or cur.severity < max.severity then
-      most_severe[cur.lnum] = cur
-    end
-  end
-
-  return vim.tbl_values(most_severe)
-end
-
--- override diagnostics signs helper to only show the single most relevant sign
 vim.diagnostic.handlers.signs = {
-  show = function(ns, bufnr, diagnostics, opts)
-    local filtered_diagnostics = filter_diagnostics(diagnostics)
+  show = function(_, bufnr, _, opts)
+    local diagnostics = vim.diagnostic.get(bufnr)
 
-    -- pass the filtered diagnostics (with the custom namespace) to the original handler
+    local max_severity_per_line = {}
+    for _, d in pairs(diagnostics) do
+      local m = max_severity_per_line[d.lnum]
+      if not m or d.severity < m.severity then
+        max_severity_per_line[d.lnum] = d
+      end
+    end
+
+    local filtered_diagnostics = vim.tbl_values(max_severity_per_line)
     orig_signs_handler.show(ns, bufnr, filtered_diagnostics, opts)
   end,
-  hide = orig_signs_handler.hide,
+  hide = function(_, bufnr)
+    orig_signs_handler.hide(ns, bufnr)
+  end,
 }
 
 vim.diagnostic.config {
@@ -66,7 +56,7 @@ vim.diagnostic.config {
     source = false,
     border = vim.g.border,
     format = function(diagnostic)
-      if diagnostic.source == 'typescript' then
+      if diagnostic.source == 'tsserver' then
         diagnostic.source = 'ts'
       end
 
