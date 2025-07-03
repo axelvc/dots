@@ -5,7 +5,7 @@ require('toggleterm').setup {
 }
 
 vim.keymap.set(
-  {'t', 'n'},
+  { 't', 'n' },
   '<leader>wh',
   function()
     for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -19,5 +19,5 @@ vim.keymap.set(
     end
     return '<Cmd>ToggleTerm direction=horizontal<CR>'
   end,
-  {expr=true}
+  { expr = true }
 )

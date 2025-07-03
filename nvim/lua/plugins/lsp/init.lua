@@ -32,4 +32,4 @@ require('typescript-tools').setup {
   complete_function_calls = true,
 }
 
-require('ufo').setup()
+vim.api.nvim_exec_autocmds('User', { pattern = 'LspSetup' })

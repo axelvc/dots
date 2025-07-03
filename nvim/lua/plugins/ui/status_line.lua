@@ -1,4 +1,14 @@
 local o = vim.opt
+local lsp_renames = {
+  ['emmet_language_server'] = 'emmet',
+  ['lua_ls'] = 'lua',
+  ['harper_ls'] = 'harper',
+  ['angularls'] = 'angular',
+  ['cssls'] = 'css',
+  ['vue_ls'] = 'vue',
+  ['quick_lint_js'] = 'grammar',
+  ['typescript-tools'] = 'ts',
+}
 
 local short_mode = {
   'mode',
@@ -24,36 +34,24 @@ local sections = {
     { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } },
     { 'diagnostics', sources = { 'nvim_diagnostic' }, always_visible = false, symbols = vim.g.signs },
     {
-      '',
+      function() return ('[Recording @%s]'):format(vim.fn.reg_recording()) end,
       cond = function() return vim.fn.reg_recording() ~= '' end,
-      fmt = function() return ('[Recording @%s]'):format(vim.fn.reg_recording()) end,
       color = 'Recording',
     },
   },
   lualine_x = {
     { 'encoding', cond = function() return o.fileencoding:get() ~= 'utf-8' end },
     {
-      'lsp_status',
-      icon = '',
-      symbols = { done = '' },
-      ignore_lsp = { 'quick_lint_js', 'typescript-tools' },
-      fmt = function(str)
-        if #str == 0 then return '' end
+      function()
+        local clients = vim.lsp.get_clients()
 
-        local renames = {
-          ['emmet_language_server'] = 'emmet',
-          ['lua_ls'] = 'lua',
-          ['harper_ls'] = 'harper',
-          ['angularls'] = 'angular',
-          ['cssls'] = 'css',
-          ['vue_ls'] = 'vue',
-        }
+        if #clients == 0 then return '' end
 
-        table.foreach(renames, function(key, value)
-          str = str:gsub(key, value)
-        end)
+        clients = vim.tbl_map(function(client)
+          return lsp_renames[client.name] or client.name
+        end, clients)
 
-        return str:gsub(' ', ', ')
+        return table.concat(clients, ' ⏽ ')
       end,
     },
     {
@@ -82,12 +80,15 @@ require('lualine').setup {
         lualine_a = {
           short_mode,
         },
-        lualine_z = {
+        lualine_b = {
           {
             'branch',
             icon = '',
           },
         },
+        lualine_z = {
+          function() return ('%s Plugins'):format(require('lazy').stats().count) end,
+        }
       },
     },
   },

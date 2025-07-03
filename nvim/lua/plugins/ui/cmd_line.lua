@@ -48,14 +48,14 @@ require('noice').setup {
   },
   routes = {
     -- hide undo/redo messages
-    { filter = { event = 'msg_show', find = 'Already at %w+ change' }, mode = 'mini' },
-    { filter = { event = 'msg_show', find = '; %w+ #%d+' }, skip = true },
-    { filter = { event = 'msg_show', find = 'clipboard' }, mode = 'mini' },
-    { filter = { event = 'notify', find = 'No information available' }, skip = true },
+    { filter = { event = 'msg_show', find = 'Already at %w+ change' },         mode = 'mini' },
+    { filter = { event = 'msg_show', find = '; %w+ #%d+' },                    skip = true },
+    { filter = { event = 'msg_show', find = 'clipboard' },                     mode = 'mini' },
+    { filter = { event = 'notify', find = 'No information available' },        skip = true },
     -- hide search message
     { filter = { event = 'msg_show', kind = 'wmsg', find = 'search hit %w+' }, skip = true },
     -- mini written message
-    { filter = { event = 'msg_show', find = 'written' }, view = 'mini' },
+    { filter = { event = 'msg_show', find = 'written' },                       view = 'mini' },
   },
   presets = {
     command_palette = true,

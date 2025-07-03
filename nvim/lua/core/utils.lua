@@ -22,3 +22,13 @@ function _G.count(key, ...)
   counts[key] = n + 1
   put(('%s %d'):format(key, n), ...)
 end
+
+--- Safe setter for which-key data
+_G.mapdata = setmetatable({}, {
+  __newindex = function(self, key, value)
+    local ok, wk = pcall(require, 'which-key')
+
+    if ok then wk.add(value) end
+    rawset(self, key, ok)
+  end,
+})

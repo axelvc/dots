@@ -45,10 +45,18 @@ map('n', 'zR', function() require('ufo').openAllFolds() end)
 map('n', 'zM', function() require('ufo').closeAllFolds() end)
 
 -- [[ treesj ]]
+mapdata.treesj = {
+  { '<Leader>j', group = 'Join Utils' },
+}
+
 map('n', '<Leader>js', function() require('treesj').split() end, { desc = 'Split object' })
 map('n', '<Leader>jj', function() require('treesj').join() end, { desc = 'Join object' })
 
 -- [[ bufferline ]]
+mapdata.bufferline = {
+  { '<Leader>b', group = 'Buffer' },
+}
+
 map('n', '<Leader>bs', function() require('bufferline').pick() end, { desc = 'Select buffer' })
 map('n', '<Leader>bD', function() require('bufferline').close_others() end, { desc = 'Close all but current buffer' })
 
@@ -90,7 +98,7 @@ end, { silent = true, expr = true })
 map('n', '<leader>p', function() require('unito').toggle_px_rem() end, { desc = ' Toggle px/rem' })
 
 -- [[ notify ]]
-map('n', '<leader>n', function() require('notify').dismiss {} end, { desc = 'Hide notifications' })
+map('n', '<leader>n', function() require('notify').dismiss() end, { desc = 'Hide notifications' })
 
 -- [[ telescope ]]
 map('n', '<C-p>', function() require('telescope.builtin').find_files() end, { desc = 'Find file' })

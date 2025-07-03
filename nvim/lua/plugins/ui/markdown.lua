@@ -25,9 +25,6 @@ md.setup {
   file_types = { 'markdown', 'mdx' },
 }
 
-local exists, wk = pcall(require, 'which-key')
-if exists then
-  wk.add {
-    { '<leader>m', group = 'Markdown' },
-  }
-end
+mapdata.markdown = {
+  { '<leader>m', group = 'Markdown' },
+}

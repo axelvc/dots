@@ -6,7 +6,7 @@ require('zen-mode').setup {
       relativenumber = true,
     },
   },
-  on_open = function ()
+  on_open = function()
     vim.opt_local.fillchars = nil
   end
 }

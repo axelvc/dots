@@ -47,13 +47,9 @@ gitsigns.setup {
     -- select inner hunk
     bmap({ 'x', 'o' }, 'ig', ':<C-U>Gitsigns select_hunk<CR>', 'inner git hunk')
 
-    -- which key documentation
-    local exists, wk = pcall(require, 'which-key')
-    if exists then
-      wk.add {
-        { '<leader>g', group = 'Git' },
-        { '<leader>gc', group = 'Conflict' },
-      }
-    end
+    mapdata.gitsigns = {
+      { '<leader>g', group = 'Git' },
+      { '<leader>gc', group = 'Conflict' },
+    }
   end,
 }

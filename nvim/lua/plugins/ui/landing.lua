@@ -37,7 +37,7 @@ end
 
 require('alpha').setup {
   layout = {
-    padding(2),
+    padding(10),
     {
       type = 'text',
       opts = {
@@ -57,17 +57,6 @@ require('alpha').setup {
       },
     },
     padding(2),
-    {
-      type = 'text',
-      opts = {
-        hl = 'Number',
-        position = 'center',
-      },
-      val = {
-        ('󰏗 %s plugins loaded'):format(require('lazy').stats().count),
-      },
-    },
-    padding(1),
     {
       type = 'group',
       opts = {

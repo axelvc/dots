@@ -1,6 +1,4 @@
-local wk = require 'which-key'
-
-wk.setup {
+require('which-key').setup {
   show_help = false,
   show_keys = false,
   layout = { align = 'center' },
@@ -8,9 +6,4 @@ wk.setup {
   disable = {
     filetypes = { 'neo-tree', 'neo-tree-popup' },
   },
-}
-
-wk.add {
-  { '<Leader>b', group = 'Buffer' },
-  { '<Leader>j', group = 'Join Utils' },
 }

@@ -1,12 +1,10 @@
-local cmp = require 'cmp'
+require("supermaven-nvim").setup {
+  keymaps = {
+    accept_suggestion = '<C-l>',
+  },
+}
+
 local luasnip = require 'luasnip'
-
-local function has_words_before()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
-end
-
--- load snippets
 luasnip.filetype_extend('typescript', { 'javascript' })
 luasnip.filetype_extend('typescriptreact', { 'javascriptreact' })
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -15,6 +13,12 @@ luasnip.config.setup {
   region_check_events = 'CursorHold',
 }
 
+local function has_words_before()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
+end
+
+local cmp = require 'cmp'
 cmp.setup {
   sources = cmp.config.sources({
     { name = 'supermaven' },
@@ -52,7 +56,7 @@ cmp.setup {
   mapping = {
     -- open suggestions
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete {}, { 'i', 'c' }),
-    -- close suggetions
+    -- close suggestions
     ['<C-q>'] = cmp.mapping {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),

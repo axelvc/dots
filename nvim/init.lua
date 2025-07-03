@@ -4,8 +4,6 @@ require("core")
 require("plugins")
 
 -- TODO:
--- Utility wrapper for 'require('which-key').add(...)'
--- Remove duplicates from LSP
 -- Better defitions preview/picker
 
 -- SEE:
