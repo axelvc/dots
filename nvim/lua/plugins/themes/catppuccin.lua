@@ -27,7 +27,6 @@ catppuccin.setup {
     gitsigns = true,
     illuminate = true,
     leap = true,
-    lsp_trouble = true,
     markdown = true,
     mason = true,
     window_picker = true,

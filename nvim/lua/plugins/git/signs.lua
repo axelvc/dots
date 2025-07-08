@@ -1,7 +1,6 @@
 local gitsigns = require 'gitsigns'
 
 gitsigns.setup {
-  trouble = false,
   signs_staged_enable = false,
   current_line_blame_opts = {
     delay = 100,

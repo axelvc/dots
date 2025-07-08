@@ -32,3 +32,5 @@ _G.mapdata = setmetatable({}, {
     rawset(self, key, ok)
   end,
 })
+
+_G.Set = require 'core.utils.set'

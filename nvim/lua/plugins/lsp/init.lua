@@ -1,7 +1,11 @@
 require 'plugins.lsp.diagnostic'
 
 require('mason').setup()
-require('mason-lspconfig').setup()
+require('mason-lspconfig').setup({
+  automatic_enable = {
+    exclude = { 'ts_ls' }
+  }
+})
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.foldingRange = {
@@ -25,6 +29,10 @@ vim.lsp.config('jsonls', {
       validate = { enable = true },
     },
   },
+})
+
+vim.lsp.config('angularls', {
+  workspace_required = true,
 })
 
 require('typescript-tools').setup {

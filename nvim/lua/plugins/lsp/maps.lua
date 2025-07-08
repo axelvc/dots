@@ -1,10 +1,11 @@
 local command = vim.api.nvim_buf_create_user_command
 
 local M = {}
+M.exclude_folding = Set:new { 'angularls', 'vue_ls' }
 
 function M.init(s)
-  -- disable folding for angularls
-  if s.name == 'angularls' then
+  -- disable folding
+  if M.exclude_folding:has(s.name) then
     s.server_capabilities.foldingRangeProvider = false
   end
 
@@ -32,7 +33,6 @@ function M.init(s)
   bmap('n', '[e', function() vim.diagnostic.jump { count = -1, float = true, severity = vim.diagnostic.severity.ERROR } end, 'Previous error')
   bmap('n', ']e', function() vim.diagnostic.jump { count = 1, float = true, severity = vim.diagnostic.severity.ERROR } end, 'Next error')
   bmap('n', '<Leader>i', function() vim.diagnostic.open_float { scope = 'line' } end, 'Hover information')
-  bmap('n', '<Leader>d', function() require('trouble').toggle 'workspace_diagnostics' end, 'Diagnostics')
 
   -- goto navigations
   bmap('n', 'gd', function() require('telescope.builtin').lsp_definitions() end, 'Definition')
