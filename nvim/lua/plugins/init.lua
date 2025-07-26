@@ -22,7 +22,7 @@ require('lazy').setup('plugins.setup', {
     path = '~',
   },
   ui = {
-    border = vim.g.border,
+    border = vim.opt.winborder,
   },
   performance = {
     rtp = {

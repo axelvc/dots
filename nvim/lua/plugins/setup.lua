@@ -35,9 +35,13 @@ return {
     build = ':TSUpdate',
     dependencies = {
       'windwp/nvim-ts-autotag',
-      'HiPhish/rainbow-delimiters.nvim',
       'nvim-treesitter/nvim-treesitter-context',
       'JoosepAlviste/nvim-ts-context-commentstring',
+      {
+        'saghen/blink.pairs',
+        dependencies = 'saghen/blink.download',
+        version = '*',
+      },
     },
   },
   { -- folding
@@ -89,23 +93,20 @@ return {
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
-      'onsails/lspkind-nvim',
       { 'folke/lazydev.nvim',   ft = "lua", opts = { library = { 'luvit-meta/library' } } },
       { "Bilal2453/luvit-meta", lazy = true }
     },
   },
   { -- completions
-    'hrsh7th/nvim-cmp',
+    'saghen/blink.cmp',
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+      'onsails/lspkind-nvim',
+      { 'L3MON4D3/LuaSnip', tag = '2.*', build = 'make install_jsregexp' }
+    },
+    version = '1.*',
     event = 'InsertEnter',
     config = config 'lsp.completions',
-    dependencies = {
-      'L3MON4D3/LuaSnip',
-      'rafamadriz/friendly-snippets',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-nvim-lsp',
-    },
   },
   { -- debugging
     'mfussenegger/nvim-dap',
@@ -132,6 +133,14 @@ return {
   -- endregion: LSP
 
   -- region: Utils
+  {
+    'alex-popov-tech/store.nvim',
+    dependencies = { 'OXY2DEV/markview.nvim' },
+    cmd = 'Store',
+    keys = {
+      { '<leader>s', ':Store<cr>', desc = 'Open Plugin Store' },
+    },
+  },
   'Darazaki/indent-o-matic',                                        -- auto set indentation width
   { 'ggandor/leap.nvim',            lazy = true },                  -- jump to search match
   { 'axelvc/unito.nvim',            lazy = true },                  -- px to rem and vice-versa

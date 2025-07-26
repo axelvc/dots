@@ -2,6 +2,14 @@ require('toggleterm').setup {
   direction = 'float',
   open_mapping = '<C-Bslash>',
   size = 15,
+  highlights = {
+    NormalFloat = {
+      link = 'NormalFLoat',
+    },
+  },
+  float_opts = {
+    border = vim.opt.winborder,
+  }
 }
 
 vim.keymap.set(
@@ -13,11 +21,11 @@ vim.keymap.set(
       if vim.bo[bufnr].buftype == 'terminal' then
         local _, term = require('toggleterm.terminal').identify(vim.api.nvim_buf_get_name(bufnr))
         if term and term:is_split() then
-          return '<Cmd>ToggleTerm<CR><Cmd>ToggleTerm direction=float<CR>'
+          return ':ToggleTerm<CR><Cmd>ToggleTerm direction=float<CR>'
         end
       end
     end
-    return '<Cmd>ToggleTerm direction=horizontal<CR>'
+    return ':ToggleTerm direction=horizontal<CR>'
   end,
   { expr = true }
 )

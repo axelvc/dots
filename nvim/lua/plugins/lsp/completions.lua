@@ -1,9 +1,3 @@
-require("supermaven-nvim").setup {
-  keymaps = {
-    accept_suggestion = '<C-l>',
-  },
-}
-
 local luasnip = require 'luasnip'
 luasnip.filetype_extend('typescript', { 'javascript' })
 luasnip.filetype_extend('typescriptreact', { 'javascriptreact' })
@@ -13,74 +7,41 @@ luasnip.config.setup {
   region_check_events = 'CursorHold',
 }
 
-local function has_words_before()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
-end
-
-local cmp = require 'cmp'
-cmp.setup {
-  sources = cmp.config.sources({
-    { name = 'supermaven' },
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'path' },
-  }, {
-    { name = 'buffer' },
-  }),
-  window = {
-    completion = cmp.config.window.bordered {
-      border = vim.g.border,
-      winhighlight = 'Normal:Pmenu,Search:None',
-    },
-    documentation = cmp.config.window.bordered {
-      border = vim.g.border,
-      winhighlight = 'Normal:Pmenu',
-    },
-  },
-  completion = {
-    completeopt = 'menu,menuone,noselect,noinsert',
-  },
-  formatting = {
-    format = require('lspkind').cmp_format {
-      mode = 'symbol',
-      preset = 'codicons',
-    },
-    fields = { 'kind', 'abbr', 'menu' },
-  },
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = {
-    -- open suggestions
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete {}, { 'i', 'c' }),
-    -- close suggestions
-    ['<C-q>'] = cmp.mapping {
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    },
-    -- confirm suggestion
-    ['<CR>'] = cmp.mapping.confirm { select = true },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.confirm { select = true }
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    -- scroll
-    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    -- select suggestion
-    ['<C-k>'] = cmp.mapping.select_prev_item(),
-    ['<C-j>'] = cmp.mapping.select_next_item(),
-    ['<Up>'] = cmp.mapping.select_prev_item(),
-    ['<Down>'] = cmp.mapping.select_next_item(),
+require('supermaven-nvim').setup {
+  keymaps = {
+    accept_suggestion = '<C-l>',
   },
 }
+
+require('blink.cmp').setup({
+  keymap = {
+    preset = 'enter',
+    ['<C-k>'] = { 'select_prev', 'fallback' },
+    ['<C-j>'] = { 'select_next', 'fallback' },
+  },
+  completion = {
+    menu = {
+      draw = {
+        components = {
+          kind_icon = {
+            text = function(ctx)
+              local icon = ctx.kind_icon
+
+              if vim.tbl_contains({ 'Path' }, ctx.source_name) then
+                icon = require('nvim-web-devicons').get_icon(ctx.label) or icon
+              else
+                icon = require('lspkind').symbolic(ctx.kind, {
+                  mode = 'symbol',
+                  preset = 'codicons',
+                })
+              end
+
+              return icon .. ctx.icon_gap
+            end,
+          }
+        }
+      }
+    }
+  },
+
+})

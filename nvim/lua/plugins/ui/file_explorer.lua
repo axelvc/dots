@@ -2,7 +2,7 @@ require('neo-tree').setup {
   close_if_last_window = true,
   hide_root_node = true,
   log_level = 'error',
-  popup_border_style = vim.g.border,
+  popup_border_style = vim.opt.winborder,
   window = {
     auto_expand_width = true,
     position = 'right',
@@ -27,6 +27,9 @@ require('neo-tree').setup {
     },
   },
   default_component_configs = {
+    indent = {
+      with_expanders = false,
+    },
     icon = {
       folder_closed = ' ',
       folder_open = ' ',

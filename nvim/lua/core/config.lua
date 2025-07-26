@@ -2,7 +2,6 @@ local o = vim.opt
 local g = vim.g
 
 g.mapleader = ' '
-g.border = 'rounded'
 
 g.signs = {
   error = '󰅚 ',
@@ -18,6 +17,7 @@ o.matchpairs = { '(:)', '{:}', '[:]', '<:>' }
 o.clipboard = 'unnamedplus'
 
 -- ui
+o.winborder = 'none'
 o.cmdheight = 1
 o.foldcolumn = '1'
 o.mouse = 'a'

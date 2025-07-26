@@ -68,11 +68,6 @@ map('n', '<Leader>bl', function() for _ = 1, vim.v.count1 do require('bufferline
 
 map('n', '<Leader>bd', function() for _ = 1, vim.v.count1 do vim.cmd('bp | bd #') end end, { silent = true, desc = 'Delete buffer' })
 
-for i = 1, 9 do
-  local lhs = ('<C-%s>'):format(i)
-  map('n', lhs, function() require('bufferline').go_to(i, true) end, { desc = 'Go to buffer ' .. i })
-end
-
 -- [[ comment ]]
 local ctrl_slash = has 'wsl' and '<C-_>' or '<C-/>'
 

@@ -1,14 +1,7 @@
 local register = vim.treesitter.language.register
-
 register('jsonc', 'json')
 register('bash', 'zsh')
 register('markdown', 'mdx')
-
-require('nvim-ts-autotag').setup {
-  aliases = {
-    ['mdx'] = 'html',
-  }
-}
 
 require('nvim-treesitter.configs').setup {
   modules = {},
@@ -17,11 +10,7 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
-  },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = 1000,
+    disable = { 'terminal', 'toggleterm' }
   },
   context = {
     enable = true,
@@ -56,3 +45,23 @@ require('nvim-treesitter.configs').setup {
 }
 
 require('ts_context_commentstring').setup {}
+
+require('nvim-ts-autotag').setup {
+  aliases = {
+    ['mdx'] = 'html',
+  }
+}
+
+require('blink.pairs').setup({
+  highlights = {
+    enabled = true,
+    groups = {
+      'rainbow1',
+      'rainbow2',
+      'rainbow3',
+      'rainbow4',
+      'rainbow5',
+      'rainbow6',
+    },
+  },
+})

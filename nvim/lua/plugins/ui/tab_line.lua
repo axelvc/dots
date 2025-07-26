@@ -3,9 +3,10 @@ require('bufferline').setup {
     tab_size = 20,
     max_name_length = 40,
     show_close_icon = false,
-    show_tab_indicators = true,
+    show_buffer_close_icons = false,
+    show_tab_indicators = false,
     indicator = {
-      style = 'underline',
+      style = 'none',
     },
     diagnostics = 'nvim_lsp',
     diagnostics_indicator = function(count, level, dict)

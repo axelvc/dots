@@ -34,7 +34,6 @@ catppuccin.setup {
     notify = true,
     telescope = true,
     treesitter = true,
-    rainbow_delimiters = true,
     which_key = true,
     indent_blankline = {
       enabled = true,
@@ -68,7 +67,9 @@ catppuccin.setup {
       Pmenu = { bg = c.mantle, fg = c.subtext0 },
       PmenuSbar = { bg = c.surface0, fg = c.mantle },
       PmenuThumb = { bg = c.peach, fg = c.mantle },
-      NormalFLoat = { bg = c.mantle, fg = c.text },
+      NormalFLoat = { bg = c.crust, fg = c.text },
+      NoiceCmdlinePopup = { link = 'Normalfloat' },
+      NoiceCmdlinePopupBorder = { fg= c.crust },
       -- lualine
       Recording = { fg = c.peach },
       -- neo-tree

@@ -58,7 +58,7 @@ require('noice').setup {
     { filter = { event = 'msg_show', find = 'written' },                       view = 'mini' },
   },
   presets = {
-    command_palette = true,
+    command_palette = false,
     lsp_doc_border = true,
   },
 }
