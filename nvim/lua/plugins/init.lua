@@ -16,7 +16,7 @@ vim.opt.runtimepath:prepend(LAZY_PATH)
 
 require('lazy').setup('plugins.setup', {
   install = {
-    colorscheme = { 'catppuccin', 'monokai-pro' },
+    colorscheme = { 'catppuccin', 'embark', 'monokai-pro' },
   },
   dev = {
     path = '~',

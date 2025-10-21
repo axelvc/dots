@@ -2,7 +2,6 @@ require('neo-tree').setup {
   close_if_last_window = true,
   hide_root_node = true,
   log_level = 'error',
-  popup_border_style = vim.opt.winborder,
   window = {
     auto_expand_width = true,
     position = 'right',
@@ -52,17 +51,6 @@ require('neo-tree').setup {
     },
     modified = {
       symbol = '●',
-    },
-  },
-}
-
-require('window-picker').setup {
-  filter_rules = {
-    include_current_win = false,
-    autoselect_one = true,
-    bo = {
-      filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
-      buftype = { 'terminal', 'quickfix' },
     },
   },
 }

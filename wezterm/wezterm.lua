@@ -87,7 +87,7 @@ return {
     right = 0,
     bottom = 0,
   },
-  font_size = 12,
+  font_size = 16,
   font = wezterm.font_with_fallback {
     'Maple Mono',
     'CommitMonoV143', -- 1.45 line_height

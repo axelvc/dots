@@ -8,6 +8,8 @@ end
 return {
   -- region: Themes
   { 'catppuccin/nvim', config = config 'themes.catppuccin', name = 'catppuccin', lazy = false },
+  { 'embark-theme/vim', name = 'embark', lazy = false },
+  { 'loctvl842/monokai-pro.nvim', name = 'monokai-pro', lazy = false },
   -- endregion: Themes
 
   -- region: Git
@@ -58,15 +60,17 @@ return {
   { -- file explorer
     'nvim-neo-tree/neo-tree.nvim',
     lazy = true,
+    branch = 'v3.x',
     cmd = { 'Neotree' },
     config = config 'ui.file_explorer',
     dependencies = {
-      { 's1n7ax/nvim-window-picker', version = '2.*', lazy = true }
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
     },
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    main = "ibl",
+    main = 'ibl',
     config = true,
     event = 'VeryLazy',
   },
@@ -93,8 +97,8 @@ return {
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
-      { 'folke/lazydev.nvim',   ft = "lua", opts = { library = { 'luvit-meta/library' } } },
-      { "Bilal2453/luvit-meta", lazy = true }
+      { 'folke/lazydev.nvim',   ft = 'lua', opts = { library = { 'luvit-meta/library' } } },
+      { 'Bilal2453/luvit-meta', lazy = true }
     },
   },
   { -- completions
@@ -141,6 +145,7 @@ return {
   { 'nacro90/numb.nvim',            config = true },                -- preview line on :[number]
   { 'jghauser/mkdir.nvim',          event = 'BufWritePre' },        -- create directory on save
   { 'echasnovski/mini.nvim',        config = config 'utils.mini' }, -- lots of mini plugins
+  { 'folke/snacks.nvim',            lazy = false, priority = 1000 },
   { 'axelvc/template-string.nvim',  config = config 'utils.template_string' },
   { 'Wansmer/treesj',               config = config 'utils.split_join',     lazy = true },
   { 'numToStr/Comment.nvim',        config = config 'utils.comments',       event = 'VeryLazy' },
