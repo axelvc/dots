@@ -35,9 +35,13 @@ local function button(txt, keybind, command)
   }
 end
 
+local USED_ROWS = 23
+local TOTAL_ROWS = vim.api.nvim_win_get_height(0)
+local padding_top = math.floor(math.max(0, TOTAL_ROWS - USED_ROWS) / 2)
+
 require('alpha').setup {
   layout = {
-    padding(10),
+    padding(padding_top),
     {
       type = 'text',
       opts = {

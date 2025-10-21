@@ -5,16 +5,31 @@ alias chmod='chmod --preserve-root -v'
 alias chown='chown --preserve-root -v'
 alias py=python3
 
+if ! command -v pip &> /dev/null; then
+  alias pip=pip3
+fi
+
 # files and directories manipulation
 alias mkdir="mkdir -p"
 alias cp="cp -r"
 alias rm="rm -rI"
 
 # npm run for lazy people (me)
-alias nrun="npm run"
-alias npi="npm i"
-alias nps="npm start"
-alias npd="npm run dev"
+np() {
+  if [ -f "pnpm-lock.yaml" ]; then
+    pnpm "$@"
+  elif [ -f "yarnk.lock" ]; then
+    yarn "$@"
+  else
+    npm "$@"
+  fi
+}
+
+alias npr="np run"
+alias nrun="pnpm run"
+alias npi="pnpm i"
+alias nps="pnpm start"
+alias npd="pnpm run dev"
 
 # git/github
 alias lg=lazygit

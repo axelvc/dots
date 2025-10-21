@@ -102,7 +102,7 @@ return {
     dependencies = {
       'rafamadriz/friendly-snippets',
       'onsails/lspkind-nvim',
-      { 'L3MON4D3/LuaSnip', tag = '2.*', build = 'make install_jsregexp' }
+      { 'L3MON4D3/LuaSnip', tag = 'v2.4.0', build = 'make install_jsregexp' }
     },
     version = '1.*',
     event = 'InsertEnter',
@@ -114,16 +114,8 @@ return {
     config = config 'lsp.debugging',
     dependencies = {
       'nvim-neotest/nvim-nio',
-      'rcarriga/nvim-dap-ui',
+      'igorlfs/nvim-dap-view',
       'mxsdev/nvim-dap-vscode-js',
-    },
-  },
-  { -- TypeScript utils
-    'pmizio/typescript-tools.nvim',
-    lazy = true,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'neovim/nvim-lspconfig',
     },
   },
   { 'b0o/schemastore.nvim',           lazy = true },

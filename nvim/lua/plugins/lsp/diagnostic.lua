@@ -54,7 +54,7 @@ vim.diagnostic.config {
   },
   float = {
     source = false,
-    border = vim.opt.winborder,
+    -- border = vim.opt.winborder,
     format = function(diagnostic)
       if diagnostic.source == 'tsserver' then
         diagnostic.source = 'ts'
