@@ -10,7 +10,7 @@ fi
 # du
 if ! command -v dust &> /dev/null; then
   alias du=dust
-  elif
+else
   alias du="du -h"
 fi
 
@@ -42,7 +42,6 @@ alias gui="gitui -t $HOME/.dots/gitui/theme.ron"
 alias gc="czg"
 alias gii="git init"
 alias gcma="git commit --amend --no-edit"
-unalias gh # git-cli required
 
 # vim
 alias hl=helix

@@ -1,75 +1,90 @@
-# NOTE:
-# - This only install/configure terminal stuff
-# - It assumes you're using Arch derived
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+OS="$(uname -s)"
 
-sudo sed -i 's/^#Color$/Color/' /etc/pacman.conf
-sudo sed -i 's/^#VerbosePkgLists$/VerbosePkgLists/' /etc/pacman.conf
+install_packages() {
+    packages=("zsh" "ripgrep" "fd" "btop" "eza" "fzf" "gitui" "lazygit" "glow" "git" "starship" "wget" "lf" "git-delta" "dust" "neovim")
 
-sudo pacman -Syu
+    install_arch() {
+        sudo sed -i 's/^#Color$/Color/' /etc/pacman.conf
+        sudo sed -i 's/^#VerbosePkgLists$/VerbosePkgLists/' /etc/pacman.conf
 
-utils=("zsh" "bat" "ripgrep" "fd" "btop" "exa" "fzf" "gitui" "lazygit" "glow" "git" "github-cli" "starship" "unzip" "tar" "wget" "unzip" "lf" "git-delta")
-sudo pacman -S --needed base-devel "${utils[@]}"
+        sudo pacman -Syu
 
-sudo chsh -s /bin/zsh
+        # paru
+        if ! command -v paru &> /dev/null; then
+            echo "Installing paru..."
+            git clone https://aur.archlinux.org/paru.git
+            cd paru
+            makepkg -si
+            cd ..
+            rm -rf paru
+        fi
 
-### zim
-curl -fsSL "https://raw.githubusercontent.com/zimfw/install/master/install.zsh" | zsh
-echo "zmodule fzf" >> ~/.zimrc
-zsh
-zimfw install
+        local_packages=("github-cli" "unzip" "tar")
+        sudo paru -S --needed "${packages[@]}" "${local_packages[@]}"
+    }
 
-### languages
-langs=("rustup" "luajit" "nodejs" "npm" "deno" "go" "python-pip")
-sudo pacman -S --needed base-devel "${langs[@]}"
+    install_macos() {
+        if ! command -v brew &> /dev/null; then
+            echo "Installing Homebrew..."
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        fi
 
-# node
-NPM_HOME="$HOME/.local/share/npm"
-PATH="$NPM_HOME/bin:$PATH"
-node_pkgs=("npm" "pnpm" "yarn" "tldr" "typescript" "prettier" "czg")
+        local_packages=("gh")
+        brew update
+        brew install "${packages[@]}" "${local_packages[@]}"
+    }
 
-npm set prefix "$NPM_HOME"
-npm i -g "${node_pkgs[@]}"
-tldr --update
+    if [ "$OS" == "Darwin" ]; then
+        install_macos
+    elif [ "$OS" == "Linux" && -f /etc/arch-release ]; then
+        install_arch
+    else
+        echo "Not supported OS. Skipping system package installation."
+    fi
+}
 
-# bun
-curl -fsSL https://bun.sh/install | bash
+setup_zim() {
+    echo "Installing zimfw..."
+    curl -fsSL "https://raw.githubusercontent.com/zimfw/install/master/install.zsh" | zsh
+    echo "zmodule fzf" >> ~/.zimrc
+    zsh
+    zimfw install
+    chsh -s $(which zsh)
+}
 
-# rust
-rustup default stable
+setup_git() {
+    echo "Configuring git..."
+    read -p "Git user.name -> " git_name
+    read -p "Git user.email -> " git_email
 
-### git
-read -p "Git user.name -> " git_name
-read -p "Git user.email -> " git_email
+    git config --global user.name "$git_name"
+    git config --global user.email "$git_email"
+    git config --global init.defaultBranch "main"
+    git config --global pull.rebase true
+    # git-delta config
+    git config --global core.pager delta
+    git config --global interactive.diffFilter delta --color-only
+    git config --global delta.navigate true
+    git config --global merge.conflictStyle zdiff3
+}
 
-git config --global user.name "$git_name"
-git config --global user.email "$git_email"
-git config --global init.defaultBranch "main"
+setup_configs() {
+    echo "Linking configs..."
 
-ln -sf $DIR/.czrc $HOME/
+    for dir in $DIR/*; do
+        [[ -d "$dir" ]] || continue
 
-### nvim
-wget -q "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz"
-tar -xf nvim-linux64.tar.gz
-cd nvim-linux64
-sudo mv bin/nvim /bin
-sudo mv lib/nvim /lib
-sudo cp -r share/* /usr/share
-cd $DIR && rm -rf nvim-linux64*
+        name="$(basename "$path")"
+        rm -rf $HOME/.config/$name
+        ln -sf $DIR/$name $HOME/.config/
+    done
 
-### paru
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
+    ln -sf $DIR/starship.toml $HOME/.config/starship.toml
+    ln -sf $DIR/.zshrc $HOME
+}
 
-### extra configs
-configs=("btop" "helix" "kitty" "polybar" "wezterm" "leftwm" "gitui" "starship.toml")
-
-for name in "${configs[@]}"; do
-  rm -rI $HOME/.config/$name
-  ln -sf $DIR/$name $HOME/.config/
-done
-
-ln -sf $DIR/.gitconfig $HOME
-ln -sf $DIR/.zshrc $HOME
+install_packages()
+setup_zim
+setup_git
+setup_configs
