@@ -34,5 +34,3 @@ vim.lsp.config('jsonls', {
 vim.lsp.config('angularls', {
   workspace_required = true,
 })
-
-vim.api.nvim_exec_autocmds('User', { pattern = 'LspSetup' })

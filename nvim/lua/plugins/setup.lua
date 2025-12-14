@@ -49,7 +49,6 @@ return {
   { -- folding
     'kevinhwang91/nvim-ufo',
     config = true,
-    event = 'User LspSetup',
     dependencies = { 'kevinhwang91/promise-async' },
   },
   { -- cmdline
