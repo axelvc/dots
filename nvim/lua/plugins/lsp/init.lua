@@ -35,9 +35,4 @@ vim.lsp.config('angularls', {
   workspace_required = true,
 })
 
-require('typescript-tools').setup {
-  expose_as_code_action = 'all',
-  complete_function_calls = true,
-}
-
 vim.api.nvim_exec_autocmds('User', { pattern = 'LspSetup' })

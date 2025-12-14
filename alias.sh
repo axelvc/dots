@@ -1,12 +1,17 @@
 alias sudo="sudo " # allow alias in sudo
-alias df="df -h"
-alias du="du -h"
 alias chmod='chmod --preserve-root -v'
 alias chown='chown --preserve-root -v'
 alias py=python3
 
 if ! command -v pip &> /dev/null; then
   alias pip=pip3
+fi
+
+# du
+if ! command -v dust &> /dev/null; then
+  alias du=dust
+  elif
+  alias du="du -h"
 fi
 
 # files and directories manipulation
@@ -48,7 +53,8 @@ alias v=nvim
 alias vimc="nvim ~/.config/nvim/init.lua -c cd%:p:h"
 alias vima="nvim ~/.dots/alias.sh"
 alias zshc="nvim ~/.zshrc"
-alias wezc="nvim ~/.config/wezterm/wezterm.lua"
+alias wezc="nvim ~/.dots/wezterm/wezterm.lua"
+alias ghostc="nvim ~/.dots/ghostty/config"
 
 # eza
 alias ls="eza --group-directories-first --icons" # show

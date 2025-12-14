@@ -28,7 +28,7 @@ telescope.setup {
       '--smart-case',
       '-.',
       '-g',
-      '!{yarn.lock,package-lock.json,pnpm-lock.yaml,node_modules}',
+      '!{yarn.lock,package-lock.json,pnpm-lock.yaml,node_modules,venv}',
     },
     mappings = {
       i = {

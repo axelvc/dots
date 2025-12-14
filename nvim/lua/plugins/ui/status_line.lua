@@ -39,7 +39,8 @@ local sections = {
       color = 'Recording',
     },
   },
-  lualine_x = {
+  lualine_x = {},
+  lualine_y = {
     { 'encoding', cond = function() return o.fileencoding:get() ~= 'utf-8' end },
     {
       function()
@@ -61,8 +62,7 @@ local sections = {
       end,
     },
   },
-  lualine_y = { 'filetype' },
-  lualine_z = { '%l:%c', '%L' },
+  lualine_z = { 'filetype' }
 }
 
 require('lualine').setup {

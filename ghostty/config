@@ -1,0 +1,40 @@
+theme = Catppuccin Mocha
+
+window-padding-x = 4
+window-padding-y = 4
+
+font-family = "Maple Mono"
+font-size = 16
+adjust-cell-height = 16%
+
+cursor-style = block
+cursor-style-blink = true
+shell-integration-features = no-cursor
+
+window-width = 140
+window-height = 32
+window-title-font-family = "Maple Mono NF Regular"
+
+macos-titlebar-style = tabs
+macos-icon = custom
+macos-custom-icon = ~/.dots/ghostty/icon.png
+
+# Tab Navigation
+# keybind = super+p=previous_tab
+# keybind = super+n=next_tab
+
+# Tab Management
+keybind = super+shift+h=move_tab:-1
+keybind = super+shift+l=move_tab:1
+
+# Pane Navigation
+keybind = super+alt+h=goto_split:left
+keybind = super+alt+j=goto_split:down
+keybind = super+alt+k=goto_split:up
+keybind = super+alt+l=goto_split:right
+
+# Pane Resize
+keybind = super+ctrl+h=resize_split:left,10
+keybind = super+ctrl+j=resize_split:down,10
+keybind = super+ctrl+k=resize_split:up,10
+keybind = super+ctrl+l=resize_split:right,10
