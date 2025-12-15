@@ -28,13 +28,13 @@ keybind = super+shift+h=move_tab:-1
 keybind = super+shift+l=move_tab:1
 
 # Pane Navigation
-keybind = super+alt+h=goto_split:left
-keybind = super+alt+j=goto_split:down
-keybind = super+alt+k=goto_split:up
-keybind = super+alt+l=goto_split:right
+keybind = super+ctrl+h=goto_split:left
+keybind = super+ctrl+j=goto_split:down
+keybind = super+ctrl+k=goto_split:up
+keybind = super+ctrl+l=goto_split:right
 
 # Pane Resize
-keybind = super+ctrl+h=resize_split:left,10
-keybind = super+ctrl+j=resize_split:down,10
-keybind = super+ctrl+k=resize_split:up,10
-keybind = super+ctrl+l=resize_split:right,10
+keybind = super+alt+h=resize_split:left,10
+keybind = super+alt+j=resize_split:down,10
+keybind = super+alt+k=resize_split:up,10
+keybind = super+alt+l=resize_split:right,10
