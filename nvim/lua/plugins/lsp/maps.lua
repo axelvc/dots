@@ -36,7 +36,6 @@ function M.init(s)
 
   -- goto navigations
   bmap('n', 'gd', function() require('telescope.builtin').lsp_definitions() end, 'Definition')
-  bmap('n', 'gD', function() require('goto-preview').goto_preview_definition {} end, 'Preview definition')
   bmap('n', 'gt', function() require('telescope.builtin').Psp_type_definitions {} end, 'Type definition')
   bmap('n', 'gi', function() require('telescope.builtin').lsp_implementations {} end, 'Implementation')
   bmap('n', 'gr', function() require('telescope.builtin').lsp_references {} end, 'References')

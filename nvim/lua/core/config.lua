@@ -9,6 +9,7 @@ g.signs = {
   info = ' ',
   hint = '󰙎 ',
   debug = ' ',
+  trace = ' ',
 }
 
 -- misc

@@ -75,7 +75,7 @@ require('lualine').setup {
   sections = sections,
   extensions = {
     {
-      filetypes = { 'alpha' },
+      filetypes = { 'snacks_dashboard' },
       sections = {
         lualine_a = {
           short_mode,

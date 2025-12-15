@@ -35,13 +35,9 @@ catppuccin.setup {
     telescope = true,
     treesitter = true,
     which_key = true,
-    indent_blankline = {
+    snacks = {
       enabled = true,
-      colored_indent_levels = true,
-    },
-    dap = {
-      enabled = true,
-      enable_ui = true,
+      indent_scope_color = 'mauve',
     },
     native_lsp = {
       enabled = true,

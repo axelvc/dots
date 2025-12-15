@@ -1,5 +1,5 @@
 ---wrapper for |vim.print|
-_G.put = vim.print
+_G.put = function(...) Snacks.debug.inspect(...) end
 
 ---wrapper for |vim.fn.has|
 _G.has = function(arg) return vim.fn.has(arg) == 1 end
@@ -14,14 +14,6 @@ local counts = setmetatable({}, {
     return 1
   end,
 })
-
----log number of calls to a function
-function _G.count(key, ...)
-  local n = counts[key]
-
-  counts[key] = n + 1
-  put(('%s %d'):format(key, n), ...)
-end
 
 --- Safe setter for which-key data
 _G.mapdata = setmetatable({}, {

@@ -3,13 +3,6 @@ local o = vim.opt
 
 local group = vim.api.nvim_create_augroup('Core', { clear = true })
 
-autocmd('User', {
-  pattern = 'LspReady',
-  callback = function()
-    put('LSP Ready')
-  end
-})
-
 autocmd('BufNew', {
   desc = 'Disable auto comment on newline',
   group = group,

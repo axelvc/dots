@@ -7,15 +7,14 @@ end
 
 return {
   -- region: Themes
-  { 'catppuccin/nvim', config = config 'themes.catppuccin', name = 'catppuccin', lazy = false },
-  { 'embark-theme/vim', name = 'embark', lazy = false },
-  { 'loctvl842/monokai-pro.nvim', name = 'monokai-pro', lazy = false },
+  { 'catppuccin/nvim',            name = 'catppuccin',         lazy = false,      config = config 'themes.catppuccin' },
+  { 'embark-theme/vim',           name = 'embark',             lazy = true },
+  { 'loctvl842/monokai-pro.nvim', name = 'monokai-pro',        lazy = true },
   -- endregion: Themes
 
   -- region: Git
-  { 'akinsho/git-conflict.nvim', config = true,               event = 'VimEnter' },
-  { 'lewis6991/gitsigns.nvim',   config = config 'git.signs', event = 'VeryLazy' },
-  -- { 'sindrets/diffview.nvim' },
+  { 'akinsho/git-conflict.nvim',  config = true,               event = 'VimEnter' },
+  { 'lewis6991/gitsigns.nvim',    config = config 'git.signs', event = 'VeryLazy' },
   -- endregion Git
 
   -- region: UI
@@ -67,23 +66,10 @@ return {
       'MunifTanjim/nui.nvim',
     },
   },
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    config = true,
-    event = 'VeryLazy',
-  },
   { 'tzachar/highlight-undo.nvim',        config = true },
-  { 'stevearc/dressing.nvim',             event = 'VeryLazy' },
-  { 'goolord/alpha-nvim',                 config = config 'ui.landing' },
   { 'MeanderingProgrammer/markdown.nvim', config = config 'ui.markdown' },
-  { 'akinsho/nvim-toggleterm.lua',        config = config 'ui.terminal' },
   { 'folke/which-key.nvim',               config = config 'ui.which_key' },
-  { 'rcarriga/nvim-notify',               config = config 'ui.notifications' },
-  { 'folke/zen-mode.nvim',                config = config 'ui.zen_mode',        lazy = true },
-  { 'rmagatti/goto-preview',              config = config 'ui.goto_preview',    lazy = true },
-  { 'NvChad/nvim-colorizer.lua',          config = config 'ui.color_highlight', event = 'VeryLazy' },
-  { 'RRethy/vim-illuminate',              config = config 'ui.word_highlight',  event = 'VeryLazy' },
+  { 'catgoose/nvim-colorizer.lua',        config = config 'ui.color_highlight', event = 'VeryLazy' },
   { 'akinsho/nvim-bufferline.lua',        config = config 'ui.tab_line',        event = 'VimEnter' },
   { 'hoob3rt/lualine.nvim',               config = config 'ui.status_line',     event = 'VimEnter' },
   { 'luukvbaal/statuscol.nvim',           config = config 'ui.status_column',   event = 'VimEnter' },
@@ -111,16 +97,6 @@ return {
     event = 'InsertEnter',
     config = config 'lsp.completions',
   },
-  { -- debugging
-    'mfussenegger/nvim-dap',
-    lazy = true,
-    config = config 'lsp.debugging',
-    dependencies = {
-      'nvim-neotest/nvim-nio',
-      'igorlfs/nvim-dap-view',
-      'mxsdev/nvim-dap-vscode-js',
-    },
-  },
   { 'b0o/schemastore.nvim',           lazy = true },
   { 'supermaven-inc/supermaven-nvim', lazy = true },
   { 'stevearc/conform.nvim',          config = config 'lsp.formatting' },
@@ -128,14 +104,6 @@ return {
   -- endregion: LSP
 
   -- region: Utils
-  {
-    'alex-popov-tech/store.nvim',
-    dependencies = { 'OXY2DEV/markview.nvim' },
-    cmd = 'Store',
-    keys = {
-      { '<leader>s', ':Store<cr>', desc = 'Open Plugin Store' },
-    },
-  },
   'Darazaki/indent-o-matic',                                        -- auto set indentation width
   { 'ggandor/leap.nvim',            lazy = true },                  -- jump to search match
   { 'axelvc/unito.nvim',            lazy = true },                  -- px to rem and vice-versa
@@ -143,13 +111,11 @@ return {
   { 'kyazdani42/nvim-web-devicons', lazy = true },                  -- nerd-font icons
   { 'nacro90/numb.nvim',            config = true },                -- preview line on :[number]
   { 'jghauser/mkdir.nvim',          event = 'BufWritePre' },        -- create directory on save
-  { 'echasnovski/mini.nvim',        config = config 'utils.mini' }, -- lots of mini plugins
-  { 'folke/snacks.nvim',            lazy = false, priority = 1000 },
+  { 'echasnovski/mini.nvim',        config = config 'utils.mini', event = 'VeryLazy' }, -- lots of mini plugins
   { 'axelvc/template-string.nvim',  config = config 'utils.template_string' },
   { 'Wansmer/treesj',               config = config 'utils.split_join',     lazy = true },
   { 'numToStr/Comment.nvim',        config = config 'utils.comments',       event = 'VeryLazy' },
-  { 'windwp/nvim-autopairs',        config = config 'utils.autopairs',      event = 'VeryLazy' },
   { 'kylechui/nvim-surround',       config = config 'utils.pairs',          event = 'VeryLazy' },
-  { 'danymat/neogen',               config = config 'utils.documentation',  cmd = { 'Neogen', 'Docgen' } },
+  { 'folke/snacks.nvim',            config = require 'plugins.utils.snacks', priority = 1000 },
   -- endregion: Utils
 }

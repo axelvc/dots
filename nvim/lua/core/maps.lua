@@ -66,14 +66,14 @@ map('n', 'H', function() require('bufferline').cycle(-1 * vim.v.count1) end, { d
 map('n', '<Leader>bh', function() for _ = 1, vim.v.count1 do require('bufferline').move(-1) end end, { desc = 'Move current to left' })
 map('n', '<Leader>bl', function() for _ = 1, vim.v.count1 do require('bufferline').move(1) end end, { desc = 'Move current to right' })
 
-map('n', '<Leader>bd', function() for _ = 1, vim.v.count1 do vim.cmd('bp | bd #') end end, { silent = true, desc = 'Delete buffer' })
+map('n', '<Leader>bd', function() Snacks.bufdelete() end, { silent = true, desc = 'Delete buffer' })
 
 -- [[ comment ]]
 local ctrl_slash = has 'wsl' and '<C-_>' or '<C-/>'
 
 map('v', ctrl_slash, 'gc', { remap = true })
 map('n', ctrl_slash, 'gcc', { remap = true })
-map('i', ctrl_slash, function() require('Comment.api').toggle.linewise.current() end)
+-- map('i', ctrl_slash, function() require('Comment.api').toggle.linewise.current() end)
 
 -- [[ noice ]]
 -- scroll hover
@@ -102,7 +102,7 @@ map('n', '<Leader><Leader>', function() require('telescope.builtin').builtin() e
 map('n', '<leader>gs', function() require('telescope.builtin').git_status() end, { desc = 'Status' })
 
 -- [[ zen mode ]]
-map('n', '<Leader>z', function() require('zen-mode').toggle() end, { desc = 'Zen Mode' })
+map('n', '<Leader>z', function() Snacks.zen() end, { desc = 'Zen Mode' })
 
 -- [[ leap ]]
 map('n', 'gs', function()
@@ -110,28 +110,6 @@ map('n', 'gs', function()
   require('leap').leap { target_windows = { current_window } }
 end, { desc = 'Search word match (Leap)' })
 
--- [[ toggleterm ]]
-local gitui
-local lazygit
-
-map('n', '<Leader>gt', function()
-  if not gitui then
-    gitui = require('toggleterm.terminal').Terminal:new {
-      cmd = 'gitui',
-      hidden = true,
-    }
-  end
-
-  gitui:toggle()
-end, { desc = 'Git-UI' })
-
-map('n', '<Leader>gT', function()
-  if not lazygit then
-    lazygit = require('toggleterm.terminal').Terminal:new {
-      cmd = 'lazygit',
-      hidden = true,
-    }
-  end
-
-  lazygit:toggle()
-end, { desc = 'Lazygit' })
+-- [[ terminal ]]
+map('n', '<Leader>gt', function() Snacks.terminal.toggle('gitui') end, { desc = 'Git-UI' })
+map({ 'n', 't' }, '<C-Bslash>', function() Snacks.terminal.toggle() end, { desc = 'Toggle terminal' })
