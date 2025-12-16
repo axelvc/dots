@@ -68,6 +68,7 @@ catppuccin.setup {
       NoiceCmdlinePopupBorder = { fg= c.crust },
       -- lualine
       Recording = { fg = c.peach },
+      ActiveItem = { fg = c.mauve },
       -- neo-tree
       NeoTreeTabActive = { bg = c.base },
       NeoTreeTabInactive = { bg = c.mantle },

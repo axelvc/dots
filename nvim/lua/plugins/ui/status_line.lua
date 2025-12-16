@@ -1,95 +1,74 @@
-local o = vim.opt
-local lsp_renames = {
-  ['emmet_language_server'] = 'emmet',
-  ['lua_ls'] = 'lua',
-  ['harper_ls'] = 'harper',
-  ['angularls'] = 'angular',
-  ['cssls'] = 'css',
-  ['vue_ls'] = 'vue',
-  ['quick_lint_js'] = 'grammar',
-  ['typescript-tools'] = 'ts',
-}
+---@class TabItem
+---@field icon string
+---@field filetype string
+---@field on_click function
 
-local short_mode = {
-  'mode',
-  fmt = function(str)
-    local short_mode = str:sub(1, 1)
+---@class Data
+---@field tabs TabItem[]
 
-    for letter in str:gmatch '-%w' do
-      short_mode = short_mode .. letter
-    end
+---@param data TabItem
+local function tab_item(data)
+  return {
+    function() return data.icon end,
+    color = function() return vim.o.filetype == data.filetype and 'ActiveItem' or '' end,
+    on_click = data.on_click,
+  }
+end
 
-    return short_mode
-  end,
-}
-
-local sections = {
-  lualine_a = {
-    short_mode,
-  },
-  lualine_b = {
-    { 'branch', icon = '' },
-  },
-  lualine_c = {
-    { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } },
-    { 'diagnostics', sources = { 'nvim_diagnostic' }, always_visible = false, symbols = vim.g.signs },
-    {
-      function() return ('[Recording @%s]'):format(vim.fn.reg_recording()) end,
-      cond = function() return vim.fn.reg_recording() ~= '' end,
-      color = 'Recording',
-    },
-  },
-  lualine_x = {},
-  lualine_y = {
-    { 'encoding', cond = function() return o.fileencoding:get() ~= 'utf-8' end },
-    {
-      function()
-        local clients = vim.lsp.get_clients()
-
-        if #clients == 0 then return '' end
-
-        clients = vim.tbl_map(function(client)
-          return lsp_renames[client.name] or client.name
-        end, clients)
-
-        return table.concat(clients, ' ⏽ ')
-      end,
-    },
-    {
-      'fileformat',
-      cond = function()
-        return o.fileformat:get() ~= 'unix'
-      end,
-    },
-  },
-  lualine_z = { 'filetype' }
-}
 
 require('lualine').setup {
   options = {
     section_separators = { left = '▙', right = '▟' },
-    component_separators = { left = '⏽', right = '⏽' },
-    padding = 2,
+    component_separators = { left = '|', right = '' },
+    padding = 1,
     globalstatus = true,
   },
-  sections = sections,
-  extensions = {
-    {
-      filetypes = { 'snacks_dashboard' },
-      sections = {
-        lualine_a = {
-          short_mode,
-        },
-        lualine_b = {
-          {
-            'branch',
-            icon = '',
-          },
-        },
-        lualine_z = {
-          function() return ('%s Plugins'):format(require('lazy').stats().count) end,
-        }
-      },
+  sections = {
+    lualine_a = {
+      {
+        'mode',
+        padding = 2,
+        fmt = function(str)
+          local short_mode = str:sub(1, 1)
+
+          for letter in str:gmatch '-%w' do
+            short_mode = short_mode .. letter
+          end
+
+          return short_mode
+        end,
+      }
     },
+    lualine_b = {
+    },
+    lualine_c = {
+      {
+        'branch',
+        icon = '',
+        padding = { left = 2, right = 1 },
+      },
+      { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } },
+      { 'diagnostics', sources = { 'nvim_diagnostic' }, always_visible = false, symbols = vim.g.signs },
+    },
+    lualine_x = {
+      {
+        function() return ('[Recording @%s]'):format(vim.fn.reg_recording()) end,
+        cond = function() return vim.fn.reg_recording() ~= '' end,
+        color = 'Recording',
+      },
+      { 'filetype' },
+      tab_item {
+        icon = ' ',
+        filetype = 'snacks_terminal',
+        on_click = function() Snacks.dashboard.toggle() end,
+      },
+      tab_item {
+        icon = '󰙅 ',
+        filetype = 'neo-tree',
+        on_click = function() vim.api.nvim_input('<C-n>') end,
+      }
+    },
+    lualine_y = {},
+    lualine_z = {}
   },
 }

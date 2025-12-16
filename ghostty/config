@@ -12,7 +12,7 @@ cursor-style-blink = true
 shell-integration-features = no-cursor
 
 window-width = 140
-window-height = 32
+window-height = 34
 window-title-font-family = "Maple Mono NF Regular"
 
 macos-titlebar-style = tabs
