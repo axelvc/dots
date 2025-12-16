@@ -2,6 +2,12 @@ return {
   bufdelete = {
     enabled = true,
   },
+  indent = {
+    enabled = true,
+    animate = {
+      enabled = false,
+    },
+  },
   input = {
     enabled = true,
   },
@@ -12,10 +18,11 @@ return {
     enabled = true,
     debounce = 100,
   },
-  indent = {
+  statuscolumn = {
     enabled = true,
-    animate = {
-      enabled = false,
+    folds = {
+      open = true,
+      git_hl = true,
     }
   },
   notifier = {

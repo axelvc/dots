@@ -24,7 +24,7 @@ function M.init(s)
   bmap('n', '<C-k>', vim.lsp.buf.signature_help, 'Signature help')
 
   -- code actions
-  bmap('', '<Leader>a', vim.lsp.buf.code_action, 'Code action')
+  bmap('', '<Leader>c', vim.lsp.buf.code_action, 'Code action')
 
   -- diagnostics
   bmap('n', '[d', function() vim.diagnostic.jump { count = -1, float = true } end, 'Previous diagnostic')

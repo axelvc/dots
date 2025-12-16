@@ -16,6 +16,7 @@ g.signs = {
 o.hidden = true
 o.matchpairs = { '(:)', '{:}', '[:]', '<:>' }
 o.clipboard = 'unnamedplus'
+o.laststatus = 3
 
 -- ui
 o.winborder = 'none'

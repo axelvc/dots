@@ -72,7 +72,6 @@ return {
   { 'catgoose/nvim-colorizer.lua',        config = config 'ui.color_highlight', event = 'VeryLazy' },
   { 'akinsho/nvim-bufferline.lua',        config = config 'ui.tab_line',        event = 'VimEnter' },
   { 'hoob3rt/lualine.nvim',               config = config 'ui.status_line',     event = 'VimEnter' },
-  { 'luukvbaal/statuscol.nvim',           config = config 'ui.status_column',   event = 'VimEnter' },
   -- endregion: UI
 
   -- region: LSP
@@ -117,5 +116,62 @@ return {
   { 'numToStr/Comment.nvim',        config = config 'utils.comments',        event = 'VeryLazy' },
   { 'kylechui/nvim-surround',       config = config 'utils.pairs',           event = 'VeryLazy' },
   { 'folke/snacks.nvim',            config = require 'plugins.utils.snacks', priority = 1000 },
+  {
+    'yetone/avante.nvim',
+    event = 'VeryLazy',
+    build = vim.fn.has("win32") ~= 0
+        and 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
+        or 'make',
+    version = false, -- Never set this value to '*'! Never!
+    opts = {
+      windows = {
+        ask = {
+          floating = true,
+        },
+      },
+      instructions_file = 'agents.md',
+      provider = 'codex',
+      behaviour = {
+        enable_fastapply = true, -- Enable Fast Apply feature
+      },
+    },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+      'nvim-mini/mini.pick',           -- for file_selector provider mini.pick
+      'nvim-telescope/telescope.nvim', -- for file_selector provider telescope
+      'hrsh7th/nvim-cmp',              -- autocompletion for avante commands and mentions
+      'ibhagwan/fzf-lua',              -- for file_selector provider fzf
+      'stevearc/dressing.nvim',        -- for input provider dressing
+      'folke/snacks.nvim',             -- for input provider snacks
+      'nvim-tree/nvim-web-devicons',   -- or echasnovski/mini.icons
+      'zbirenbaum/copilot.lua',        -- for providers='copilot'
+      {
+        -- support for image pasting
+        'HakonHarnes/img-clip.nvim',
+        event = 'VeryLazy',
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- required for Windows users
+            use_absolute_path = true,
+          },
+        },
+      },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { 'markdown', 'Avante' },
+        },
+        ft = { 'markdown', 'Avante' },
+      },
+    },
+  },
   -- endregion: Utils
 }
