@@ -104,18 +104,18 @@ return {
   -- endregion: LSP
 
   -- region: Utils
-  'Darazaki/indent-o-matic',                                        -- auto set indentation width
-  { 'ggandor/leap.nvim',            lazy = true },                  -- jump to search match
-  { 'axelvc/unito.nvim',            lazy = true },                  -- px to rem and vice-versa
-  { 'nvim-lua/plenary.nvim',        lazy = true },                  -- utility functions
-  { 'kyazdani42/nvim-web-devicons', lazy = true },                  -- nerd-font icons
-  { 'nacro90/numb.nvim',            config = true },                -- preview line on :[number]
-  { 'jghauser/mkdir.nvim',          event = 'BufWritePre' },        -- create directory on save
-  { 'echasnovski/mini.nvim',        config = config 'utils.mini', event = 'VeryLazy' }, -- lots of mini plugins
+  'Darazaki/indent-o-matic',                                 -- auto set indentation width
+  { 'ggandor/leap.nvim',            lazy = true },           -- jump to search match
+  { 'axelvc/unito.nvim',            lazy = true },           -- px to rem and vice-versa
+  { 'nvim-lua/plenary.nvim',        lazy = true },           -- utility functions
+  { 'kyazdani42/nvim-web-devicons', lazy = true },           -- nerd-font icons
+  { 'nacro90/numb.nvim',            config = true },         -- preview line on :[number]
+  { 'jghauser/mkdir.nvim',          event = 'BufWritePre' }, -- create directory on save
   { 'axelvc/template-string.nvim',  config = config 'utils.template_string' },
-  { 'Wansmer/treesj',               config = config 'utils.split_join',     lazy = true },
-  { 'numToStr/Comment.nvim',        config = config 'utils.comments',       event = 'VeryLazy' },
-  { 'kylechui/nvim-surround',       config = config 'utils.pairs',          event = 'VeryLazy' },
+  { 'Wansmer/treesj',               config = config 'utils.split_join',      lazy = true },
+  { 'echasnovski/mini.nvim',        config = config 'utils.mini',            event = 'VeryLazy' },
+  { 'numToStr/Comment.nvim',        config = config 'utils.comments',        event = 'VeryLazy' },
+  { 'kylechui/nvim-surround',       config = config 'utils.pairs',           event = 'VeryLazy' },
   { 'folke/snacks.nvim',            config = require 'plugins.utils.snacks', priority = 1000 },
   -- endregion: Utils
 }

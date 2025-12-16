@@ -93,7 +93,7 @@ end, { silent = true, expr = true })
 map('n', '<leader>p', function() require('unito').toggle_px_rem() end, { desc = ' Toggle px/rem' })
 
 -- [[ notify ]]
-map('n', '<leader>n', function() require('notify').dismiss() end, { desc = 'Hide notifications' })
+map('n', '<leader>n', function() Snacks.notifier.hide() end, { desc = 'Hide notifications' })
 
 -- [[ telescope ]]
 map('n', '<C-p>', function() require('telescope.builtin').find_files() end, { desc = 'Find file' })
