@@ -67,7 +67,7 @@ return {
     },
   },
   { 'b0o/incline.nvim', config = true },
-  { 'tzachar/highlight-undo.nvim',        config = true },
+  { 'tzachar/highlight-undo.nvim',        config = true, event = 'VimEnter' },
   { 'MeanderingProgrammer/markdown.nvim', config = config 'ui.markdown' },
   { 'folke/which-key.nvim',               config = config 'ui.which_key' },
   { 'catgoose/nvim-colorizer.lua',        config = config 'ui.color_highlight', event = 'VeryLazy' },
