@@ -1,7 +1,7 @@
 -- common `save file` shortcut
 map({ 'n', 'v' }, '<C-s>', ':update<CR>', { silent = true })
 map('i', '<C-s>', '<C-o>:w<CR>', { silent = true })
-map({ 'n', 'v' }, '<Leader><C-s>', ':noautocmd up<CR>', { silent = true, desc = 'Save without format' })
+map({ 'n', 'v' }, '<leader><C-s>', ':noautocmd up<CR>', { silent = true, desc = 'Save without format' })
 
 -- common select all
 map({ 'n', 'v' }, '<C-a>', 'gg<S-v>G')
@@ -43,7 +43,7 @@ map('n', 'L', ':bnext<Cr>', { desc = 'Focus next buffer', silent = true })
 map('n', '<leader>bd', function() Snacks.bufdelete() end, { silent = true, desc = 'Delete buffer' })
 
 mapdata.bufferline = {
-  { '<Leader>b', group = 'Buffer' },
+  { '<leader>b', group = 'Buffer' },
 }
 
 -- [[ neo-tree ]]
@@ -55,11 +55,11 @@ map('n', 'zM', function() require('ufo').closeAllFolds() end)
 
 -- [[ treesj ]]
 mapdata.treesj = {
-  { '<Leader>j', group = 'Join Utils' },
+  { '<leader>j', group = 'Join Utils' },
 }
 
-map('n', '<Leader>js', function() require('treesj').split() end, { desc = 'Split object' })
-map('n', '<Leader>jj', function() require('treesj').join() end, { desc = 'Join object' })
+map('n', '<leader>js', function() require('treesj').split() end, { desc = 'Split object' })
+map('n', '<leader>jj', function() require('treesj').join() end, { desc = 'Join object' })
 
 -- [[ comment ]]
 local ctrl_slash = has 'wsl' and '<C-_>' or '<C-/>'
@@ -90,12 +90,12 @@ map('n', '<leader>n', function() Snacks.notifier.hide() end, { desc = 'Hide noti
 
 -- [[ telescope ]]
 map('n', '<C-p>', function() require('telescope.builtin').find_files() end, { desc = 'Find file' })
-map('n', '<Leader>/', function() require('telescope.builtin').live_grep() end, { desc = 'Find word' })
-map('n', '<Leader><Leader>', function() require('telescope.builtin').builtin() end, { desc = 'Telescope builtin' })
+map('n', '<leader>/', function() require('telescope.builtin').live_grep() end, { desc = 'Find word' })
+map('n', '<leader><leader>', function() require('telescope.builtin').builtin() end, { desc = 'Telescope builtin' })
 map('n', '<leader>gs', function() require('telescope.builtin').git_status() end, { desc = 'Status' })
 
 -- [[ zen-mode ]]
-map('n', '<Leader>z', function() Snacks.zen() end, { desc = 'Zen Mode' })
+map('n', '<leader>z', function() Snacks.zen() end, { desc = 'Zen Mode' })
 
 -- [[ leap ]]
 map('n', 'gs', function()
@@ -104,7 +104,7 @@ map('n', 'gs', function()
 end, { desc = 'Search word match (Leap)' })
 
 -- [[ terminal ]]
-map('n', '<Leader>gt', function() Snacks.terminal.toggle('gitui') end, { desc = 'Git-UI' })
+map('n', '<leader>gt', function() Snacks.terminal.toggle('gitui') end, { desc = 'Git-UI' })
 map({ 'n', 't' }, '<C-Bslash>', function() Snacks.terminal.toggle() end, { desc = 'Toggle terminal' })
 
 -- [[ git ]]
@@ -173,10 +173,10 @@ function _G.lsp_maps(buffer)
   bmap('n', '<C-k>', vim.lsp.buf.signature_help, 'Signature help')
 
   -- code actions
-  bmap('', '<Leader>c', vim.lsp.buf.code_action, 'Code action')
+  bmap('', '<leader>c', vim.lsp.buf.code_action, 'Code action')
 
   -- diagnostics
-  bmap('n', '<Leader>i', function() vim.diagnostic.open_float { scope = 'line' } end, 'Hover information')
+  bmap('n', '<leader>i', function() vim.diagnostic.open_float { scope = 'line' } end, 'Hover information')
   bmap('n', '[d', function() vim.diagnostic.jump { count = -1, float = true } end, 'Previous diagnostic')
   bmap('n', ']d', function() vim.diagnostic.jump { count = 1, float = true } end, 'Next diagnostic')
   bmap('n', '[e', function() vim.diagnostic.jump { count = -1, float = true, severity = vim.diagnostic.severity.ERROR } end, 'Previous error')
@@ -190,7 +190,7 @@ function _G.lsp_maps(buffer)
   bmap('n', 'gr', telescope.lsp_references, 'References')
 
   -- format
-  bmap({ 'n', 'v' }, '<Leader>f', function() require('conform').format { async = true, lsp_format = 'fallback' } end, 'Format code')
+  bmap({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true, lsp_format = 'fallback' } end, 'Format code')
 end
 
 -- [[ Markdown ]]
