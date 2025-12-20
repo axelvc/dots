@@ -66,11 +66,12 @@ return {
       'MunifTanjim/nui.nvim',
     },
   },
+  { 'b0o/incline.nvim', config = true },
   { 'tzachar/highlight-undo.nvim',        config = true },
   { 'MeanderingProgrammer/markdown.nvim', config = config 'ui.markdown' },
   { 'folke/which-key.nvim',               config = config 'ui.which_key' },
   { 'catgoose/nvim-colorizer.lua',        config = config 'ui.color_highlight', event = 'VeryLazy' },
-  { 'akinsho/nvim-bufferline.lua',        config = config 'ui.tab_line',        event = 'VimEnter' },
+  { 'akinsho/nvim-bufferline.lua',        config = config 'ui.tab_line',        event = 'VimEnter', enabled = false },
   { 'hoob3rt/lualine.nvim',               config = config 'ui.status_line',     event = 'VimEnter' },
   -- endregion: UI
 
@@ -138,6 +139,7 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'MunifTanjim/nui.nvim',
+      'MeanderingProgrammer/render-markdown.nvim',
       'nvim-mini/mini.pick',           -- for file_selector provider mini.pick
       'nvim-telescope/telescope.nvim', -- for file_selector provider telescope
       'hrsh7th/nvim-cmp',              -- autocompletion for avante commands and mentions
@@ -162,14 +164,6 @@ return {
             use_absolute_path = true,
           },
         },
-      },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { 'markdown', 'Avante' },
-        },
-        ft = { 'markdown', 'Avante' },
       },
     },
   },

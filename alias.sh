@@ -1,3 +1,6 @@
+alias agln="ln -s ~/.dots/AGENTS.md ."
+alias agcp="cp ~/.dots/AGENTS.md ."
+
 alias sudo="sudo " # allow alias in sudo
 alias chmod='chmod --preserve-root -v'
 alias chown='chown --preserve-root -v'

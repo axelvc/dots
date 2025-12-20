@@ -13,9 +13,17 @@ capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true
 }
 
+local exclude_folding = Set:new { 'angularls', 'vue_ls' }
 vim.lsp.config('*', {
   capabilities = capabilities,
-  on_attach = require 'plugins.lsp.maps'.init
+  on_attach = function(server, buffer)
+    -- disable folding
+    if exclude_folding:has(server.name) then
+      server.server_capabilities.foldingRangeProvider = false
+    end
+
+    _G.lsp_maps(buffer)
+  end
 })
 
 vim.lsp.config('html', {

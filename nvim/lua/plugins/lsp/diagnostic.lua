@@ -41,7 +41,7 @@ vim.diagnostic.config {
   underline = true,
   virtual_text = {
     spacing = 0,
-    prefix = ' ',
+    prefix = vim.g.signs.debug,
     hl_mode = 'combine',
     format = function(diagnostic)
       if diagnostic.message:match 'Merge conflict' then

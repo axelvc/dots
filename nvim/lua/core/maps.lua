@@ -35,7 +35,16 @@ map('c', '<M-j>', '<Down>')
 map('n', '[t', 'gT', { noremap = true, desc = 'Previous tab' })
 map('n', ']t', 'gt', { noremap = true, desc = 'Next tab' })
 
--- TODO: MOVE THIS TO OWNS FILES
+-- moving between buffers
+map('n', 'H', ':bprevious<Cr>', { desc = 'Focus previous buffer', silent = true })
+map('n', 'L', ':bnext<Cr>', { desc = 'Focus next buffer', silent = true })
+
+-- delete buffer
+map('n', '<leader>bd', function() Snacks.bufdelete() end, { silent = true, desc = 'Delete buffer' })
+
+mapdata.bufferline = {
+  { '<Leader>b', group = 'Buffer' },
+}
 
 -- [[ neo-tree ]]
 map('n', '<C-n>', ':Neotree toggle<CR>', { silent = true })
@@ -51,22 +60,6 @@ mapdata.treesj = {
 
 map('n', '<Leader>js', function() require('treesj').split() end, { desc = 'Split object' })
 map('n', '<Leader>jj', function() require('treesj').join() end, { desc = 'Join object' })
-
--- [[ bufferline ]]
-mapdata.bufferline = {
-  { '<Leader>b', group = 'Buffer' },
-}
-
-map('n', '<Leader>bs', function() require('bufferline').pick() end, { desc = 'Select buffer' })
-map('n', '<Leader>bD', function() require('bufferline').close_others() end, { desc = 'Close all but current buffer' })
-
-map('n', 'L', function() require('bufferline').cycle(1 * vim.v.count1) end, { desc = 'Focus next buffer' })
-map('n', 'H', function() require('bufferline').cycle(-1 * vim.v.count1) end, { desc = 'Focus previous buffer' })
-
-map('n', '<Leader>bh', function() for _ = 1, vim.v.count1 do require('bufferline').move(-1) end end, { desc = 'Move current to left' })
-map('n', '<Leader>bl', function() for _ = 1, vim.v.count1 do require('bufferline').move(1) end end, { desc = 'Move current to right' })
-
-map('n', '<Leader>bd', function() Snacks.bufdelete() end, { silent = true, desc = 'Delete buffer' })
 
 -- [[ comment ]]
 local ctrl_slash = has 'wsl' and '<C-_>' or '<C-/>'
@@ -101,7 +94,7 @@ map('n', '<Leader>/', function() require('telescope.builtin').live_grep() end, {
 map('n', '<Leader><Leader>', function() require('telescope.builtin').builtin() end, { desc = 'Telescope builtin' })
 map('n', '<leader>gs', function() require('telescope.builtin').git_status() end, { desc = 'Status' })
 
--- [[ zen mode ]]
+-- [[ zen-mode ]]
 map('n', '<Leader>z', function() Snacks.zen() end, { desc = 'Zen Mode' })
 
 -- [[ leap ]]
@@ -113,3 +106,100 @@ end, { desc = 'Search word match (Leap)' })
 -- [[ terminal ]]
 map('n', '<Leader>gt', function() Snacks.terminal.toggle('gitui') end, { desc = 'Git-UI' })
 map({ 'n', 't' }, '<C-Bslash>', function() Snacks.terminal.toggle() end, { desc = 'Toggle terminal' })
+
+-- [[ git ]]
+function _G.git_maps(buffer)
+  local gitsigns = require 'gitsigns'
+  local git_conflict = require 'git-conflict'
+
+  -- external
+  map('n', '<leader>gg', ':Neotree toggle git_status<CR>', { buffer = buffer, desc = 'Neotree git' })
+
+  -- conflict
+  map('n', '<leader>gcc', function() git_conflict.choose('ours') end, { buffer = buffer, desc = 'Current' })
+  map('n', '<leader>gci', function() git_conflict.choose('theirs') end, { buffer = buffer, desc = 'Incoming' })
+  map('n', '<leader>gcb', function() git_conflict.choose('both') end, { buffer = buffer, desc = 'Both' })
+  map('n', '<leader>gcr', function() git_conflict.choose('none') end, { buffer = buffer, desc = 'Reset' })
+
+  map('n', '[c', function() git_conflict.find_prev('ours') end, { buffer = buffer, desc = 'Previous git conflict' })
+  map('n', ']c', function() git_conflict.find_next('ours') end, { buffer = buffer, desc = 'Next git conflict' })
+
+  -- navigation
+  map('n', '[g', function() gitsigns.nav_hunk('prev') end, { buffer = buffer, desc = 'Previus git hunk' })
+  map('n', ']g', function() gitsigns.nav_hunk('next') end, { buffer = buffer, desc = 'Next git hunk' })
+
+  -- stage
+  map({ 'n', 'v' }, '<leader>ga', gitsigns.stage_hunk, { buffer = buffer, desc = 'Stage hunk' })
+  map({ 'n', 'v' }, '<leader>gr', gitsigns.reset_hunk, { buffer = buffer, desc = 'Reset hunk' })
+  map('n', '<leader>gA', gitsigns.stage_buffer, { buffer = buffer, desc = 'Stage buffer' })
+  map('n', '<leader>gR', gitsigns.reset_buffer, { buffer = buffer, desc = 'Undo buffer' })
+
+  -- diff
+  map('n', '<leader>gi', gitsigns.preview_hunk, { buffer = buffer, desc = 'Preview hunk float' })
+  map('n', '<leader>gp', gitsigns.preview_hunk_inline, { buffer = buffer, desc = 'Preview hunk inline' })
+  map('n', '<leader>gd', gitsigns.diffthis, { buffer = buffer, desc = 'Diff buffer' })
+
+  -- git blame
+  map('n', '<leader>gb', gitsigns.blame_line, { buffer = buffer, desc = 'Blame line' })
+  map('n', '<leader>gB', gitsigns.toggle_current_line_blame, { buffer = buffer, desc = 'Toggle blame line' })
+
+  -- select inner hunk
+  map({ 'x', 'o' }, 'ig', gitsigns.select_hunk, { buffer = buffer, desc = 'inner git hunk' })
+
+  mapdata.gitsigns = {
+    { '<leader>g',  group = 'Git' },
+    { '<leader>gc', group = 'Conflict' },
+  }
+end
+
+-- [[ LSP ]]
+function _G.lsp_maps(buffer)
+  local function bmap(modes, keys, map, desc)
+    pcall(vim.keymap.set, modes, keys, map, {
+      buffer = buffer,
+      noremap = true,
+      silent = true,
+      unique = true,
+      desc = desc,
+    })
+  end
+
+  -- rename
+  bmap('n', '<F2>', vim.lsp.buf.rename, 'Rename')
+  bmap('n', '<leader>r', vim.lsp.buf.rename, 'Rename')
+
+  -- hover
+  bmap('', 'K', vim.lsp.buf.hover, 'Hover')
+  bmap('n', '<C-k>', vim.lsp.buf.signature_help, 'Signature help')
+
+  -- code actions
+  bmap('', '<Leader>c', vim.lsp.buf.code_action, 'Code action')
+
+  -- diagnostics
+  bmap('n', '<Leader>i', function() vim.diagnostic.open_float { scope = 'line' } end, 'Hover information')
+  bmap('n', '[d', function() vim.diagnostic.jump { count = -1, float = true } end, 'Previous diagnostic')
+  bmap('n', ']d', function() vim.diagnostic.jump { count = 1, float = true } end, 'Next diagnostic')
+  bmap('n', '[e', function() vim.diagnostic.jump { count = -1, float = true, severity = vim.diagnostic.severity.ERROR } end, 'Previous error')
+  bmap('n', ']e', function() vim.diagnostic.jump { count = 1, float = true, severity = vim.diagnostic.severity.ERROR } end, 'Next error')
+
+  -- go-to navigations
+  local telescope = require 'telescope.builtin'
+  bmap('n', 'gd', telescope.lsp_definitions, 'Definition')
+  bmap('n', 'gt', telescope.lsp_type_definitions, 'Type definition')
+  bmap('n', 'gi', telescope.lsp_implementations, 'Implementation')
+  bmap('n', 'gr', telescope.lsp_references, 'References')
+
+  -- format
+  bmap({ 'n', 'v' }, '<Leader>f', function() require('conform').format { async = true, lsp_format = 'fallback' } end, 'Format code')
+end
+
+-- [[ Markdown ]]
+function _G.markdown_maps(opts)
+  local md = require 'render-markdown'
+
+  map('n', '<leader>mt', md.toggle, { buf = opts.buf, desc = 'Toggle preview' })
+  map('n', '<leader>me', md.enable, { buf = opts.buf, desc = 'Enable preview' })
+  map('n', '<leader>md', md.disable, { buf = opts.buf, desc = 'Disable preview' })
+  map('n', '<leader>me', md.expand, { buf = opts.buf, desc = 'Expand conceal' })
+  map('n', '<leader>mc', md.contract, { buf = opts.buf, desc = 'Contract conceal' })
+end

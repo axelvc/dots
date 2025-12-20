@@ -4,11 +4,11 @@ local g = vim.g
 g.mapleader = ' '
 
 g.signs = {
-  error = '󰅚 ',
-  warn = ' ',
-  info = ' ',
-  hint = '󰙎 ',
-  debug = ' ',
+  error = ' ',
+  warn = ' ',
+  info = ' ',
+  hint = ' ',
+  debug = ' ',
   trace = ' ',
 }
 
