@@ -197,9 +197,9 @@ end
 function _G.markdown_maps(opts)
   local md = require 'render-markdown'
 
-  map('n', '<leader>mt', md.toggle, { buf = opts.buf, desc = 'Toggle preview' })
-  map('n', '<leader>me', md.enable, { buf = opts.buf, desc = 'Enable preview' })
-  map('n', '<leader>md', md.disable, { buf = opts.buf, desc = 'Disable preview' })
-  map('n', '<leader>me', md.expand, { buf = opts.buf, desc = 'Expand conceal' })
-  map('n', '<leader>mc', md.contract, { buf = opts.buf, desc = 'Contract conceal' })
+  map('n', '<leader>mt', md.toggle, { buffer = opts.buf, desc = 'Toggle preview' })
+  map('n', '<leader>me', md.enable, { buffer = opts.buf, desc = 'Enable preview' })
+  map('n', '<leader>md', md.disable, { buffer = opts.buf, desc = 'Disable preview' })
+  map('n', '<leader>me', md.expand, { buffer = opts.buf, desc = 'Expand conceal' })
+  map('n', '<leader>mc', md.contract, { buffer = opts.buf, desc = 'Contract conceal' })
 end
