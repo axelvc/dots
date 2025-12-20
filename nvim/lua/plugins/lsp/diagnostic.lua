@@ -1,4 +1,4 @@
-local ns = vim.api.nvim_create_namespace("diagnostics-signs")
+local ns = vim.api.nvim_create_namespace('diagnostics-signs')
 local orig_signs_handler = vim.diagnostic.handlers.signs
 
 vim.diagnostic.handlers.signs = {

@@ -49,8 +49,9 @@ require('lualine').setup {
         'branch',
         icon = '',
         padding = { left = 2, right = 1 },
+        on_click = function() require('telescope.builtin').git_branches() end,
       },
-      { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } },
+      { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } },
       {
         function() return ' ' .. conflict_count() end,
         cond = function() return conflict_count() > 0 end,
@@ -59,11 +60,16 @@ require('lualine').setup {
     },
     lualine_x = {
       {
-        function() return ('[Recording @%s]'):format(vim.fn.reg_recording()) end,
+        function() return 'Recording @' .. vim.fn.reg_recording() end,
         cond = function() return vim.fn.reg_recording() ~= '' end,
         color = 'Recording',
+        separator = { right = '|' },
       },
-      { 'filetype' },
+      {
+        'filetype',
+        on_click = function() require('telescope.builtin').filetypes() end,
+        separator = '|',
+      },
       tab_item {
         icon = '',
         filetype = 'TelescopePrompt',

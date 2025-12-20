@@ -5,6 +5,6 @@ require('render-markdown').setup {
   },
 }
 
-mapdata.markdown = {
-  { '<leader>m', group = 'Markdown' },
+mapdata {
+  '<leader>m', group = 'Markdown',
 }

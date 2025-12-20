@@ -42,8 +42,8 @@ map('n', 'L', ':bnext<Cr>', { desc = 'Focus next buffer', silent = true })
 -- delete buffer
 map('n', '<leader>bd', function() Snacks.bufdelete() end, { silent = true, desc = 'Delete buffer' })
 
-mapdata.bufferline = {
-  { '<leader>b', group = 'Buffer' },
+mapdata {
+  '<leader>b', group = 'Buffer',
 }
 
 -- [[ neo-tree ]]
@@ -54,8 +54,8 @@ map('n', 'zR', function() require('ufo').openAllFolds() end)
 map('n', 'zM', function() require('ufo').closeAllFolds() end)
 
 -- [[ treesj ]]
-mapdata.treesj = {
-  { '<leader>j', group = 'Join Utils' },
+mapdata {
+  '<leader>j', group = 'Join Utils',
 }
 
 map('n', '<leader>js', function() require('treesj').split() end, { desc = 'Split object' })
@@ -146,7 +146,7 @@ function _G.git_maps(buffer)
   -- select inner hunk
   map({ 'x', 'o' }, 'ig', gitsigns.select_hunk, { buffer = buffer, desc = 'inner git hunk' })
 
-  mapdata.gitsigns = {
+  mapdata {
     { '<leader>g',  group = 'Git' },
     { '<leader>gc', group = 'Conflict' },
   }

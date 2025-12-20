@@ -7,22 +7,25 @@ _G.has = function(arg) return vim.fn.has(arg) == 1 end
 ---wrapper for |vim.keymap.set|
 _G.map = vim.keymap.set
 
----@type table<string, number>
-local counts = setmetatable({}, {
-  __index = function(self, key)
-    self[key] = 1
-    return 1
-  end,
-})
-
 --- Safe setter for which-key data
-_G.mapdata = setmetatable({}, {
-  __newindex = function(self, key, value)
-    local ok, wk = pcall(require, 'which-key')
+local pending_maps = {}
+function _G.mapdata(mappings)
+  local ok, wk = pcall(require, 'which-key')
 
-    if ok then wk.add(value) end
-    rawset(self, key, ok)
-  end,
-})
+  if not ok then
+    table.insert(pending_maps, mappings)
+    return
+  end
+
+  if pending_maps then
+    for _, v in pairs(pending_maps) do
+      wk.add(v)
+    end
+
+    pending_maps = nil
+  end
+
+  wk.add(mappings)
+end
 
 _G.Set = require 'core.utils.set'

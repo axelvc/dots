@@ -80,8 +80,7 @@ o.guicursor = { 'a:blinkwait700-blinkoff750-blinkon250', 'i:ver20', 'r-o:hor20',
 
 -- window title
 o.title = true
-local root_dir = vim.fn.expand('%:p:h:t') -- convert "foo/bar/etc" into "etc"
-o.titlestring = (' %s'):format(root_dir)
+o.titlestring = (' %s'):format(vim.fn.expand('%:p:h:t')) -- convert "foo/bar/etc" into "etc"
 
 -- performance
 o.timeoutlen = 400
@@ -106,19 +105,17 @@ if has 'wsl' then
     name = 'WslClipboard',
     cache_enabled = 0,
     copy = {
-      -- ['+'] = 'clip.exe',
-      -- ['*'] = 'clip.exe',
       ['+'] = 'win32yank.exe -i --crlf',
       ['*'] = 'win32yank.exe -i --crlf',
     },
     paste = {
-      -- ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('`r', ''))',
-      -- ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace('`r', ''))',
       ['+'] = 'win32yank.exe -o --lf',
       ['*'] = 'win32yank.exe -o --lf',
     },
   }
 end
 
-vim.cmd([[let &t_Cs = "\e[60m"]]) -- Inform vim how to enable undercurl in wezterm
-vim.cmd([[let &t_Ce = "\e[24m"]]) -- Inform vim how to disable undercurl in wezterm (this disables all underline modes)
+if os.getenv('TERM_PROGRAM') == 'WezTerm' then
+  vim.cmd([[let &t_Cs = "\e[60m"]]) -- Inform vim how to enable undercurl in wezterm
+  vim.cmd([[let &t_Ce = "\e[24m"]]) -- Inform vim how to disable undercurl in wezterm (this disables all underline modes)
+end

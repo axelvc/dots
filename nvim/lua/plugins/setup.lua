@@ -66,13 +66,12 @@ return {
       'MunifTanjim/nui.nvim',
     },
   },
-  { 'b0o/incline.nvim', config = true },
-  { 'tzachar/highlight-undo.nvim',        config = true, event = 'VimEnter' },
   { 'MeanderingProgrammer/markdown.nvim', config = config 'ui.markdown' },
   { 'folke/which-key.nvim',               config = config 'ui.which_key' },
+  { 'b0o/incline.nvim',                   config = config 'ui.file_popup' },
   { 'catgoose/nvim-colorizer.lua',        config = config 'ui.color_highlight', event = 'VeryLazy' },
-  { 'akinsho/nvim-bufferline.lua',        config = config 'ui.tab_line',        event = 'VimEnter', enabled = false },
   { 'hoob3rt/lualine.nvim',               config = config 'ui.status_line',     event = 'VimEnter' },
+  { 'tzachar/highlight-undo.nvim',        config = true,                        event = 'VimEnter' },
   -- endregion: UI
 
   -- region: LSP
@@ -120,9 +119,7 @@ return {
   {
     'yetone/avante.nvim',
     event = 'VeryLazy',
-    build = vim.fn.has("win32") ~= 0
-        and 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'
-        or 'make',
+    build = 'make',
     version = false, -- Never set this value to '*'! Never!
     opts = {
       windows = {
