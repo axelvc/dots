@@ -52,7 +52,13 @@ require('nvim-ts-autotag').setup {
   }
 }
 
-require('blink.pairs').setup({
+require('treesitter-context').setup {
+  max_lines = 1,
+  trim_scope = 'outer',
+  multiwindow = true,
+}
+
+require('blink.pairs').setup {
   highlights = {
     enabled = true,
     groups = {
@@ -64,4 +70,4 @@ require('blink.pairs').setup({
       'rainbow6',
     },
   },
-})
+}

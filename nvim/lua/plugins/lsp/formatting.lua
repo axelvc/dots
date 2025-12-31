@@ -21,6 +21,7 @@ require('conform').setup {
     yaml = prettier,
     json = prettier,
     jsonc = prettier,
+    python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
   },
   formatters = {
     prettierd = {

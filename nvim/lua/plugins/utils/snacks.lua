@@ -1,4 +1,9 @@
 return {
+  zen = {
+    toggles = {
+      dim = false
+    }
+  },
   bufdelete = {
     enabled = true,
   },

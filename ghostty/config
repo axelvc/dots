@@ -1,5 +1,10 @@
 theme = Catppuccin Mocha
 
+right-click-action = copy-or-paste
+# background = #181825
+background-opacity = 0.9
+background-blur = 100
+
 window-padding-x = 4
 window-padding-y = 4
 
@@ -19,13 +24,9 @@ macos-titlebar-style = tabs
 macos-icon = custom
 macos-custom-icon = ~/.dots/ghostty/icon.png
 
-# Tab Navigation
-# keybind = super+p=previous_tab
-# keybind = super+n=next_tab
-
-# Tab Management
-keybind = super+shift+h=move_tab:-1
-keybind = super+shift+l=move_tab:1
+# unbind window move/resize commands
+keybind = super+shift+j=unbind
+keybind = super+ctrl+shift+j=unbind
 
 # Pane Navigation
 keybind = super+ctrl+h=goto_split:left
@@ -33,8 +34,16 @@ keybind = super+ctrl+j=goto_split:down
 keybind = super+ctrl+k=goto_split:up
 keybind = super+ctrl+l=goto_split:right
 
+# Tab Management
+keybind = super+ctrl+shift+[=move_tab:-1
+keybind = super+ctrl+shift+]=move_tab:1
+
+# Tab Navigation
+# keybind = super+p=previous_tab
+# keybind = super+n=next_tab
+
 # Pane Resize
-keybind = super+alt+h=resize_split:left,10
-keybind = super+alt+j=resize_split:down,10
-keybind = super+alt+k=resize_split:up,10
-keybind = super+alt+l=resize_split:right,10
+# keybind = super+alt+h=resize_split:left,10
+# keybind = super+alt+j=resize_split:down,10
+# keybind = super+alt+k=resize_split:up,10
+# keybind = super+alt+l=resize_split:right,10

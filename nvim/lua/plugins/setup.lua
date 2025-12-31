@@ -69,9 +69,9 @@ return {
   { 'MeanderingProgrammer/markdown.nvim', config = config 'ui.markdown' },
   { 'folke/which-key.nvim',               config = config 'ui.which_key' },
   { 'b0o/incline.nvim',                   config = config 'ui.file_popup' },
-  { 'catgoose/nvim-colorizer.lua',        config = config 'ui.color_highlight', event = 'VeryLazy' },
-  { 'hoob3rt/lualine.nvim',               config = config 'ui.status_line',     event = 'VimEnter' },
-  { 'tzachar/highlight-undo.nvim',        config = true,                        event = 'VimEnter' },
+  { 'catgoose/nvim-colorizer.lua',        config = config 'ui.color_highlight' },
+  { 'hoob3rt/lualine.nvim',               config = config 'ui.status_line',    event = 'VimEnter' },
+  { 'tzachar/highlight-undo.nvim',        config = true,                       event = 'VimEnter' },
   -- endregion: UI
 
   -- region: LSP
@@ -81,8 +81,20 @@ return {
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
-      { 'folke/lazydev.nvim',   ft = 'lua', opts = { library = { 'luvit-meta/library' } } },
-      { 'Bilal2453/luvit-meta', lazy = true }
+      {
+        'folke/lazydev.nvim',
+        ft = 'lua',
+        dependencies = {
+          { 'Bilal2453/luvit-meta',    lazy = true, vesion = false },
+          { 'DrKJeff16/wezterm-types', lazy = true, version = false },
+        },
+        opts = {
+          library = {
+            'luvit-meta/library',
+            { path = 'wezterm-types', mods = { 'wezterm' } },
+          },
+        },
+      },
     },
   },
   { -- completions
@@ -104,11 +116,11 @@ return {
 
   -- region: Utils
   'Darazaki/indent-o-matic',                                 -- auto set indentation width
-  { 'ggandor/leap.nvim',            lazy = true },           -- jump to search match
   { 'axelvc/unito.nvim',            lazy = true },           -- px to rem and vice-versa
   { 'nvim-lua/plenary.nvim',        lazy = true },           -- utility functions
   { 'kyazdani42/nvim-web-devicons', lazy = true },           -- nerd-font icons
   { 'nacro90/numb.nvim',            config = true },         -- preview line on :[number]
+  { 'folke/flash.nvim',             event = 'VeryLazy' },    -- jump to search match
   { 'jghauser/mkdir.nvim',          event = 'BufWritePre' }, -- create directory on save
   { 'axelvc/template-string.nvim',  config = config 'utils.template_string' },
   { 'Wansmer/treesj',               config = config 'utils.split_join',      lazy = true },
@@ -117,52 +129,11 @@ return {
   { 'kylechui/nvim-surround',       config = config 'utils.pairs',           event = 'VeryLazy' },
   { 'folke/snacks.nvim',            config = require 'plugins.utils.snacks', priority = 1000 },
   {
-    'yetone/avante.nvim',
-    event = 'VeryLazy',
-    build = 'make',
-    version = false, -- Never set this value to '*'! Never!
-    opts = {
-      windows = {
-        ask = {
-          floating = true,
-        },
-      },
-      instructions_file = 'agents.md',
-      provider = 'codex',
-      behaviour = {
-        enable_fastapply = true, -- Enable Fast Apply feature
-      },
-    },
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'MunifTanjim/nui.nvim',
-      'MeanderingProgrammer/render-markdown.nvim',
-      'nvim-mini/mini.pick',           -- for file_selector provider mini.pick
-      'nvim-telescope/telescope.nvim', -- for file_selector provider telescope
-      'hrsh7th/nvim-cmp',              -- autocompletion for avante commands and mentions
-      'ibhagwan/fzf-lua',              -- for file_selector provider fzf
-      'stevearc/dressing.nvim',        -- for input provider dressing
-      'folke/snacks.nvim',             -- for input provider snacks
-      'nvim-tree/nvim-web-devicons',   -- or echasnovski/mini.icons
-      'zbirenbaum/copilot.lua',        -- for providers='copilot'
-      {
-        -- support for image pasting
-        'HakonHarnes/img-clip.nvim',
-        event = 'VeryLazy',
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
-    },
-  },
-  -- endregion: Utils
+    'NickvanDyke/opencode.nvim',
+    config = function()
+      ---@type opencode.Opts
+      vim.g.opencode_opts = {}
+      vim.o.autoread = true
+    end,
+  }
 }

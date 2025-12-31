@@ -59,6 +59,8 @@ telescope.setup {
         '--hidden',
         '--glob',
         '!**/.git/*',
+        '.',
+        '.env'
       },
       path_display = { 'filename_first' },
     },

@@ -1,5 +1,6 @@
 alias agln="ln -s ~/.dots/AGENTS.md ."
 alias agcp="cp ~/.dots/AGENTS.md ."
+alias oc="opencode"
 
 alias sudo="sudo " # allow alias in sudo
 alias chmod='chmod --preserve-root -v'
@@ -26,18 +27,16 @@ alias rm="rm -rI"
 np() {
   if [ -f "pnpm-lock.yaml" ]; then
     pnpm "$@"
-  elif [ -f "yarnk.lock" ]; then
-    yarn "$@"
   else
     npm "$@"
   fi
 }
 
 alias npr="np run"
-alias nrun="pnpm run"
-alias npi="pnpm i"
-alias nps="pnpm start"
-alias npd="pnpm run dev"
+alias npi="np i"
+alias nps="np start"
+alias npd="np run dev"
+alias npt="np test"
 
 # git/github
 alias lg=lazygit
@@ -45,6 +44,7 @@ alias gui="gitui -t $HOME/.dots/gitui/theme.ron"
 alias gc="czg"
 alias gii="git init"
 alias gcma="git commit --amend --no-edit"
+unalias gh
 
 # vim
 alias hl=helix
@@ -81,6 +81,13 @@ pyenv() {
 
   source .venv/bin/activate
 }
+
+# timeout for a command
+if ! command -v timeout &> /dev/null; then
+  function timeout() {
+    perl -e 'alarm shift; exec @ARGV' "$@"
+  }
+fi
 
 # calculator
 calc() {

@@ -1,11 +1,7 @@
 require 'plugins.lsp.diagnostic'
 
 require('mason').setup()
-require('mason-lspconfig').setup({
-  automatic_enable = {
-    exclude = { 'ts_ls' }
-  }
-})
+require('mason-lspconfig').setup()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {

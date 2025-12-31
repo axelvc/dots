@@ -1,3 +1,4 @@
+-- TODO: replace with mini.snippets
 local luasnip = require 'luasnip'
 luasnip.filetype_extend('typescript', { 'javascript' })
 luasnip.filetype_extend('typescriptreact', { 'javascriptreact' })
@@ -13,7 +14,7 @@ require('supermaven-nvim').setup {
   },
 }
 
-require('blink.cmp').setup({
+require('blink.cmp').setup {
   keymap = {
     preset = 'enter',
     ['<C-k>'] = { 'select_prev', 'fallback' },
@@ -43,5 +44,4 @@ require('blink.cmp').setup({
       }
     }
   },
-
-})
+}

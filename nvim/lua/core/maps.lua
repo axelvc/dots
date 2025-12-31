@@ -40,7 +40,12 @@ map('n', 'H', ':bprevious<Cr>', { desc = 'Focus previous buffer', silent = true 
 map('n', 'L', ':bnext<Cr>', { desc = 'Focus next buffer', silent = true })
 
 -- delete buffer
-map('n', '<leader>bd', function() Snacks.bufdelete() end, { silent = true, desc = 'Delete buffer' })
+map('n', '<leader>bd', function() Snacks.bufdelete() end, { desc = 'Delete buffer' })
+
+-- pick a buffer
+map('n', '<leader>bb', function() require('telescope.builtin').buffers() end, { desc = 'Pick a buffer' })
+
+map('n', '<leader>bo', function() Snacks.bufdelete.other() end, { desc = 'Pick a buffer' })
 
 mapdata {
   '<leader>b', group = 'Buffer',
@@ -97,15 +102,17 @@ map('n', '<leader>gs', function() require('telescope.builtin').git_status() end,
 -- [[ zen-mode ]]
 map('n', '<leader>z', function() Snacks.zen() end, { desc = 'Zen Mode' })
 
--- [[ leap ]]
-map('n', 'gs', function()
-  local current_window = vim.fn.win_getid()
-  require('leap').leap { target_windows = { current_window } }
-end, { desc = 'Search word match (Leap)' })
+-- [[ flash.nvim ]]
+map({ "n", "x", "o" }, '<leader>s', function() require("flash").jump() end, { desc = "Flash" })
+map({ "n", "x", "o" }, '<leader>S', function() require("flash").treesitter() end, { desc = "Flash Tressiter" })
+map('o', 'r', function() require("flash").remote() end, { desc = "Remote Flash" })
+map({ 'o', 'x' }, 'R', function() require("flash").treesitter_search() end, { desc = "Treesitter Search" })
+map('c', '<c-f>', function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
 
 -- [[ terminal ]]
 map('n', '<leader>gt', function() Snacks.terminal.toggle('gitui') end, { desc = 'Git-UI' })
 map({ 'n', 't' }, '<C-Bslash>', function() Snacks.terminal.toggle() end, { desc = 'Toggle terminal' })
+map('t', "<C-'>", '<C-\\><C-n>', { desc = 'Normal mode terminal', noremap = true, silent = true })
 
 -- [[ git ]]
 function _G.git_maps(buffer)
@@ -179,8 +186,12 @@ function _G.lsp_maps(buffer)
   bmap('n', '<leader>i', function() vim.diagnostic.open_float { scope = 'line' } end, 'Hover information')
   bmap('n', '[d', function() vim.diagnostic.jump { count = -1, float = true } end, 'Previous diagnostic')
   bmap('n', ']d', function() vim.diagnostic.jump { count = 1, float = true } end, 'Next diagnostic')
-  bmap('n', '[e', function() vim.diagnostic.jump { count = -1, float = true, severity = vim.diagnostic.severity.ERROR } end, 'Previous error')
-  bmap('n', ']e', function() vim.diagnostic.jump { count = 1, float = true, severity = vim.diagnostic.severity.ERROR } end, 'Next error')
+  bmap('n', '[e',
+    function() vim.diagnostic.jump { count = -1, float = true, severity = vim.diagnostic.severity.ERROR } end,
+    'Previous error')
+  bmap('n', ']e',
+    function() vim.diagnostic.jump { count = 1, float = true, severity = vim.diagnostic.severity.ERROR } end,
+    'Next error')
 
   -- go-to navigations
   local telescope = require 'telescope.builtin'
@@ -190,7 +201,8 @@ function _G.lsp_maps(buffer)
   bmap('n', 'gr', telescope.lsp_references, 'References')
 
   -- format
-  bmap({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true, lsp_format = 'fallback' } end, 'Format code')
+  bmap({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true, lsp_format = 'fallback' } end,
+    'Format code')
 end
 
 -- [[ Markdown ]]
@@ -203,3 +215,13 @@ function _G.markdown_maps(opts)
   map('n', '<leader>me', md.expand, { buffer = opts.buf, desc = 'Expand conceal' })
   map('n', '<leader>mc', md.contract, { buffer = opts.buf, desc = 'Contract conceal' })
 end
+
+-- [[ Opencode ]]
+map({ 'n', 'x' }, '<leader>a', function() require('opencode').ask('@this: ', { submit = true }) end, { desc = 'Ask opencode' })
+map({ 'n', 'x' }, '<C-x>', function() require('opencode').select() end, { desc = 'Execute opencode action…' })
+map({ 'n', 't' }, '<C-.>', function() require('opencode').toggle() end, { desc = 'Toggle opencode' })
+map({ 'n', 'x' }, 'go', function() return require('opencode').operator('@this ') end, { expr = true, desc = 'Add range to opencode' })
+map('n', 'goo', function() return require('opencode').operator('@this ') .. '_' end, { expr = true, desc = 'Add line to opencode' })
+
+map('n', '<S-C-u>', function() require('opencode').command('session.half.page.up') end, { desc = 'opencode half page up' })
+map('n', '<S-C-d>', function() require('opencode').command('session.half.page.down') end, { desc = 'opencode half page down' })

@@ -21,7 +21,7 @@ require('neo-tree').setup {
     {
       event = 'file_opened',
       handler = function() --auto close
-        require('neo-tree.command').execute({ action = 'close' })
+        require('neo-tree.command').execute { action = 'close' }
       end,
     },
   },

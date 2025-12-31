@@ -87,3 +87,12 @@ autocmd('Filetype', {
     vim.fn.matchadd('TelescopeResultsDir', [[\w \zs.*]])
   end,
 })
+
+autocmd('Filetype', {
+  group = group,
+  desc = 'Wrap text on text files',
+  pattern = { 'markdown', 'text' },
+  callback = function()
+    vim.opt_local.wrap = true
+  end,
+})

@@ -54,7 +54,8 @@ o.linebreak = true
 o.showbreak = '››› '
 
 -- folding
-o.foldlevel = 20
+o.foldlevel = 99
+o.foldlevelstart = 99
 o.foldenable = true
 
 -- indention

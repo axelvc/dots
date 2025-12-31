@@ -15,6 +15,11 @@ This file defines the operating protocols and "Squad" of AI personas for this wo
 ### 🛡️ Safety & Boundaries
 
 1.  **ROOT CONFINEMENT:** Stay within the project root. No `../` navigation.
+2.  **NOT OVERWORKING:**
+  - Focus on the task at hand.
+  - Don't overengineer.
+  - Don't modify unnecessary files if it's not necessary.
+    - Any improvements/refactors should be suggested, not forced.
 
 ### ⚙️ Engineering Standards
 
