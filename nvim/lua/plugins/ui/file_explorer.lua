@@ -1,6 +1,10 @@
 require('neo-tree').setup {
   close_if_last_window = true,
   hide_root_node = true,
+  sources = {
+    'filesystem',
+    'git_status',
+  },
   log_level = 'error',
   window = {
     auto_expand_width = true,
@@ -30,6 +34,7 @@ require('neo-tree').setup {
       with_expanders = false,
     },
     icon = {
+      use_filtered_colors = true,
       folder_closed = ' ',
       folder_open = ' ',
       folder_empty = ' ',

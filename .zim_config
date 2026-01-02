@@ -1,0 +1,38 @@
+#!/bin/zsh
+
+# Set editor default keymap to emacs (`-e`) or vi (`-v`)
+bindkey -e
+
+# Remove older command from the history if a duplicate is to be added.
+setopt HIST_IGNORE_ALL_DUPS
+
+# Only current directory in termtitle
+zstyle ':zim:termtitle' format '%~'
+
+# Set a custom prefix for the generated aliases.
+zstyle ':zim:git' aliases-prefix 'g'
+
+# Append `../` to your input for each `.` you type after an initial `..`
+zstyle ':zim:input' double-dot-expand yes
+
+# Set what highlighters will be used.
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+
+# Disable automatic widget re-binding on each precmd.
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
+# Initialize modules
+ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
+
+zmodload -F zsh/terminfo +p:terminfo
+
+# Accept preview suggestion
+bindkey '^ ' autosuggest-accept

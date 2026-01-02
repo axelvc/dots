@@ -66,12 +66,6 @@ alias ll="l -a"                                  # list (hidden)
 alias lt="ls -TI .git\|node_modules"             # tree
 alias lta="lt -a"                                # tree (hidden)
 
-# create and go to dicectory
-mcd() {
-  mkdir -p "$1"
-  cd "$1" || exit
-}
-
 # create python virtual environment and go to it
 pyenv() {
   if [ ! -d '.venv' ]; then

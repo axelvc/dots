@@ -19,7 +19,7 @@ require('lazy').setup('plugins.setup', {
     colorscheme = { 'catppuccin', 'embark', 'monokai-pro' },
   },
   dev = {
-    path = '~',
+    path = '~/dev',
   },
   ui = {
     border = vim.opt.winborder,

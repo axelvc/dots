@@ -30,7 +30,7 @@ install_packages() {
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         fi
 
-        local_packages=("gh" "tw93/tap/mole")
+        local_packages=("gh" "mole")
         brew update
         brew install "${packages[@]}" "${local_packages[@]}"
     }
