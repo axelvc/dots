@@ -81,18 +81,65 @@ autocmd('TextYankPost', {
 
 autocmd('Filetype', {
   group = group,
-  desc = 'Custom highlight for directory',
-  pattern = 'TelescopeResults',
-  callback = function()
-    vim.fn.matchadd('TelescopeResultsDir', [[\w \zs.*]])
-  end,
-})
-
-autocmd('Filetype', {
-  group = group,
   desc = 'Wrap text on text files',
   pattern = { 'markdown', 'text' },
   callback = function()
     vim.opt_local.wrap = true
   end,
 })
+
+-- local function has_dash_in_iskeyword(kw)
+--   -- match a literal '-' token in comma-separated list
+--   return kw:match("(^|,)%-(,|$)") ~= nil
+-- end
+
+-- local function add_dash_to_iskeyword(kw)
+--   if has_dash_in_iskeyword(kw) then return kw end
+--   if kw == "" then return "-" end
+--   return kw .. ",-"
+-- end
+
+-- local function remove_dash_from_iskeyword(kw)
+--   -- remove "-," or ",-" or standalone "-"
+--   kw = kw:gsub("(^|,)%-(,|$)", function(a, b)
+--     if a == "," and b == "," then return "," end
+--     return ""
+--   end)
+--   kw = kw:gsub("^,", ""):gsub(",$", ""):gsub(",,+", ",")
+--   return kw
+-- end
+
+-- local function node_is_tag_name(node)
+--   while node do
+--     local t = node:type()
+--     if t == "tag_name" or t == "end_tag_name" then
+--       return true
+--     end
+--     -- stop if we hit attribute/value nodes (optional)
+--     if t == "attribute" or t == "attribute_value" or t == "quoted_attribute_value" then
+--       return false
+--     end
+--     node = node:parent()
+--   end
+--   return false
+-- end
+
+-- local function update_iskeyword_dash()
+--   local ok, node = pcall(vim.treesitter.get_node)
+--   if not ok then return end
+
+--   local kw = vim.opt_local.iskeyword:get()
+--   local kw_str = table.concat(kw, ",")
+
+--   local want_dash = node and node_is_tag_name(node) or false
+--   local new_kw_str = want_dash and add_dash_to_iskeyword(kw_str) or remove_dash_from_iskeyword(kw_str)
+
+--   if new_kw_str ~= kw_str then
+--     vim.opt_local.iskeyword = vim.split(new_kw_str, ",", { plain = true })
+--   end
+-- end
+
+-- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "InsertEnter" }, {
+--   pattern = { "*.html", "*.htm", "*.xml", "*.tsx", "*.jsx" },
+--   callback = update_iskeyword_dash,
+-- })

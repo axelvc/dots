@@ -1,3 +1,5 @@
+---require('snacks')
+---@type snacks.Config
 return {
   zen = {
     toggles = {
@@ -14,9 +16,6 @@ return {
     },
   },
   input = {
-    enabled = true,
-  },
-  picker = {
     enabled = true,
   },
   words = {
@@ -61,5 +60,17 @@ return {
 ⠘⠛⠛⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠛⠛⠃⠀
         ]],
     }
-  }
+  },
+  picker = {
+    enabled = true,
+    prompt = '  ',
+    exclude = {
+      'node_modules',
+    },
+    formatters = {
+      file = {
+        filename_first = true,
+      }
+    }
+  },
 }

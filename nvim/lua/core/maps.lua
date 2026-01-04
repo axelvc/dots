@@ -43,8 +43,9 @@ map('n', 'L', ':bnext<Cr>', { desc = 'Focus next buffer', silent = true })
 map('n', '<leader>bd', function() Snacks.bufdelete() end, { desc = 'Delete buffer' })
 
 -- pick a buffer
-map('n', '<leader>bb', function() require('telescope.builtin').buffers() end, { desc = 'Pick a buffer' })
+map('n', '<leader>bb', function() Snacks.picker.buffers() end, { desc = 'Pick a buffer' })
 
+-- close other buffers
 map('n', '<leader>bo', function() Snacks.bufdelete.other() end, { desc = 'Pick a buffer' })
 
 mapdata {
@@ -93,11 +94,11 @@ map('n', '<leader>p', function() require('unito').toggle_px_rem() end, { desc = 
 -- [[ notify ]]
 map('n', '<leader>n', function() Snacks.notifier.hide() end, { desc = 'Hide notifications' })
 
--- [[ telescope ]]
-map('n', '<C-p>', function() require('telescope.builtin').find_files() end, { desc = 'Find file' })
-map('n', '<leader>/', function() require('telescope.builtin').live_grep() end, { desc = 'Find word' })
-map('n', '<leader><leader>', function() require('telescope.builtin').builtin() end, { desc = 'Telescope builtin' })
-map('n', '<leader>gs', function() require('telescope.builtin').git_status() end, { desc = 'Status' })
+-- [[ pickers ]]
+map('n', '<C-p>', function() Snacks.picker.files() end, { desc = 'Find file' })
+map('n', '<leader>/', function() Snacks.picker.grep() end, { desc = 'Find word' })
+map('n', '<leader><leader>', function() Snacks.picker() end, { desc = 'Pickers' })
+map('n', '<leader>gs', function() Snacks.picker.git_status() end, { desc = 'Status' })
 
 -- [[ zen-mode ]]
 map('n', '<leader>z', function() Snacks.zen() end, { desc = 'Zen Mode' })
@@ -142,8 +143,7 @@ function _G.git_maps(buffer)
   map('n', '<leader>gR', gitsigns.reset_buffer, { buffer = buffer, desc = 'Undo buffer' })
 
   -- diff
-  map('n', '<leader>gi', gitsigns.preview_hunk, { buffer = buffer, desc = 'Preview hunk float' })
-  map('n', '<leader>gp', gitsigns.preview_hunk_inline, { buffer = buffer, desc = 'Preview hunk inline' })
+  map('n', '<leader>gi', gitsigns.preview_hunk_inline, { buffer = buffer, desc = 'Preview diff hunk' })
   map('n', '<leader>gd', gitsigns.diffthis, { buffer = buffer, desc = 'Diff buffer' })
 
   -- git blame
@@ -194,11 +194,10 @@ function _G.lsp_maps(buffer)
     'Next error')
 
   -- go-to navigations
-  local telescope = require 'telescope.builtin'
-  bmap('n', 'gd', telescope.lsp_definitions, 'Definition')
-  bmap('n', 'gt', telescope.lsp_type_definitions, 'Type definition')
-  bmap('n', 'gi', telescope.lsp_implementations, 'Implementation')
-  bmap('n', 'gr', telescope.lsp_references, 'References')
+  bmap('n', 'gd', Snacks.picker.lsp_definitions, 'Definition')
+  bmap('n', 'gt', Snacks.picker.lsp_type_definitions, 'Type definition')
+  bmap('n', 'gi', Snacks.picker.lsp_implementations, 'Implementation')
+  bmap('n', 'gr', Snacks.picker.lsp_references, 'References')
 
   -- format
   bmap({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true, lsp_format = 'fallback' } end,
@@ -217,11 +216,16 @@ function _G.markdown_maps(opts)
 end
 
 -- [[ Opencode ]]
-map({ 'n', 'x' }, '<leader>a', function() require('opencode').ask('@this: ', { submit = true }) end, { desc = 'Ask opencode' })
+map({ 'n', 'x' }, '<leader>a', function() require('opencode').ask('@this: ', { submit = true }) end,
+  { desc = 'Ask opencode' })
 map({ 'n', 'x' }, '<C-x>', function() require('opencode').select() end, { desc = 'Execute opencode action…' })
 map({ 'n', 't' }, '<C-.>', function() require('opencode').toggle() end, { desc = 'Toggle opencode' })
-map({ 'n', 'x' }, 'go', function() return require('opencode').operator('@this ') end, { expr = true, desc = 'Add range to opencode' })
-map('n', 'goo', function() return require('opencode').operator('@this ') .. '_' end, { expr = true, desc = 'Add line to opencode' })
+map({ 'n', 'x' }, 'go', function() return require('opencode').operator('@this ') end,
+  { expr = true, desc = 'Add range to opencode' })
+map('n', 'goo', function() return require('opencode').operator('@this ') .. '_' end,
+  { expr = true, desc = 'Add line to opencode' })
 
-map('n', '<S-C-u>', function() require('opencode').command('session.half.page.up') end, { desc = 'opencode half page up' })
-map('n', '<S-C-d>', function() require('opencode').command('session.half.page.down') end, { desc = 'opencode half page down' })
+map('n', '<S-C-u>', function() require('opencode').command('session.half.page.up') end,
+  { desc = 'opencode half page up' })
+map('n', '<S-C-d>', function() require('opencode').command('session.half.page.down') end,
+  { desc = 'opencode half page down' })

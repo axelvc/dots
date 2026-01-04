@@ -1,5 +1,7 @@
+local biome = { 'biome', 'biome-check', 'biome-organize-imports' }
 local prettier = { 'prettierd', 'prettier', stop_after_first = true }
-local js = { 'prettierd', 'eslint_d' }
+local format = biome
+local js = biome
 
 require('conform').setup {
   formatters_by_ft = {
@@ -8,19 +10,19 @@ require('conform').setup {
     typescript = js,
     javascriptreact = js,
     typescriptreact = js,
-    css = prettier,
-    less = prettier,
-    scss = prettier,
-    html = prettier,
-    htmlangular = prettier,
-    handlebars = prettier,
-    markdown = prettier,
-    svelte = prettier,
-    astro = prettier,
-    vue = prettier,
-    yaml = prettier,
-    json = prettier,
-    jsonc = prettier,
+    css = format,
+    less = format,
+    scss = format,
+    html = format,
+    htmlangular = format,
+    handlebars = format,
+    markdown = format,
+    svelte = format,
+    astro = format,
+    vue = format,
+    yaml = format,
+    json = format,
+    jsonc = format,
     python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
   },
   formatters = {

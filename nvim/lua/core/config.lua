@@ -100,22 +100,6 @@ vim.filetype.add {
   },
 }
 
--- `clipboard.vim` file is too slow (compared with manual setting clipboard)
-if has 'wsl' then
-  vim.g.clipboard = {
-    name = 'WslClipboard',
-    cache_enabled = 0,
-    copy = {
-      ['+'] = 'win32yank.exe -i --crlf',
-      ['*'] = 'win32yank.exe -i --crlf',
-    },
-    paste = {
-      ['+'] = 'win32yank.exe -o --lf',
-      ['*'] = 'win32yank.exe -o --lf',
-    },
-  }
-end
-
 if os.getenv('TERM_PROGRAM') == 'WezTerm' then
   vim.cmd([[let &t_Cs = "\e[60m"]]) -- Inform vim how to enable undercurl in wezterm
   vim.cmd([[let &t_Ce = "\e[24m"]]) -- Inform vim how to disable undercurl in wezterm (this disables all underline modes)

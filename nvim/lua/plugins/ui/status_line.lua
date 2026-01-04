@@ -1,3 +1,42 @@
+local Filetype = {}
+
+---@type snacks.picker.finder.Item[]
+Filetype.items = {}
+
+local fts = vim.fn.getcompletion('', 'filetype')
+table.sort(fts)
+
+for _, ft in ipairs(fts) do
+  local devicons = require('nvim-web-devicons')
+  local icon, hl = devicons.get_icon_by_filetype(ft, { default = true })
+
+  Filetype.items[#Filetype.items + 1] = {
+    icon = icon,
+    icon_hl = hl,
+    text = ft,
+  }
+end
+
+function Filetype.picker()
+  Snacks.picker.pick({
+    title = 'Filetypes',
+    layout = { preset = 'vscode' },
+    items = Filetype.items,
+    format = function(item)
+      return {
+        { (item.icon or '') .. ' ', item.icon_hl },
+        { item.text, 'SnacksPickerText' },
+      }
+    end,
+    confirm = function(picker, item)
+      picker:close()
+      if item then
+        vim.bo.filetype = item.text
+      end
+    end,
+  })
+end
+
 ---@class TabItem
 ---@field icon string
 ---@field filetype string
@@ -49,14 +88,20 @@ require('lualine').setup {
         'branch',
         icon = '',
         padding = { left = 2, right = 1 },
-        on_click = function() require('telescope.builtin').git_branches() end,
+        on_click = function() Snacks.picker.git_branches() end,
       },
       { 'diff', symbols = { added = ' ', modified = ' ', removed = ' ' } },
       {
         function() return ' ' .. conflict_count() end,
         cond = function() return conflict_count() > 0 end,
       },
-      { 'diagnostics', sources = { 'nvim_diagnostic' }, always_visible = false, symbols = vim.g.signs },
+      {
+        'diagnostics',
+        sources = { 'nvim_diagnostic' },
+        always_visible = false,
+        symbols = vim.g.signs,
+        on_click = function() Snacks.picker.diagnostics() end,
+      },
     },
     lualine_x = {
       {
@@ -67,13 +112,13 @@ require('lualine').setup {
       },
       {
         'filetype',
-        on_click = function() require('telescope.builtin').filetypes() end,
+        on_click = Filetype.picker,
         separator = '|',
       },
       tab_item {
         icon = '',
-        filetype = 'TelescopePrompt',
-        on_click = function() require('telescope.builtin').find_files() end,
+        filetype = 'snacks_picker_input',
+        on_click = function() Snacks.picker.files() end,
       },
       tab_item {
         icon = '',

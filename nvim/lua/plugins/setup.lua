@@ -8,6 +8,7 @@ end
 return {
   -- region: Themes
   { 'catppuccin/nvim',            name = 'catppuccin',         lazy = false,      config = config 'themes.catppuccin' },
+  { 'WTFox/jellybeans.nvim',      name = 'jellybeans',         lazy = true },
   { 'embark-theme/vim',           name = 'embark',             lazy = true },
   { 'loctvl842/monokai-pro.nvim', name = 'monokai-pro',        lazy = true },
   -- endregion: Themes
@@ -18,18 +19,6 @@ return {
   -- endregion Git
 
   -- region: UI
-  { -- finder
-    'nvim-telescope/telescope.nvim',
-    lazy = true,
-    cmd = { 'Telescope' },
-    config = config 'ui.finder',
-    dependencies = {
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release',
-      }
-    }
-  },
   { -- highlights
     'nvim-treesitter/nvim-treesitter',
     config = config 'ui.highlight',
@@ -91,6 +80,7 @@ return {
         opts = {
           library = {
             'luvit-meta/library',
+            { path = 'snacks.nvim',   words = { 'Snacks' } },
             { path = 'wezterm-types', mods = { 'wezterm' } },
           },
         },

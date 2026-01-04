@@ -31,7 +31,9 @@ catppuccin.setup {
     window_picker = true,
     neotree = true,
     notify = true,
-    telescope = true,
+    telescope = {
+      enabled = false,
+    },
     treesitter = true,
     which_key = true,
     treesitter_context = true,
@@ -58,7 +60,7 @@ catppuccin.setup {
   highlight_overrides = {
     all = function(c)
       return {
-        Normal = { fg = c.text, bg = '' },
+        -- Normal = { fg = c.text, bg = '' },
         Folded = { bg = c.surface0 },
         -- lsp/cmp
         FloatBorder = { bg = c.mantle, fg = c.flamingo },
@@ -86,21 +88,8 @@ catppuccin.setup {
         MiniStarterQuery = { fg = c.red },
         -- surround
         NvimSurroundHighlight = { bg = c.red, fg = c.surface0 },
-        -- telescope
-        TelescopePromptNormal = { bg = c.surface0 },
-        TelescopePromptBorder = { bg = c.surface0, fg = c.blue },
-        TelescopePromptCounter = { bg = c.surface0, fg = c.subtext0 },
-        TelescopePromptTitle = { bg = c.blue, fg = c.surface0 },
-
-        TelescopeResultsNormal = { bg = c.mantle },
-        TelescopeResultsBorder = { bg = c.mantle, fg = c.maroon },
-        TelescopeResultsTitle = { bg = c.maroon, fg = c.mantle },
-        TelescopeSelection = { bg = c.surface0, fg = c.pink },
-        TelescopeResultsDir = { fg = c.surface2 },
-
-        TelescopePreviewNormal = { bg = c.crust },
-        TelescopePreviewBorder = { bg = c.crust, fg = c.pink },
-        TelescopePreviewTitle = { bg = c.pink, fg = c.crust },
+        -- pickers
+        SnacksPickerBorder = { bg = c.crust, fg = c.surface0 },
       }
     end,
   },
